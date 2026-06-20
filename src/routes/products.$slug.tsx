@@ -30,7 +30,8 @@ export const Route = createFileRoute("/products/$slug")({
 });
 
 function PDP() {
-  const { product } = Route.useLoaderData();
+  const { product } = Route.useLoaderData() as { product: ReturnType<typeof productBySlug> & {} };
+  if (!product) return null;
   const { add } = useCart();
   const [qty, setQty] = useState(1);
   const [tab, setTab] = useState<"ingredients" | "how" | "reviews">("ingredients");
