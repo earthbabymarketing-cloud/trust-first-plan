@@ -1,29 +1,466 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import hero from "@/assets/hero-mother-baby.jpg";
+import flatlay from "@/assets/products-flatlay.jpg";
+import { products, concerns } from "@/lib/products";
+import { formatINR, useCart } from "@/lib/cart";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Your App" },
-      { name: "description", content: "Replace this with a one-sentence description of your app." },
-      { property: "og:title", content: "Your App" },
-      { property: "og:description", content: "Replace this with a one-sentence description of your app." },
+      { title: "Earthbaby — Calming, radically transparent baby & mom care" },
+      { name: "description", content: "Dermatologically tested baby and mom skincare with 100% ingredient disclosure and natural origin % declared for every product." },
+      { property: "og:title", content: "Earthbaby — Honest care for sensitive skin" },
+      { property: "og:description", content: "Calming, radically transparent care for sensitive baby and mom skin." },
     ],
   }),
-  component: Index,
+  component: Home,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
+function Home() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
+    <>
+      <Hero />
+      <TrustStrip />
+      <Empathy />
+      <WhyTrust />
+      <ShopByConcern />
+      <Bestsellers />
+      <Bundles />
+      <Difference />
+      <Ingredients />
+      <Reviews />
+      <FounderStory />
+      <LearnBlock />
+      <HomeFAQ />
+      <FinalCTA />
+    </>
+  );
+}
+
+/* ---------- HERO ---------- */
+function Hero() {
+  return (
+    <section className="relative overflow-hidden bg-[color:var(--secondary)]">
+      <div className="container-x grid lg:grid-cols-[1.05fr_1fr] gap-10 lg:gap-16 py-12 lg:py-20 items-center">
+        <div className="order-2 lg:order-1">
+          <span className="eyebrow">For sensitive baby & mom skin · Made in India</span>
+          <h1 className="mt-5 font-display text-[40px] leading-[1.05] sm:text-[56px] lg:text-[72px] tracking-[-0.015em]">
+            Calming care for <em className="not-italic text-[color:var(--sage-deep)]">sensitive skin.</em>
+            <br />
+            Complete <span className="italic text-[color:var(--clay)]">transparency</span> for parents.
+          </h1>
+          <p className="mt-5 max-w-xl text-base sm:text-lg text-muted-foreground">
+            Thoughtfully formulated for babies and moms with sensitive skin. Dermatologically tested. Certified natural origin. Every ingredient disclosed.
+          </p>
+          <div className="mt-7 flex flex-wrap items-center gap-4">
+            <Link to="/shop" className="btn-primary">Shop bestsellers →</Link>
+            <Link to="/about" className="btn-ghost">Why parents trust Earthbaby</Link>
+          </div>
+          <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-x-6 gap-y-3 text-[12px] text-muted-foreground">
+            <Bullet>★★★★★ 10,000+ families</Bullet>
+            <Bullet>Made Safe Certified</Bullet>
+            <Bullet>Dermatologically Tested</Bullet>
+            <Bullet>Featured in ET</Bullet>
+          </div>
+        </div>
+        <div className="order-1 lg:order-2 relative">
+          <div className="aspect-[4/5] w-full overflow-hidden rounded-[28px] bg-[color:var(--muted)]">
+            <img
+              src={hero}
+              alt="Indian mother holding her baby in soft natural light"
+              width={1600}
+              height={2000}
+              fetchPriority="high"
+              className="h-full w-full object-cover"
+            />
+          </div>
+          <div className="absolute -bottom-5 -left-3 sm:bottom-6 sm:left-6 card-soft px-4 py-3 max-w-[230px]">
+            <div className="text-[11px] eyebrow">Natural origin</div>
+            <div className="font-display text-2xl text-[color:var(--sage-deep)]">97–100%</div>
+            <div className="text-[11px] text-muted-foreground">declared on every product</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Bullet({ children }: { children: React.ReactNode }) {
+  return <div className="flex items-center gap-2"><span className="h-1.5 w-1.5 rounded-full bg-[color:var(--sage-deep)]" />{children}</div>;
+}
+
+/* ---------- Trust strip ---------- */
+function TrustStrip() {
+  const logos = ["Economic Times", "Vogue India", "Times of India", "Mint", "YourStory"];
+  return (
+    <section className="border-y border-border bg-background">
+      <div className="container-x py-6 flex flex-wrap items-center justify-between gap-6">
+        <span className="eyebrow">As featured in</span>
+        <div className="flex flex-wrap items-center gap-x-8 gap-y-3 text-foreground/55">
+          {logos.map((l) => <span key={l} className="font-display text-lg sm:text-xl tracking-tight">{l}</span>)}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ---------- Empathy ---------- */
+function Empathy() {
+  return (
+    <section className="container-x py-20 lg:py-28">
+      <div className="max-w-3xl">
+        <span className="eyebrow">Why we exist</span>
+        <h2 className="mt-4 font-display text-3xl sm:text-5xl leading-tight">
+          Choosing baby care shouldn't feel overwhelming.
+        </h2>
+        <div className="mt-8 space-y-4 text-lg text-muted-foreground">
+          <p>Every brand claims to be natural.</p>
+          <p>Understanding ingredients isn't easy.</p>
+          <p>And when it comes to your baby, guessing doesn't feel right.</p>
+          <p className="text-foreground">That's why we created Earthbaby.<br />Because parents deserve <em className="italic text-[color:var(--clay)]">confidence</em>, not confusion.</p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ---------- Why trust ---------- */
+function WhyTrust() {
+  const points = [
+    { t: "Every ingredient disclosed", d: "Full INCI list, in plain English, on every product page." },
+    { t: "Natural origin % transparency", d: "We declare the exact natural origin % — no rounding up." },
+    { t: "Dermatologically tested", d: "Patch-tested for sensitive baby and mom skin." },
+    { t: "No fear-based marketing", d: "We won't scare you into buying. Just facts." },
+    { t: "Sensitive skin first", d: "Formulated for the most reactive skin in the family." },
+    { t: "Honest claims", d: "No buzzwords. No half-truths. If we say it, we can prove it." },
+  ];
+  return (
+    <section className="bg-[color:var(--secondary)]">
+      <div className="container-x py-20 lg:py-28">
+        <div className="max-w-2xl">
+          <span className="eyebrow">Our promise</span>
+          <h2 className="mt-4 font-display text-3xl sm:text-5xl">We don't ask you to trust us blindly.</h2>
+        </div>
+        <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-border rounded-2xl overflow-hidden">
+          {points.map((p) => (
+            <div key={p.t} className="bg-[color:var(--secondary)] p-7">
+              <div className="h-7 w-7 rounded-full bg-[color:var(--sage-deep)] text-[color:var(--background)] grid place-items-center text-xs">✓</div>
+              <h3 className="mt-4 font-display text-xl">{p.t}</h3>
+              <p className="mt-2 text-sm text-muted-foreground">{p.d}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ---------- Shop by concern ---------- */
+function ShopByConcern() {
+  return (
+    <section className="container-x py-20 lg:py-28">
+      <div className="flex flex-wrap items-end justify-between gap-6">
+        <div>
+          <span className="eyebrow">Shop by concern</span>
+          <h2 className="mt-3 font-display text-3xl sm:text-5xl">What are you looking for?</h2>
+        </div>
+        <Link to="/shop" className="btn-ghost">View all →</Link>
+      </div>
+      <div className="mt-10 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
+        {concerns.map((c) => (
+          <Link
+            key={c.id}
+            to="/shop"
+            search={{ concern: c.id }}
+            className="group relative aspect-[4/5] rounded-2xl overflow-hidden bg-[color:var(--muted)] border border-border hover:shadow-[var(--shadow-lift)] transition"
+          >
+            <div className="absolute inset-0 grain opacity-40" />
+            <div className="absolute inset-x-0 bottom-0 p-4">
+              <div className="font-display text-lg leading-tight">{c.label}</div>
+              <div className="mt-1 text-[12px] text-muted-foreground group-hover:text-foreground transition">Explore →</div>
+            </div>
+          </Link>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+/* ---------- Bestsellers ---------- */
+function Bestsellers() {
+  const { add } = useCart();
+  return (
+    <section className="bg-background">
+      <div className="container-x py-20 lg:py-28">
+        <div className="flex flex-wrap items-end justify-between gap-6">
+          <div>
+            <span className="eyebrow">Bestsellers</span>
+            <h2 className="mt-3 font-display text-3xl sm:text-5xl">Loved by parents who value gentle care.</h2>
+          </div>
+          <Link to="/shop" className="btn-ghost">Shop all →</Link>
+        </div>
+        <div className="mt-10 grid grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-7">
+          {products.map((p) => (
+            <article key={p.slug} className="group">
+              <Link to="/products/$slug" params={{ slug: p.slug }} className="block aspect-[4/5] overflow-hidden rounded-2xl bg-[color:var(--muted)]">
+                <img src={p.image} alt={p.name} width={900} height={1100} loading="lazy" className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]" />
+              </Link>
+              <div className="mt-4 flex items-start justify-between gap-3">
+                <div>
+                  <div className="text-[11px] text-muted-foreground">★ {p.rating} ({p.reviews})</div>
+                  <Link to="/products/$slug" params={{ slug: p.slug }} className="font-display text-lg leading-tight mt-1 block">{p.name}</Link>
+                  <p className="text-[13px] text-muted-foreground">{p.tagline}</p>
+                </div>
+                <div className="font-display text-lg">{formatINR(p.price)}</div>
+              </div>
+              <button onClick={() => add(p.slug)} className="mt-3 w-full rounded-full border border-border bg-background py-2.5 text-sm hover:bg-[color:var(--secondary)] transition">Add to cart</button>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ---------- Bundles ---------- */
+function Bundles() {
+  return (
+    <section className="container-x py-20 lg:py-28">
+      <div className="max-w-2xl">
+        <span className="eyebrow">Routines</span>
+        <h2 className="mt-3 font-display text-3xl sm:text-5xl">Start with a complete routine.</h2>
+      </div>
+      <div className="mt-10 grid lg:grid-cols-2 gap-6">
+        <BundleCard
+          title="Sensitive Skin Essentials"
+          items={["Baby Wash", "Moisturising Butter", "Virgin Coconut Oil"]}
+          price={1490}
+          strike={1864}
+          badge="Save 10%"
+          accent
+        />
+        <BundleCard
+          title="Traditional Care Bundle"
+          items={["Ubtan Sunni Pindi", "Coconut Oil", "Baby Wash"]}
+          price={1590}
+          strike={1655}
+          badge="Heritage"
+        />
+      </div>
+    </section>
+  );
+}
+
+function BundleCard({ title, items, price, strike, badge, accent }: { title: string; items: string[]; price: number; strike: number; badge: string; accent?: boolean }) {
+  return (
+    <div className={`card-soft p-7 lg:p-9 ${accent ? "bg-[color:var(--secondary)]" : ""}`}>
+      <div className="flex items-start justify-between gap-4">
+        <h3 className="font-display text-2xl sm:text-3xl">{title}</h3>
+        <span className="chip bg-[color:var(--clay)] text-[color:var(--accent-foreground)]">{badge}</span>
+      </div>
+      <ul className="mt-6 space-y-2 text-sm">
+        {items.map((i) => <li key={i} className="flex gap-2"><span className="text-[color:var(--sage-deep)]">✓</span>{i}</li>)}
+      </ul>
+      <div className="mt-6 flex items-end gap-3">
+        <span className="font-display text-3xl">{formatINR(price)}</span>
+        <span className="text-sm text-muted-foreground line-through pb-1">{formatINR(strike)}</span>
+      </div>
+      <button className="btn-primary mt-6 w-full sm:w-auto">Get this routine</button>
     </div>
+  );
+}
+
+/* ---------- Difference ---------- */
+function Difference() {
+  const rows = [
+    ["Chemical-free claims", "Full ingredient disclosure"],
+    ["Hidden ingredients", "Natural origin % declared"],
+    ["Fear marketing", "Calm confidence"],
+    ["Buzzwords", "Sensitive skin first"],
+    ["Fragrance mystery", "Honest fragrance disclosure"],
+  ];
+  return (
+    <section className="bg-[color:var(--ink)] text-[color:var(--background)]">
+      <div className="container-x py-20 lg:py-28">
+        <div className="max-w-2xl">
+          <span className="eyebrow text-white/60">The Earthbaby difference</span>
+          <h2 className="mt-3 font-display text-3xl sm:text-5xl">Honest care, without the marketing noise.</h2>
+        </div>
+        <div className="mt-12 grid md:grid-cols-2 gap-px bg-white/10 rounded-2xl overflow-hidden">
+          <div className="bg-[color:var(--ink)] p-7">
+            <div className="eyebrow text-white/50">Other brands</div>
+            <ul className="mt-5 space-y-3 text-white/75">
+              {rows.map(([a]) => <li key={a} className="flex gap-3"><span className="text-white/40">✗</span>{a}</li>)}
+            </ul>
+          </div>
+          <div className="bg-[color:var(--sage-deep)] p-7">
+            <div className="eyebrow text-white/70">Earthbaby</div>
+            <ul className="mt-5 space-y-3">
+              {rows.map(([, b]) => <li key={b} className="flex gap-3"><span>✓</span>{b}</li>)}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ---------- Ingredients ---------- */
+function Ingredients() {
+  const ings = [
+    ["Virgin Coconut Oil", "Nourishes and moisturizes"],
+    ["Calendula", "Helps soothe sensitive skin"],
+    ["Sunflower Oil", "Supports skin barrier"],
+    ["Oats", "Calms dry skin"],
+  ];
+  return (
+    <section id="ingredients" className="container-x py-20 lg:py-28">
+      <div className="grid lg:grid-cols-[1fr_1.1fr] gap-10 lg:gap-16 items-center">
+        <div className="aspect-square w-full overflow-hidden rounded-3xl bg-[color:var(--muted)]">
+          <img src={flatlay} alt="Natural ingredients flatlay" width={1280} height={960} loading="lazy" className="h-full w-full object-cover" />
+        </div>
+        <div>
+          <span className="eyebrow">Ingredient transparency</span>
+          <h2 className="mt-3 font-display text-3xl sm:text-5xl">Every ingredient has a purpose.</h2>
+          <p className="mt-4 text-muted-foreground max-w-lg">Because understanding baby skincare shouldn't require a chemistry degree.</p>
+          <ul className="mt-8 divide-y divide-border border-y border-border">
+            {ings.map(([n, d]) => (
+              <li key={n} className="py-4 grid grid-cols-[minmax(0,1fr)_auto] items-baseline gap-4">
+                <div>
+                  <div className="font-display text-xl">{n}</div>
+                  <div className="text-sm text-muted-foreground">{d}</div>
+                </div>
+                <span className="text-[12px] text-[color:var(--sage-deep)]">→</span>
+              </li>
+            ))}
+          </ul>
+          <Link to="/about" hash="ingredients" className="btn-ghost mt-8 inline-flex">Explore ingredients →</Link>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ---------- Reviews ---------- */
+function Reviews() {
+  const list = [
+    { q: "After trying 3 brands, this is the only one that worked for my baby's dry skin.", a: "Mumbai Mom · Baby 8 months" },
+    { q: "Finally a brand that explains everything. I know what I'm putting on my baby.", a: "Bangalore Mom · Baby 1 year" },
+    { q: "The ubtan reminded me of my grandmother's recipe. Comforting and effective.", a: "Hyderabad Mom · Baby 4 months" },
+  ];
+  return (
+    <section id="reviews" className="bg-[color:var(--secondary)]">
+      <div className="container-x py-20 lg:py-28">
+        <div className="flex flex-wrap items-end justify-between gap-6">
+          <div>
+            <span className="eyebrow">Real mothers. Real stories.</span>
+            <h2 className="mt-3 font-display text-3xl sm:text-5xl">From parents who switched.</h2>
+          </div>
+          <div className="text-sm text-muted-foreground">★ 4.9 average · 950+ verified reviews</div>
+        </div>
+        <div className="mt-10 grid md:grid-cols-3 gap-5">
+          {list.map((r, i) => (
+            <figure key={i} className="card-soft p-6">
+              <div className="text-[color:var(--clay)] tracking-[0.2em]">★★★★★</div>
+              <blockquote className="mt-4 font-display text-xl leading-snug">"{r.q}"</blockquote>
+              <figcaption className="mt-5 text-sm text-muted-foreground">{r.a}</figcaption>
+            </figure>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ---------- Founder ---------- */
+function FounderStory() {
+  return (
+    <section className="container-x py-20 lg:py-28">
+      <div className="max-w-3xl">
+        <span className="eyebrow">Founder story</span>
+        <h2 className="mt-3 font-display text-3xl sm:text-5xl">Why Earthbaby exists.</h2>
+        <p className="mt-6 text-lg text-muted-foreground">
+          We were tired of endless claims and confusing labels. So we built Earthbaby around one belief:
+          <span className="text-foreground"> parents deserve complete transparency.</span> Because confidence matters more than marketing.
+        </p>
+        <Link to="/about" className="btn-ghost mt-7 inline-flex">Read our story →</Link>
+      </div>
+    </section>
+  );
+}
+
+/* ---------- Learn ---------- */
+function LearnBlock() {
+  const items = [
+    "How to choose baby skincare without getting overwhelmed",
+    "What does dermatologically tested actually mean?",
+    "Why fragrance matters for sensitive skin",
+    "Understanding ingredients, made simple",
+  ];
+  return (
+    <section className="bg-background">
+      <div className="container-x py-20 lg:py-28">
+        <span className="eyebrow">Learn before you buy</span>
+        <h2 className="mt-3 font-display text-3xl sm:text-5xl max-w-2xl">A small library for confident parents.</h2>
+        <ul className="mt-10 grid sm:grid-cols-2 gap-px bg-border rounded-2xl overflow-hidden">
+          {items.map((i) => (
+            <li key={i} className="bg-background p-6 hover:bg-[color:var(--secondary)] transition cursor-pointer">
+              <div className="font-display text-xl leading-snug">{i}</div>
+              <div className="mt-3 text-sm text-[color:var(--sage-deep)]">Read article →</div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  );
+}
+
+/* ---------- FAQ teaser ---------- */
+function HomeFAQ() {
+  const qs = [
+    "Is it suitable for sensitive skin?",
+    "Can newborns use it?",
+    "Why is Earthbaby priced higher?",
+    "Are your products fragrance free?",
+    "How are you different from other brands?",
+    "Why buy from your website instead of Amazon?",
+  ];
+  return (
+    <section className="container-x py-20 lg:py-28">
+      <div className="grid lg:grid-cols-[1fr_1.5fr] gap-10">
+        <div>
+          <span className="eyebrow">FAQs</span>
+          <h2 className="mt-3 font-display text-3xl sm:text-5xl">Honest answers.</h2>
+          <p className="mt-4 text-muted-foreground">Everything we get asked, answered plainly.</p>
+          <Link to="/faq" className="btn-ghost mt-6 inline-flex">All FAQs →</Link>
+        </div>
+        <ul className="divide-y divide-border border-y border-border">
+          {qs.map((q) => (
+            <li key={q} className="py-5 flex items-center justify-between gap-4">
+              <span className="font-display text-lg sm:text-xl">{q}</span>
+              <span className="h-8 w-8 rounded-full border border-border grid place-items-center text-foreground/60">+</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  );
+}
+
+/* ---------- Final CTA ---------- */
+function FinalCTA() {
+  return (
+    <section className="bg-[color:var(--sage-deep)] text-[color:var(--background)]">
+      <div className="container-x py-24 lg:py-32 text-center">
+        <span className="eyebrow text-white/60">For sensitive skin</span>
+        <h2 className="mt-4 font-display text-4xl sm:text-6xl leading-[1.05] max-w-3xl mx-auto">
+          Because parents deserve <em className="italic">confidence</em>, not confusion.
+        </h2>
+        <p className="mt-5 text-white/75 max-w-xl mx-auto">Calming, radically transparent care for sensitive skin.</p>
+        <Link to="/shop" className="mt-8 inline-flex items-center justify-center gap-2 bg-[color:var(--background)] text-[color:var(--foreground)] px-7 py-4 rounded-full font-medium hover:bg-white transition">
+          Shop bestsellers →
+        </Link>
+      </div>
+    </section>
   );
 }
