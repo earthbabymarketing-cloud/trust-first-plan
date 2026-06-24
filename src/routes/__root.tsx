@@ -12,6 +12,7 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { CartProvider, useCart } from "../lib/cart";
+import logoAsset from "../assets/earthbaby-logo.png.asset.json";
 
 function NotFoundComponent() {
   return (
