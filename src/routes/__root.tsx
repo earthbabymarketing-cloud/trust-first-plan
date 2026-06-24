@@ -12,6 +12,7 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { CartProvider, useCart } from "../lib/cart";
+import logoAsset from "../assets/earthbaby-logo.png.asset.json";
 
 function NotFoundComponent() {
   return (
@@ -50,7 +51,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Earthbaby — Calming, radically transparent baby & mom care" },
       { name: "description", content: "Dermatologically tested baby and mom skincare with 100% ingredient disclosure and natural origin % declared for every product." },
-      { name: "theme-color", content: "#FAF6EE" },
+      { name: "theme-color", content: "#00A2C6" },
       { property: "og:title", content: "Earthbaby — Honest care for sensitive skin" },
       { property: "og:description", content: "Calming, radically transparent care for sensitive baby and mom skin. Every ingredient disclosed." },
       { property: "og:type", content: "website" },
@@ -60,7 +61,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "stylesheet", href: appCss },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap" },
+      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Livvic:wght@400;600;700&family=Nunito:wght@400;500;600;700&family=Abel&display=swap" },
     ],
   }),
   shellComponent: RootShell,
@@ -83,10 +84,10 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function AnnouncementBar() {
   return (
-    <div className="bg-[color:var(--ink)] text-[color:var(--background)] text-[12px] sm:text-[13px]">
+    <div className="bg-[color:var(--brand-sky)] text-white text-[12px] sm:text-[13px]">
       <div className="container-x flex items-center justify-center gap-2 py-2 text-center">
         <span className="hidden sm:inline tracking-[0.18em]">★★★★★</span>
-        <span className="opacity-90">Trusted by 10,000+ families · Free shipping above ₹600 · Dermatologically tested</span>
+        <span className="opacity-95">Trusted by 10,000+ families · Free shipping above ₹600 · Dermatologically tested</span>
       </div>
     </div>
   );
@@ -95,28 +96,28 @@ function AnnouncementBar() {
 function Header() {
   const { count } = useCart();
   return (
-    <header className="sticky top-0 z-40 backdrop-blur bg-[color:var(--background)]/85 border-b border-border">
-      <div className="container-x grid grid-cols-[1fr_auto_1fr] items-center gap-4 py-4">
-        <nav className="hidden md:flex items-center gap-7 text-sm text-foreground/80">
-          <Link to="/shop" className="hover:text-foreground">Shop</Link>
-          <Link to="/shop" search={{ concern: "sensitive" }} className="hover:text-foreground">Concerns</Link>
-          <Link to="/about" hash="ingredients" className="hover:text-foreground">Ingredients</Link>
-          <Link to="/about" hash="reviews" className="hover:text-foreground">Reviews</Link>
+    <header className="sticky top-0 z-40 backdrop-blur bg-[color:var(--background)]/90 border-b border-border">
+      <div className="container-x grid grid-cols-[1fr_auto_1fr] items-center gap-4 py-3">
+        <nav className="hidden md:flex items-center gap-7 text-sm font-semibold text-foreground/80">
+          <Link to="/shop" className="hover:text-[color:var(--brand-sky)]">Shop</Link>
+          <Link to="/shop" search={{ concern: "sensitive" }} className="hover:text-[color:var(--brand-sky)]">Concerns</Link>
+          <Link to="/about" hash="ingredients" className="hover:text-[color:var(--brand-sky)]">Ingredients</Link>
+          <Link to="/about" hash="reviews" className="hover:text-[color:var(--brand-sky)]">Reviews</Link>
         </nav>
-        <Link to="/" className="font-display text-2xl md:text-[28px] tracking-[0.02em] text-center">
-          earthbaby<span className="text-[color:var(--clay)]">.</span>
+        <Link to="/" className="flex items-center justify-center" aria-label="Earthbaby home">
+          <img src={logoAsset.url} alt="Earthbaby — nature inside" className="h-12 md:h-14 w-auto" />
         </Link>
-        <div className="flex items-center justify-end gap-5 text-sm">
-          <Link to="/about" className="hidden md:inline hover:text-foreground/70">About</Link>
+        <div className="flex items-center justify-end gap-5 text-sm font-semibold">
+          <Link to="/about" className="hidden md:inline hover:text-[color:var(--brand-sky)]">About</Link>
           <Link to="/cart" className="relative inline-flex items-center gap-1.5">
             <span>Cart</span>
-            <span className="inline-flex h-6 min-w-6 items-center justify-center rounded-full bg-[color:var(--ink)] px-1.5 text-[11px] text-[color:var(--background)]">{count}</span>
+            <span className="inline-flex h-6 min-w-6 items-center justify-center rounded-full bg-[color:var(--brand-sky)] px-1.5 text-[11px] text-white">{count}</span>
           </Link>
         </div>
       </div>
       {/* Mobile nav row */}
       <div className="md:hidden border-t border-border">
-        <div className="container-x flex items-center justify-between gap-4 py-2 text-[13px] overflow-x-auto">
+        <div className="container-x flex items-center justify-between gap-4 py-2 text-[13px] font-semibold overflow-x-auto">
           <Link to="/shop">Shop</Link>
           <Link to="/shop" search={{ concern: "sensitive" }}>Concerns</Link>
           <Link to="/about" hash="ingredients">Ingredients</Link>
@@ -130,16 +131,16 @@ function Header() {
 
 function Footer() {
   return (
-    <footer className="mt-24 bg-[color:var(--ink)] text-[color:var(--background)]">
+    <footer className="mt-24 bg-[color:var(--brand-ink)] text-white">
       <div className="container-x py-16 grid gap-12 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
         <div>
-          <div className="font-display text-3xl">earthbaby<span className="text-[color:var(--clay)]">.</span></div>
-          <p className="mt-4 text-sm opacity-75 max-w-xs">Calming, radically transparent care for sensitive baby and mom skin.</p>
+          <img src={logoAsset.url} alt="Earthbaby" className="h-16 w-auto" />
+          <p className="mt-5 text-sm opacity-80 max-w-xs">Calming, radically transparent care for sensitive baby and mom skin.</p>
           <div className="mt-6 flex flex-wrap gap-2">
-            <span className="chip bg-white/10 text-white/90">Made Safe</span>
-            <span className="chip bg-white/10 text-white/90">Dermatologically Tested</span>
-            <span className="chip bg-white/10 text-white/90">PETA</span>
-            <span className="chip bg-white/10 text-white/90">FDA Approved</span>
+            <span className="chip chip-leaf">Made Safe</span>
+            <span className="chip">Dermatologically Tested</span>
+            <span className="chip chip-blossom">PETA</span>
+            <span className="chip chip-sun">FDA Approved</span>
           </div>
         </div>
         <div className="text-sm">
