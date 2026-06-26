@@ -59,7 +59,7 @@ function About() {
             {[
               ["Dermatologically tested", "On sensitive skin panels, not just standard skin."],
               ["No synthetic fragrance", "Ever. If it smells, we tell you why."],
-              ["Vegetable-derived surfactants", "No SLS, no SLES."],
+              ["Plant-derived surfactants", "No SLS, no SLES."],
               ["Made Safe certified", "Independent verification of every ingredient."],
             ].map(([t, d]) => (
               <li key={t} className="py-5">
