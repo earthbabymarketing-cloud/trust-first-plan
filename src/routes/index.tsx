@@ -319,9 +319,9 @@ function Ingredients() {
   // Featured processed ingredients shown on the home page — full list lives on /ingredients.
   const ings: Array<[string, string, number]> = [
     ["Coco Glucoside", "Mild cleanser & bubbles maker", 100],
-    ["Tocopherol (Natural Vitamin E)", "Antioxidant. Heals and calms", 100],
+    ["Disodium Cocoyl Glutamate", "Gentle cleanser", 98],
     ["Sodium Hyaluronate", "Powerhouse hydration", 100],
-    ["Xanthan Gum", "Thickener and texture maker", 100],
+    ["Sodium Cocoyl Isethionate", "Mild cleanser with creamy feel", 86],
   ];
   return (
     <section id="ingredients" className="container-x py-20 lg:py-28">

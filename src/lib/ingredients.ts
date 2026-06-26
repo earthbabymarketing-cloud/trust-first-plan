@@ -34,9 +34,9 @@ export const ingredients: Ingredient[] = [
 // Featured on the home page — recognisable, high natural origin, varied uses.
 export const featuredIngredientNames = [
   "Coco Glucoside",
-  "Tocopherol (Natural Vitamin E)",
+  "Disodium Cocoyl Glutamate",
   "Sodium Hyaluronate",
-  "Xanthan Gum",
+  "Sodium Cocoyl Isethionate",
 ];
 
 export const featuredIngredients = featuredIngredientNames
