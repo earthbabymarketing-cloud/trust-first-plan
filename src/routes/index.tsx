@@ -76,7 +76,7 @@ function Hero() {
           </div>
           <div className="absolute -bottom-5 -left-3 sm:bottom-6 sm:left-6 card-soft px-4 py-3 max-w-[230px]">
             <div className="text-[11px] eyebrow">Natural origin</div>
-            <div className="font-display text-2xl text-[color:var(--sage-deep)]">97–100%</div>
+            <div className="font-display text-2xl text-[color:var(--sage-deep)]">90–100%</div>
             <div className="text-[11px] text-muted-foreground">declared on every product</div>
           </div>
         </div>
