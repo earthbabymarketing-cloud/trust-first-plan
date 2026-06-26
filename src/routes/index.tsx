@@ -333,8 +333,7 @@ function Ingredients() {
           <span className="eyebrow">Ingredient transparency</span>
           <h2 className="mt-3 font-display text-3xl sm:text-5xl">The long names, explained simply.</h2>
           <p className="mt-4 text-muted-foreground max-w-lg">
-            Some ingredients sound like chemicals because they are processed — often from coconut, olive or sugar.
-            Here are four; the full glossary lists every one with its % natural origin.
+            Some ingredients sound like chemicals because they are processed — often minimally from naturals like coconut & olive
           </p>
           <ul className="mt-8 divide-y divide-border border-y border-border">
             {ings.map(([n, d, p]) => (
@@ -343,7 +342,7 @@ function Ingredients() {
                   <div className="font-display text-xl">{n}</div>
                   <div className="text-sm text-muted-foreground">{d}</div>
                 </div>
-                <span className="font-display text-lg text-[color:var(--sage-deep)] whitespace-nowrap">{p}% natural</span>
+                <span className="font-display text-lg text-[color:var(--sage-deep)] whitespace-nowrap">{p}% natural origin</span>
               </li>
             ))}
           </ul>
