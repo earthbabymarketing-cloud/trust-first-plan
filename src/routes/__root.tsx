@@ -167,7 +167,7 @@ function Footer() {
             <li><Link to="/contact">Track Order</Link></li>
             <li><a href="#">Shipping & Returns</a></li>
             <li><a href="#">Instagram</a></li>
-            <li><a href="#">YouTube</a></li>
+            <li><a href="#">WhatsApp</a></li>
           </ul>
         </div>
       </div>
