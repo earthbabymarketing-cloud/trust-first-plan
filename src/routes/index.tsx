@@ -60,7 +60,7 @@ function Hero() {
             <Bullet>★★★★★ 10,000+ families</Bullet>
             <Bullet>Made Safe Certified</Bullet>
             <Bullet>Dermatologically Tested</Bullet>
-            <Bullet>Featured in ET</Bullet>
+            <Bullet>Easy Returns</Bullet>
           </div>
         </div>
         <div className="order-1 lg:order-2 relative">
@@ -91,7 +91,7 @@ function Bullet({ children }: { children: React.ReactNode }) {
 
 /* ---------- Trust strip ---------- */
 function TrustStrip() {
-  const logos = ["Economic Times", "Vogue India", "Times of India", "Mint", "YourStory"];
+  const logos = ["Economic Times", "The Better India", "Startup India Seed Fund"];
   return (
     <section className="border-y border-border bg-background">
       <div className="container-x py-6 flex flex-wrap items-center justify-between gap-6">
@@ -127,7 +127,7 @@ function Empathy() {
 /* ---------- Why trust ---------- */
 function WhyTrust() {
   const points = [
-    { t: "Every ingredient disclosed", d: "Full INCI list, in plain English, on every product page." },
+    { t: "Every ingredient disclosed", d: "Full ingredient list, in plain English, on every product page." },
     { t: "Natural origin % transparency", d: "We declare the exact natural origin % — no rounding up." },
     { t: "Dermatologically tested", d: "Patch-tested for sensitive baby and mom skin." },
     { t: "No fear-based marketing", d: "We won't scare you into buying. Just facts." },
