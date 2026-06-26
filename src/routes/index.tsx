@@ -60,7 +60,7 @@ function Hero() {
             <Bullet>★★★★★ 10,000+ families</Bullet>
             <Bullet>Made Safe Certified</Bullet>
             <Bullet>Dermatologically Tested</Bullet>
-            <Bullet>Featured in ET</Bullet>
+            <Bullet>Easy Returns</Bullet>
           </div>
         </div>
         <div className="order-1 lg:order-2 relative">
