@@ -126,10 +126,18 @@ export const products: Product[] = [
 
 export const productBySlug = (slug: string) => products.find((p) => p.slug === slug);
 
+import concernSensitive from "@/assets/concern-sensitive.jpg";
+import concernEveryday from "@/assets/concern-everyday.jpg";
+import concernTraditional from "@/assets/concern-traditional.jpg";
+import concernMassage from "@/assets/concern-massage.jpg";
+import concernMom from "@/assets/concern-mom.jpg";
+import concernDiaper from "@/assets/concern-diaper.jpg";
+
 export const concerns = [
-  { id: "sensitive", label: "Dry & Sensitive Skin" },
-  { id: "everyday", label: "Gentle Everyday Cleansing" },
-  { id: "traditional", label: "Traditional Baby Bath" },
-  { id: "massage", label: "Massage & Moisture" },
-  { id: "mom", label: "New Mom Care" },
+  { id: "sensitive", label: "Dry & Sensitive Skin", image: concernSensitive },
+  { id: "everyday", label: "Gentle Everyday Cleansing", image: concernEveryday },
+  { id: "traditional", label: "Traditional Baby Bath", image: concernTraditional },
+  { id: "diaper", label: "Diaper Rash", image: concernDiaper },
+  { id: "massage", label: "Massage & Moisture", image: concernMassage },
+  { id: "mom", label: "New Mom Care", image: concernMom },
 ] as const;
