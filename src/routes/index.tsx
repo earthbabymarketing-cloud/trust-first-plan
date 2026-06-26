@@ -127,7 +127,7 @@ function Empathy() {
 /* ---------- Why trust ---------- */
 function WhyTrust() {
   const points = [
-    { t: "Every ingredient disclosed", d: "Full INCI list, in plain English, on every product page." },
+    { t: "Every ingredient disclosed", d: "Full ingredient list, in plain English, on every product page." },
     { t: "Natural origin % transparency", d: "We declare the exact natural origin % — no rounding up." },
     { t: "Dermatologically tested", d: "Patch-tested for sensitive baby and mom skin." },
     { t: "No fear-based marketing", d: "We won't scare you into buying. Just facts." },
