@@ -58,7 +58,7 @@ function About() {
           <ul className="mt-8 divide-y divide-border border-y border-border">
             {[
               ["Dermatologically tested", "On sensitive skin panels, not just standard skin."],
-              ["No synthetic fragrance", "Ever. If it smells, we tell you why."],
+              ["No synthetic fragrance", "Ever. In baby care, no Essential Oils either."],
               ["Plant-derived surfactants", "No SLS, no SLES."],
               ["Made Safe certified", "Independent verification of every ingredient."],
             ].map(([t, d]) => (
