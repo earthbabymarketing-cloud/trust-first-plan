@@ -277,7 +277,7 @@ function Difference() {
     ["Hidden ingredients", "Natural origin % declared"],
     ["Fear marketing", "Calm confidence"],
     ["Buzzwords", "Sensitive skin first"],
-    ["Fragrance mystery", "\nNo artificial fragrance, ever"],
+    ["Fragrance mystery", "No artificial fragrance,\never"],
   ];
   return (
     <section className="bg-[color:var(--ink)] text-[color:var(--background)]">
