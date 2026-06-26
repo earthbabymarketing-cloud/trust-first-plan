@@ -91,7 +91,7 @@ function Bullet({ children }: { children: React.ReactNode }) {
 
 /* ---------- Trust strip ---------- */
 function TrustStrip() {
-  const logos = ["Economic Times", "Vogue India", "Times of India", "Mint", "YourStory"];
+  const logos = ["Economic Times", "The Better India", "Startup India Seed Fund", "", ""];
   return (
     <section className="border-y border-border bg-background">
       <div className="container-x py-6 flex flex-wrap items-center justify-between gap-6">
