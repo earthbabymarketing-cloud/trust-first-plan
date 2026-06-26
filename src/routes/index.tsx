@@ -277,7 +277,7 @@ function Difference() {
     ["Hidden ingredients", "Natural origin % declared"],
     ["Fear marketing", "Calm confidence"],
     ["Buzzwords", "Sensitive skin first"],
-    ["Fragrance mystery", "Honest fragrance disclosure"],
+    ["Fragrance mystery", "No artificial fragrance,\never"],
   ];
   return (
     <section className="bg-[color:var(--ink)] text-[color:var(--background)]">
@@ -296,7 +296,7 @@ function Difference() {
           <div className="bg-[color:var(--sage-deep)] p-7">
             <div className="eyebrow text-white/70">Earthbaby</div>
             <ul className="mt-5 space-y-3">
-              {rows.map(([, b]) => <li key={b} className="flex gap-3"><span>✓</span>{b}</li>)}
+              {rows.map(([, b]) => <li key={b} className="flex gap-3 whitespace-pre-line"><span>✓</span>{b}</li>)}
             </ul>
           </div>
         </div>
