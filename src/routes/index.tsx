@@ -316,11 +316,12 @@ function Difference() {
 
 /* ---------- Ingredients ---------- */
 function Ingredients() {
-  const ings = [
-    ["Virgin Coconut Oil", "Nourishes and moisturizes"],
-    ["Calendula", "Helps soothe sensitive skin"],
-    ["Sunflower Oil", "Supports skin barrier"],
-    ["Oats", "Calms dry skin"],
+  // Featured processed ingredients shown on the home page — full list lives on /ingredients.
+  const ings: Array<[string, string, number]> = [
+    ["Coco Glucoside", "Mild cleanser & bubbles maker", 100],
+    ["Tocopherol (Natural Vitamin E)", "Antioxidant. Heals and calms", 100],
+    ["Sodium Hyaluronate", "Powerhouse hydration", 100],
+    ["Xanthan Gum", "Thickener and texture maker", 100],
   ];
   return (
     <section id="ingredients" className="container-x py-20 lg:py-28">
@@ -330,25 +331,29 @@ function Ingredients() {
         </div>
         <div>
           <span className="eyebrow">Ingredient transparency</span>
-          <h2 className="mt-3 font-display text-3xl sm:text-5xl">Every ingredient has a purpose.</h2>
-          <p className="mt-4 text-muted-foreground max-w-lg">Because understanding baby skincare shouldn't require a chemistry degree.</p>
+          <h2 className="mt-3 font-display text-3xl sm:text-5xl">The long names, explained simply.</h2>
+          <p className="mt-4 text-muted-foreground max-w-lg">
+            Some ingredients sound like chemicals because they are processed — often from coconut, olive or sugar.
+            Here are four; the full glossary lists every one with its % natural origin.
+          </p>
           <ul className="mt-8 divide-y divide-border border-y border-border">
-            {ings.map(([n, d]) => (
+            {ings.map(([n, d, p]) => (
               <li key={n} className="py-4 grid grid-cols-[minmax(0,1fr)_auto] items-baseline gap-4">
                 <div>
                   <div className="font-display text-xl">{n}</div>
                   <div className="text-sm text-muted-foreground">{d}</div>
                 </div>
-                <span className="text-[12px] text-[color:var(--sage-deep)]">→</span>
+                <span className="font-display text-lg text-[color:var(--sage-deep)] whitespace-nowrap">{p}% natural</span>
               </li>
             ))}
           </ul>
-          <Link to="/about" hash="ingredients" className="btn-ghost mt-8 inline-flex">Explore ingredients →</Link>
+          <Link to="/ingredients" className="btn-ghost mt-8 inline-flex">See all ingredients →</Link>
         </div>
       </div>
     </section>
   );
 }
+
 
 /* ---------- Reviews ---------- */
 function Reviews() {
