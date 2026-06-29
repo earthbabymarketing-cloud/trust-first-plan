@@ -41,22 +41,26 @@ function Home() {
 function Hero() {
   return (
     <section className="relative overflow-hidden bg-[color:var(--secondary)]">
-      <div className="container-x grid lg:grid-cols-[1.05fr_1fr] gap-10 lg:gap-16 py-12 lg:py-20 items-center">
+      {/* Soft brand-color decoration */}
+      <div aria-hidden className="pointer-events-none absolute -top-24 -right-20 h-72 w-72 rounded-full bg-[color:var(--tint-blossom)] opacity-60 blur-2xl" />
+      <div aria-hidden className="pointer-events-none absolute -bottom-24 -left-16 h-72 w-72 rounded-full bg-[color:var(--tint-leaf)] opacity-50 blur-2xl" />
+
+      <div className="relative container-x grid lg:grid-cols-[1.05fr_1fr] gap-10 lg:gap-16 py-10 sm:py-14 lg:py-20 items-center">
         <div className="order-2 lg:order-1">
           <span className="eyebrow">For sensitive baby & mom skin · Made in India</span>
-          <h1 className="mt-5 font-display text-[40px] leading-[1.05] sm:text-[56px] lg:text-[72px] tracking-[-0.015em]">
+          <h1 className="mt-4 sm:mt-5 font-display text-[34px] leading-[1.08] sm:text-[52px] lg:text-[72px] tracking-[-0.015em]">
             Calming care for <em className="not-italic text-[color:var(--sage-deep)]">sensitive skin.</em>
             <br />
             Complete <span className="italic text-[color:var(--clay)]">transparency</span> for parents.
           </h1>
-          <p className="mt-5 max-w-xl text-base sm:text-lg text-muted-foreground">
+          <p className="mt-4 sm:mt-5 max-w-xl text-[15px] sm:text-lg text-muted-foreground">
             Thoughtfully formulated for babies and moms with sensitive skin. Dermatologically tested. Certified natural origin. Every ingredient disclosed.
           </p>
-          <div className="mt-7 flex flex-wrap items-center gap-4">
-            <Link to="/shop" className="btn-primary">Shop bestsellers →</Link>
-            <Link to="/about" className="btn-ghost">Why parents trust Earthbaby</Link>
+          <div className="mt-6 sm:mt-7 flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-3 sm:gap-4">
+            <Link to="/shop" className="btn-primary w-full sm:w-auto justify-center">Shop bestsellers →</Link>
+            <Link to="/about" className="btn-ghost self-center sm:self-auto">Why parents trust Earthbaby</Link>
           </div>
-          <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-x-6 gap-y-3 text-[12px] text-muted-foreground">
+          <div className="mt-7 sm:mt-8 grid grid-cols-2 sm:grid-cols-4 gap-x-4 gap-y-2.5 text-[12px] text-muted-foreground">
             <Bullet>★★★★★ 10,000+ families</Bullet>
             <Bullet>Made Safe Certified</Bullet>
             <Bullet>Dermatologically Tested</Bullet>
@@ -64,7 +68,7 @@ function Hero() {
           </div>
         </div>
         <div className="order-1 lg:order-2 relative">
-          <div className="aspect-[4/5] w-full overflow-hidden rounded-[28px] bg-[color:var(--muted)]">
+          <div className="aspect-[4/5] w-full overflow-hidden rounded-[24px] sm:rounded-[28px] bg-[color:var(--muted)] shadow-[var(--shadow-soft)]">
             <img
               src={hero}
               alt="Indian mother holding her baby in soft natural light"
@@ -74,7 +78,7 @@ function Hero() {
               className="h-full w-full object-cover"
             />
           </div>
-          <div className="absolute -bottom-5 -left-3 sm:bottom-6 sm:left-6 card-soft px-4 py-3 max-w-[230px]">
+          <div className="absolute bottom-3 left-3 sm:bottom-6 sm:left-6 card-soft px-4 py-3 max-w-[210px] sm:max-w-[230px]">
             <div className="text-[11px] eyebrow">Natural origin</div>
             <div className="font-display text-2xl text-[color:var(--sage-deep)]">90–100%</div>
             <div className="text-[11px] text-muted-foreground">declared on every product</div>
@@ -86,7 +90,12 @@ function Hero() {
 }
 
 function Bullet({ children }: { children: React.ReactNode }) {
-  return <div className="flex items-center gap-2"><span className="h-1.5 w-1.5 rounded-full bg-[color:var(--sage-deep)]" />{children}</div>;
+  return (
+    <div className="flex items-start gap-2 min-w-0">
+      <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[color:var(--sage-deep)]" />
+      <span className="min-w-0">{children}</span>
+    </div>
+  );
 }
 
 /* ---------- Trust strip ---------- */
@@ -107,7 +116,7 @@ function TrustStrip() {
 /* ---------- Empathy ---------- */
 function Empathy() {
   return (
-    <section className="container-x py-20 lg:py-28">
+    <section className="container-x py-14 sm:py-20 lg:py-28">
       <div className="max-w-3xl">
         <span className="eyebrow">Why we exist</span>
         <h2 className="mt-4 font-display text-3xl sm:text-5xl leading-tight">
@@ -136,7 +145,7 @@ function WhyTrust() {
   ];
   return (
     <section className="bg-[color:var(--secondary)]">
-      <div className="container-x py-20 lg:py-28">
+      <div className="container-x py-14 sm:py-20 lg:py-28">
         <div className="max-w-2xl">
           <span className="eyebrow">Our promise</span>
           <h2 className="mt-4 font-display text-3xl sm:text-5xl">We don't ask you to trust us blindly.</h2>
@@ -158,7 +167,7 @@ function WhyTrust() {
 /* ---------- Shop by concern ---------- */
 function ShopByConcern() {
   return (
-    <section className="container-x py-20 lg:py-28">
+    <section className="container-x py-14 sm:py-20 lg:py-28">
       <div className="flex flex-wrap items-end justify-between gap-6">
         <div>
           <span className="eyebrow">Shop by concern</span>
@@ -200,7 +209,7 @@ function Bestsellers() {
   const { add } = useCart();
   return (
     <section className="bg-background">
-      <div className="container-x py-20 lg:py-28">
+      <div className="container-x py-14 sm:py-20 lg:py-28">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div>
             <span className="eyebrow">Bestsellers</span>
@@ -234,7 +243,7 @@ function Bestsellers() {
 /* ---------- Bundles ---------- */
 function Bundles() {
   return (
-    <section className="container-x py-20 lg:py-28">
+    <section className="container-x py-14 sm:py-20 lg:py-28">
       <div className="max-w-2xl">
         <span className="eyebrow">Routines</span>
         <h2 className="mt-3 font-display text-3xl sm:text-5xl">Start with a complete routine.</h2>
@@ -290,7 +299,7 @@ function Difference() {
   ];
   return (
     <section className="bg-[color:var(--ink)] text-[color:var(--background)]">
-      <div className="container-x py-20 lg:py-28">
+      <div className="container-x py-14 sm:py-20 lg:py-28">
         <div className="max-w-2xl">
           <span className="eyebrow text-white/60">The Earthbaby difference</span>
           <h2 className="mt-3 font-display text-3xl sm:text-5xl">Honest care, without the marketing noise.</h2>
@@ -324,7 +333,7 @@ function Ingredients() {
     ["Sodium Cocoyl Isethionate", "Mild cleanser with creamy feel", 86],
   ];
   return (
-    <section id="ingredients" className="container-x py-20 lg:py-28">
+    <section id="ingredients" className="container-x py-14 sm:py-20 lg:py-28">
       <div className="grid lg:grid-cols-[1fr_1.1fr] gap-10 lg:gap-16 items-center">
         <div className="aspect-square w-full overflow-hidden rounded-3xl bg-[color:var(--muted)]">
           <img src={flatlay} alt="Natural ingredients flatlay" width={1280} height={960} loading="lazy" className="h-full w-full object-cover" />
@@ -363,7 +372,7 @@ function Reviews() {
   ];
   return (
     <section id="reviews" className="bg-[color:var(--secondary)]">
-      <div className="container-x py-20 lg:py-28">
+      <div className="container-x py-14 sm:py-20 lg:py-28">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div>
             <span className="eyebrow">Real mothers. Real stories.</span>
@@ -388,7 +397,7 @@ function Reviews() {
 /* ---------- Founder ---------- */
 function FounderStory() {
   return (
-    <section className="container-x py-20 lg:py-28">
+    <section className="container-x py-14 sm:py-20 lg:py-28">
       <div className="max-w-3xl">
         <span className="eyebrow">Founder story</span>
         <h2 className="mt-3 font-display text-3xl sm:text-5xl">Why Earthbaby exists.</h2>
@@ -412,7 +421,7 @@ function LearnBlock() {
   ];
   return (
     <section className="bg-background">
-      <div className="container-x py-20 lg:py-28">
+      <div className="container-x py-14 sm:py-20 lg:py-28">
         <span className="eyebrow">Learn before you buy</span>
         <h2 className="mt-3 font-display text-3xl sm:text-5xl max-w-2xl">A small library for confident parents.</h2>
         <ul className="mt-10 grid sm:grid-cols-2 gap-px bg-border rounded-2xl overflow-hidden">
@@ -439,7 +448,7 @@ function HomeFAQ() {
     "Why buy from your website instead of Amazon?",
   ];
   return (
-    <section className="container-x py-20 lg:py-28">
+    <section className="container-x py-14 sm:py-20 lg:py-28">
       <div className="grid lg:grid-cols-[1fr_1.5fr] gap-10">
         <div>
           <span className="eyebrow">FAQs</span>
