@@ -74,7 +74,7 @@ function About() {
       <section id="reviews" className="bg-[color:var(--ink)] text-[color:var(--background)]">
         <div className="container-x py-20 lg:py-28 text-center">
           <span className="eyebrow text-white/60">From the parents we serve</span>
-          <h2 className="mt-3 font-display text-4xl sm:text-6xl max-w-3xl mx-auto">
+          <h2 className="mt-3 font-display text-4xl sm:text-6xl max-w-3xl mx-auto text-[color:var(--background)]">
             "Finally a brand that explains everything."
           </h2>
           <p className="mt-6 text-white/70">— Bangalore Mom, Baby 1 year</p>
