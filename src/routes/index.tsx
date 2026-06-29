@@ -175,31 +175,30 @@ function ShopByConcern() {
         </div>
         <Link to="/shop" className="btn-ghost">View all →</Link>
       </div>
-      <div className="mt-10 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+      <div className="mt-10 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-6">
         {concerns.map((c) => (
           <Link
             key={c.id}
             to="/shop"
             search={{ concern: c.id }}
-            className="group relative aspect-[4/5] rounded-2xl overflow-hidden bg-[color:var(--muted)] border border-border hover:shadow-[var(--shadow-lift)] transition"
+            className="group flex flex-col items-center text-center"
           >
-            <img
-              src={c.image}
-              alt={c.label}
-              width={512}
-              height={640}
-              loading="lazy"
-              className="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-            <div className="absolute inset-0 grain opacity-30" />
-            <div className="absolute inset-x-0 bottom-0 p-4 text-white">
-              <div className="font-display text-lg leading-tight">{c.label}</div>
-              <div className="mt-1 text-[12px] text-white/80 group-hover:text-white transition">Explore →</div>
+            <div className="aspect-square w-full rounded-full overflow-hidden bg-[color:var(--secondary)] border border-border transition group-hover:shadow-[var(--shadow-lift)]">
+              <img
+                src={c.image}
+                alt={c.label}
+                width={400}
+                height={400}
+                loading="lazy"
+                className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+              />
             </div>
+            <div className="mt-3 font-display text-sm sm:text-base leading-tight text-foreground">{c.label}</div>
+            <div className="text-[12px] text-[color:var(--sage-deep)] mt-1 opacity-0 group-hover:opacity-100 transition">Explore →</div>
           </Link>
         ))}
       </div>
+
     </section>
   );
 }
