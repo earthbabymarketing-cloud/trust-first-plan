@@ -1,10 +1,10 @@
-const babyWash = "https://cdn.shopify.com/s/files/1/0913/7704/1688/files/53.jpg?v=1756793579";
-const ubtan = "https://cdn.shopify.com/s/files/1/0913/7704/1688/files/26_64dbc5e7-91da-4013-875a-b6eab4f866d4.jpg?v=1767935786";
-const coconut = "https://cdn.shopify.com/s/files/1/0913/7704/1688/files/Coconut275.jpg?v=1757289027";
-const butter = "https://cdn.shopify.com/s/files/1/0913/7704/1688/files/28.jpg?v=1742198783";
+import { useQuery } from "@tanstack/react-query";
+import { SHOPIFY_DOMAIN, SHOPIFY_API_VERSION, SHOPIFY_STOREFRONT_TOKEN } from "./shopify";
+
+export type ProductIngredient = { name: string; purpose: string; percent?: string };
 
 export type Product = {
-  slug: string;
+  slug: string;            // shopify handle
   name: string;
   tagline: string;
   price: number;
@@ -12,30 +12,22 @@ export type Product = {
   reviews: number;
   image: string;
   variantId: string;
-  concern: "sensitive" | "everyday" | "traditional" | "massage" | "mom";
-  naturalOrigin: number;
-  size: string;
+  concern?: "sensitive" | "everyday" | "traditional" | "massage" | "mom";
+  naturalOrigin?: number;
+  size?: string;
   description: string;
   hero: string[];
-  ingredients: { name: string; purpose: string; percent?: string }[];
+  ingredients: ProductIngredient[];
   howToUse: string[];
 };
 
-export const products: Product[] = [
-  {
-    slug: "baby-wash",
-    name: "Baby Wash",
+/* ---------- enrichment for the originally hand-curated products ---------- */
+type Enrichment = Partial<Omit<Product, "slug" | "name" | "image" | "price" | "variantId" | "description">>;
+
+const ENRICHMENT: Record<string, Enrichment> = {
+  "baby-wash": {
     tagline: "Gentle cleansing for sensitive skin",
-    price: 599,
-    rating: 4.8,
-    reviews: 245,
-    image: babyWash,
-    variantId: "gid://shopify/ProductVariant/49744814637336",
-    concern: "everyday",
-    naturalOrigin: 97,
-    size: "200 ml",
-    description:
-      "A tear-free, fragrance-free wash formulated for newborn skin. Cleanses without stripping the skin barrier — leaves skin soft, calm, and never tight.",
+    rating: 4.8, reviews: 245, concern: "everyday", naturalOrigin: 97, size: "200 ml",
     hero: ["Tear-free", "Fragrance-free", "pH 5.5 — skin-matched"],
     ingredients: [
       { name: "Coco Glucoside", purpose: "Ultra-mild plant-derived cleanser", percent: "12%" },
@@ -49,20 +41,9 @@ export const products: Product[] = [
       "Massage gently, rinse thoroughly. Use daily.",
     ],
   },
-  {
-    slug: "ubtan-sunni-pindi",
-    name: "Ubtan Sunni Pindi",
+  "ubtan-sunni-pindi": {
     tagline: "Traditional baby bath powder",
-    price: 490,
-    rating: 4.9,
-    reviews: 320,
-    image: ubtan,
-    variantId: "gid://shopify/ProductVariant/50042667237656",
-    concern: "traditional",
-    naturalOrigin: 100,
-    size: "150 g",
-    description:
-      "A heritage Telugu recipe of stone-ground green gram, turmeric, and almond. Gently exfoliates, evens tone, and softens skin — the way grandmothers always knew.",
+    rating: 4.9, reviews: 320, concern: "traditional", naturalOrigin: 100, size: "150 g",
     hero: ["100% natural origin", "No preservatives", "Heritage recipe"],
     ingredients: [
       { name: "Green Gram Flour", purpose: "Gentle cleanse + exfoliation", percent: "60%" },
@@ -76,44 +57,20 @@ export const products: Product[] = [
       "Rinse with lukewarm water. Use 2–3× per week.",
     ],
   },
-  {
-    slug: "virgin-coconut-oil",
-    name: "Virgin Coconut Oil",
+  "virgin-coconut-oil": {
     tagline: "Massage & daily nourishment",
-    price: 566,
-    rating: 4.8,
-    reviews: 180,
-    image: coconut,
-    variantId: "gid://shopify/ProductVariant/49745076257048",
-    concern: "massage",
-    naturalOrigin: 100,
-    size: "250 ml",
-    description:
-      "Cold-pressed, unrefined virgin coconut oil from Kerala. The same oil generations of Indian mothers have trusted — bottled with full traceability.",
+    rating: 4.8, reviews: 180, concern: "massage", naturalOrigin: 100, size: "250 ml",
     hero: ["Cold-pressed", "Single-origin", "Edible-grade"],
-    ingredients: [
-      { name: "Virgin Coconut Oil", purpose: "Nourishes & moisturises", percent: "100%" },
-    ],
+    ingredients: [{ name: "Virgin Coconut Oil", purpose: "Nourishes & moisturises", percent: "100%" }],
     howToUse: [
       "Warm a few drops between palms.",
       "Massage in slow, gentle strokes before bath.",
       "Use daily — body, scalp, and dry patches.",
     ],
   },
-  {
-    slug: "moisturising-butter",
-    name: "Moisturising Butter",
+  "moisturising-butter": {
     tagline: "Deep moisture for dry skin",
-    price: 699,
-    rating: 4.9,
-    reviews: 210,
-    image: butter,
-    variantId: "gid://shopify/ProductVariant/49744802840856",
-    concern: "sensitive",
-    naturalOrigin: 96,
-    size: "100 g",
-    description:
-      "A rich, whipped body butter with raw shea, mango butter, and oat. Locks in moisture for 24 hours without feeling heavy or sticky.",
+    rating: 4.9, reviews: 210, concern: "sensitive", naturalOrigin: 96, size: "100 g",
     hero: ["24h moisture", "Non-greasy", "Eczema-friendly"],
     ingredients: [
       { name: "Raw Shea Butter", purpose: "Deep barrier repair", percent: "35%" },
@@ -127,10 +84,102 @@ export const products: Product[] = [
       "Reapply on dry patches as needed.",
     ],
   },
-];
+};
 
-export const productBySlug = (slug: string) => products.find((p) => p.slug === slug);
+/* ---------- heuristics for products with no enrichment ---------- */
+function inferConcern(title: string): Product["concern"] | undefined {
+  const t = title.toLowerCase();
+  if (/(nappy|diaper)/.test(t)) return "everyday";
+  if (/(mom|stretch|postpartum)/.test(t)) return "mom";
+  if (/(massage|oil)/.test(t)) return "massage";
+  if (/(ubtan|sunni|traditional|honey|tea)/.test(t)) return "traditional";
+  if (/(butter|lotion|cream|moistur)/.test(t)) return "sensitive";
+  return "everyday";
+}
+function inferNaturalOrigin(title: string): number | undefined {
+  const m = title.match(/(\d{2,3}(?:\.\d+)?)\s*%/);
+  if (m) return Math.round(parseFloat(m[1]));
+  return undefined;
+}
+function inferSize(title: string): string | undefined {
+  const m = title.match(/(\d+\s?(?:ml|g|kg|ML|G))\b/);
+  return m ? m[1].toLowerCase().replace(/\s+/, " ") : undefined;
+}
+function cleanTitle(t: string): string {
+  return t.split(",")[0].split("—")[0].split("–")[0].trim();
+}
 
+/* ---------- Storefront fetch ---------- */
+const ENDPOINT = `https://${SHOPIFY_DOMAIN}/api/${SHOPIFY_API_VERSION}/graphql.json`;
+const QUERY = `query AllProducts($first: Int!) {
+  products(first: $first) {
+    edges { node {
+      id handle title description
+      featuredImage { url }
+      images(first: 4) { edges { node { url } } }
+      priceRange { minVariantPrice { amount currencyCode } }
+      variants(first: 1) { edges { node { id } } }
+    } }
+  }
+}`;
+
+async function fetchProducts(): Promise<Product[]> {
+  const res = await fetch(ENDPOINT, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "X-Shopify-Storefront-Access-Token": SHOPIFY_STOREFRONT_TOKEN,
+    },
+    body: JSON.stringify({ query: QUERY, variables: { first: 100 } }),
+  });
+  if (!res.ok) throw new Error(`Shopify ${res.status}`);
+  const data = await res.json();
+  const edges = data?.data?.products?.edges ?? [];
+  return edges
+    .map((e: any) => {
+      const n = e.node;
+      const variant = n.variants?.edges?.[0]?.node;
+      if (!variant) return null;
+      const image = n.featuredImage?.url ?? n.images?.edges?.[0]?.node?.url ?? "";
+      const enr = ENRICHMENT[n.handle] ?? {};
+      const name = enr.size ? n.title.split(",")[0].trim() : cleanTitle(n.title);
+      const p: Product = {
+        slug: n.handle,
+        name,
+        tagline: enr.tagline ?? n.title,
+        price: Math.round(parseFloat(n.priceRange?.minVariantPrice?.amount ?? "0")),
+        rating: enr.rating ?? 4.8,
+        reviews: enr.reviews ?? 0,
+        image,
+        variantId: variant.id,
+        concern: enr.concern ?? inferConcern(n.title),
+        naturalOrigin: enr.naturalOrigin ?? inferNaturalOrigin(n.title),
+        size: enr.size ?? inferSize(n.title),
+        description: n.description || enr.tagline || "",
+        hero: enr.hero ?? [],
+        ingredients: enr.ingredients ?? [],
+        howToUse: enr.howToUse ?? [],
+      };
+      return p;
+    })
+    .filter(Boolean) as Product[];
+}
+
+export function useProducts() {
+  return useQuery({
+    queryKey: ["shopify", "products"],
+    queryFn: fetchProducts,
+    staleTime: 5 * 60 * 1000,
+  });
+}
+
+export function useProductBySlug(slug: string | undefined) {
+  const q = useProducts();
+  const product = q.data?.find((p) => p.slug === slug);
+  return { ...q, product };
+}
+
+/* ---------- Concerns (unchanged for UI) ---------- */
 import concernSensitive from "@/assets/concern-img2_2.png.asset.json";
 import concernEveryday from "@/assets/concern-img2_1.png.asset.json";
 import concernTraditional from "@/assets/concern-img1_2.png.asset.json";
