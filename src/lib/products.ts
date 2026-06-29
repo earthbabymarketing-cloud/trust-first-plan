@@ -1,7 +1,7 @@
-import babyWash from "@/assets/product-baby-wash.jpg";
-import ubtan from "@/assets/product-ubtan.jpg";
-import coconut from "@/assets/product-coconut-oil.jpg";
-import butter from "@/assets/product-butter.jpg";
+const babyWash = "https://cdn.shopify.com/s/files/1/0913/7704/1688/files/53.jpg?v=1756793579";
+const ubtan = "https://cdn.shopify.com/s/files/1/0913/7704/1688/files/26_64dbc5e7-91da-4013-875a-b6eab4f866d4.jpg?v=1767935786";
+const coconut = "https://cdn.shopify.com/s/files/1/0913/7704/1688/files/Coconut275.jpg?v=1757289027";
+const butter = "https://cdn.shopify.com/s/files/1/0913/7704/1688/files/28.jpg?v=1742198783";
 
 export type Product = {
   slug: string;
