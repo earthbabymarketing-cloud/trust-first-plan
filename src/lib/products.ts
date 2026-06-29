@@ -1,7 +1,7 @@
-import babyWash from "@/assets/product-baby-wash.jpg";
-import ubtan from "@/assets/product-ubtan.jpg";
-import coconut from "@/assets/product-coconut-oil.jpg";
-import butter from "@/assets/product-butter.jpg";
+const babyWash = "https://cdn.shopify.com/s/files/1/0913/7704/1688/files/53.jpg?v=1756793579";
+const ubtan = "https://cdn.shopify.com/s/files/1/0913/7704/1688/files/26_64dbc5e7-91da-4013-875a-b6eab4f866d4.jpg?v=1767935786";
+const coconut = "https://cdn.shopify.com/s/files/1/0913/7704/1688/files/Coconut275.jpg?v=1757289027";
+const butter = "https://cdn.shopify.com/s/files/1/0913/7704/1688/files/28.jpg?v=1742198783";
 
 export type Product = {
   slug: string;
@@ -11,6 +11,7 @@ export type Product = {
   rating: number;
   reviews: number;
   image: string;
+  variantId: string;
   concern: "sensitive" | "everyday" | "traditional" | "massage" | "mom";
   naturalOrigin: number;
   size: string;
@@ -29,6 +30,7 @@ export const products: Product[] = [
     rating: 4.8,
     reviews: 245,
     image: babyWash,
+    variantId: "gid://shopify/ProductVariant/49744814637336",
     concern: "everyday",
     naturalOrigin: 97,
     size: "200 ml",
@@ -55,6 +57,7 @@ export const products: Product[] = [
     rating: 4.9,
     reviews: 320,
     image: ubtan,
+    variantId: "gid://shopify/ProductVariant/50042667237656",
     concern: "traditional",
     naturalOrigin: 100,
     size: "150 g",
@@ -81,6 +84,7 @@ export const products: Product[] = [
     rating: 4.8,
     reviews: 180,
     image: coconut,
+    variantId: "gid://shopify/ProductVariant/49745076257048",
     concern: "massage",
     naturalOrigin: 100,
     size: "250 ml",
@@ -104,6 +108,7 @@ export const products: Product[] = [
     rating: 4.9,
     reviews: 210,
     image: butter,
+    variantId: "gid://shopify/ProductVariant/49744802840856",
     concern: "sensitive",
     naturalOrigin: 96,
     size: "100 g",
