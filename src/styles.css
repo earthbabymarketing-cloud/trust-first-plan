@@ -134,10 +134,10 @@
     font-size: 11px;
     letter-spacing: 0.28em;
     text-transform: uppercase;
-    color: var(--brand-ink-2);
+    color: var(--brand-sky);
     font-weight: 400;
   }
-  .hairline { border-top: 1px solid var(--border); }
+  .hairline { border-top: 1px solid color-mix(in oklab, var(--brand-sky) 18%, var(--border)); }
   .container-x { width: 100%; max-width: 1240px; margin-inline: auto; padding-inline: 1.25rem; }
   @media (min-width: 768px) { .container-x { padding-inline: 2.5rem; } }
 
