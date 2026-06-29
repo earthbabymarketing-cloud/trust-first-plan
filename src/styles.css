@@ -5,8 +5,8 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --radius-sm: 6px;
-  --radius-md: 12px;
+  --radius-sm: 8px;
+  --radius-md: 14px;
   --radius-lg: 18px;
   --radius-xl: 22px;
   --radius-2xl: 28px;
@@ -40,26 +40,33 @@
   --color-tint-blossom: var(--tint-blossom);
   --color-tint-mist: var(--tint-mist);
   --font-display: "Livvic", ui-sans-serif, system-ui, sans-serif;
-  --font-sans: "Nunito", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Abel", "Nunito", ui-sans-serif, system-ui, sans-serif;
   --font-caption: "Abel", ui-sans-serif, system-ui, sans-serif;
 }
 
 :root {
-  --radius: 1rem;
+  --radius: 14px;
 
-  /* Earthbaby brand palette — calm + joyful */
-  --brand-sky:     #00A2C6;   /* primary cyan (logo) */
-  --brand-leaf:    #89C650;   /* primary green (nature inside) */
-  --brand-blossom: #F16786;   /* accent pink */
-  --brand-sun:     #FFCC00;   /* energy spark */
-  --brand-cream:   #FFFDF8;   /* warm off-white background */
-  --brand-ink:     #1F2A33;   /* cool charcoal text */
+  /* Earth Baby — official brand palette (premium edition) */
+  --brand-sky:     #00A2C6;
+  --brand-sky-hover: #0088A8;
+  --brand-leaf:    #89C650;
+  --brand-blossom: #F16786;
+  --brand-sun:     #FFCC00;
+  --brand-cream:   #FFFFFF;          /* primary bg is pure white per guidelines */
+  --brand-ink:     #2E3A3F;          /* primary text */
+  --brand-ink-2:   #5F6B70;          /* secondary text */
 
-  /* Secondary tints from brand book */
-  --tint-leaf:    #DBFFB9;
-  --tint-sky:     #8BE7FA;
+  /* Soft, low-opacity section tints */
+  --tint-leaf:    color-mix(in oklab, #DBFFB9 100%, transparent);   /* full strength chip */
+  --tint-sky:     color-mix(in oklab, #8BE7FA 100%, transparent);
   --tint-blossom: #FFD9E1;
   --tint-mist:    #E2E9EB;
+
+  /* Section background washes — very low opacity */
+  --wash-mint:    color-mix(in oklab, #DBFFB9 10%, white);
+  --wash-sky:     color-mix(in oklab, #8BE7FA 8%, white);
+  --wash-mist:    #F4F7F8;
 
   --background: var(--brand-cream);
   --foreground: var(--brand-ink);
@@ -69,21 +76,22 @@
   --popover-foreground: var(--brand-ink);
   --primary: var(--brand-sky);
   --primary-foreground: #FFFFFF;
-  --secondary: var(--tint-sky);
+  --secondary: var(--wash-sky);
   --secondary-foreground: var(--brand-ink);
-  --muted: var(--tint-mist);
-  --muted-foreground: #5A6A75;
-  --accent: var(--brand-blossom);
-  --accent-foreground: #FFFFFF;
+  --muted: var(--wash-mist);
+  --muted-foreground: var(--brand-ink-2);
+  --accent: var(--tint-blossom);
+  --accent-foreground: var(--brand-ink);
   --destructive: #E04A4A;
   --destructive-foreground: #FFFFFF;
-  --border: #E6ECEE;
-  --input: #E6ECEE;
+  --border: rgba(0,0,0,0.06);
+  --input: var(--tint-mist);
   --ring: var(--brand-sky);
 
-  /* Sky-tinted soft shadows — airy, not heavy */
-  --shadow-soft: 0 1px 2px rgba(0,162,198,.06), 0 8px 24px -12px rgba(0,162,198,.18);
-  --shadow-lift: 0 2px 4px rgba(0,162,198,.08), 0 20px 40px -20px rgba(0,162,198,.28);
+  /* Very soft, natural shadows — no harsh black */
+  --shadow-soft: 0 1px 2px rgba(46,58,63,.04), 0 8px 28px -16px rgba(46,58,63,.10);
+  --shadow-lift: 0 2px 6px rgba(46,58,63,.05), 0 24px 48px -24px rgba(46,58,63,.16);
+  --shadow-glass: 0 1px 0 rgba(255,255,255,.6) inset, 0 8px 32px -12px rgba(46,58,63,.10);
 
   /* Legacy aliases — keep existing route files rendering with new palette */
   --ink:       var(--brand-ink);
@@ -95,81 +103,120 @@
 
 @layer base {
   * { border-color: var(--color-border); }
-  html { -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+  html {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    scroll-behavior: smooth;
+  }
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.7;
+    letter-spacing: 0.005em;
   }
+  p { line-height: 1.75; }
   h1,h2,h3,h4 {
     font-family: var(--font-display);
-    font-weight: 700;
-    letter-spacing: -0.015em;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
     color: var(--brand-ink);
   }
-  .font-display { font-family: var(--font-display); font-weight: 700; }
+  h1 { font-weight: 700; }
+  .font-display { font-family: var(--font-display); font-weight: 600; letter-spacing: -0.015em; }
   .font-caption { font-family: var(--font-caption); }
   .eyebrow {
     font-family: var(--font-caption);
-    font-size: 12px;
-    letter-spacing: 0.24em;
+    font-size: 11px;
+    letter-spacing: 0.28em;
     text-transform: uppercase;
-    color: var(--brand-sky);
+    color: var(--brand-ink-2);
+    font-weight: 400;
   }
   .hairline { border-top: 1px solid var(--border); }
   .container-x { width: 100%; max-width: 1240px; margin-inline: auto; padding-inline: 1.25rem; }
-  @media (min-width: 768px) { .container-x { padding-inline: 2rem; } }
+  @media (min-width: 768px) { .container-x { padding-inline: 2.5rem; } }
 
+  ::selection { background: color-mix(in oklab, var(--brand-sky) 22%, transparent); }
+
+  /* ---------- Buttons ---------- */
   .btn-primary {
     display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
     background: var(--brand-sky); color: #FFFFFF;
-    padding: .95rem 1.6rem; border-radius: 999px;
-    font-family: var(--font-display); font-weight: 700; font-size: .95rem;
-    letter-spacing: .02em;
-    transition: transform .2s ease, background .2s ease, box-shadow .2s ease;
-    box-shadow: 0 6px 18px -8px rgba(0,162,198,.55);
+    padding: .95rem 1.6rem; border-radius: 14px;
+    font-family: var(--font-display); font-weight: 600; font-size: .92rem;
+    letter-spacing: .03em;
+    transition: transform .35s cubic-bezier(.2,.7,.2,1), background .35s ease, box-shadow .35s ease;
+    box-shadow: 0 1px 2px rgba(0,162,198,.18), 0 10px 24px -14px rgba(0,162,198,.45);
   }
-  .btn-primary:hover { background: #0090B0; transform: translateY(-1px); }
+  .btn-primary:hover { background: var(--brand-sky-hover); transform: translateY(-1px); box-shadow: 0 2px 4px rgba(0,162,198,.20), 0 16px 32px -16px rgba(0,162,198,.55); }
 
   .btn-leaf {
     display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
-    background: var(--brand-leaf); color: #FFFFFF;
-    padding: .95rem 1.6rem; border-radius: 999px;
-    font-family: var(--font-display); font-weight: 700; font-size: .95rem;
-    box-shadow: 0 6px 18px -8px rgba(137,198,80,.55);
+    background: #FFFFFF; color: var(--brand-ink);
+    padding: .9rem 1.55rem; border-radius: 14px;
+    font-family: var(--font-display); font-weight: 600; font-size: .92rem;
+    border: 1px solid var(--brand-leaf);
+    transition: all .35s ease;
   }
-  .btn-leaf:hover { background: #78B243; }
+  .btn-leaf:hover { background: color-mix(in oklab, var(--brand-leaf) 10%, white); transform: translateY(-1px); }
 
   .btn-ghost {
-    display: inline-flex; align-items: center; gap: .35rem;
-    color: var(--brand-ink); font-weight: 700; font-size: .95rem;
+    display: inline-flex; align-items: center; gap: .4rem;
+    color: var(--brand-ink); font-weight: 600; font-size: .9rem;
     font-family: var(--font-display);
-    border-bottom: 2px solid var(--brand-sky); padding-bottom: 2px;
+    letter-spacing: .04em;
+    border-bottom: 1px solid var(--brand-sky); padding-bottom: 3px;
+    transition: color .25s ease, border-color .25s ease;
   }
+  .btn-ghost:hover { color: var(--brand-sky); }
+
   .btn-clay {
     display: inline-flex; align-items: center; justify-content: center;
     background: var(--brand-blossom); color: #FFFFFF;
-    padding: .85rem 1.35rem; border-radius: 999px;
-    font-family: var(--font-display); font-weight: 700; font-size: .9rem;
+    padding: .85rem 1.4rem; border-radius: 14px;
+    font-family: var(--font-display); font-weight: 600; font-size: .88rem;
+    transition: all .3s ease;
   }
+  .btn-clay:hover { filter: brightness(.96); transform: translateY(-1px); }
+
+  /* ---------- Chips ---------- */
   .chip {
     display: inline-flex; align-items: center; gap: .4rem;
-    padding: .4rem .8rem; border-radius: 999px;
-    background: var(--tint-sky); color: var(--brand-ink);
-    font-size: .75rem; letter-spacing: .04em; font-weight: 600;
+    padding: .35rem .75rem; border-radius: 999px;
+    background: var(--wash-sky); color: var(--brand-ink);
+    font-family: var(--font-caption);
+    font-size: .72rem; letter-spacing: .06em; font-weight: 400;
+    border: 1px solid var(--border);
   }
-  .chip-leaf    { background: var(--tint-leaf); }
+  .chip-leaf    { background: var(--wash-mint); }
   .chip-blossom { background: var(--tint-blossom); }
-  .chip-sun     { background: var(--brand-sun); color: var(--brand-ink); }
+  .chip-sun     { background: color-mix(in oklab, var(--brand-sun) 18%, white); color: var(--brand-ink); }
 
+  /* ---------- Cards ---------- */
   .card-soft {
     background: var(--card);
     border: 1px solid var(--border);
-    border-radius: var(--radius-xl);
+    border-radius: 20px;
     box-shadow: var(--shadow-soft);
+    transition: transform .4s cubic-bezier(.2,.7,.2,1), box-shadow .4s ease;
   }
+  .card-soft:hover { transform: translateY(-2px); box-shadow: var(--shadow-lift); }
+
+  /* Subtle organic grain for texture-heavy surfaces */
   .grain {
-    background-image: radial-gradient(rgba(0,162,198,.05) 1px, transparent 1px);
-    background-size: 4px 4px;
+    background-image: radial-gradient(rgba(46,58,63,.035) 1px, transparent 1px);
+    background-size: 6px 6px;
   }
+
+  /* Reveal-on-scroll friendly */
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal { opacity: 0; transform: translateY(8px); animation: eb-reveal .7s cubic-bezier(.2,.7,.2,1) forwards; }
+    @keyframes eb-reveal { to { opacity: 1; transform: none; } }
+  }
+
+  img { image-rendering: -webkit-optimize-contrast; }
 }
