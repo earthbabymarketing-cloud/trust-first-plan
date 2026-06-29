@@ -3,6 +3,7 @@ import hero from "@/assets/hero-mother-baby.jpg";
 import flatlay from "@/assets/products-flatlay.jpg";
 import { useProducts, concerns } from "@/lib/products";
 import { formatINR, useCart } from "@/lib/cart";
+import { BunnyIcon, ElephantIcon, BirdIcon, BearIcon, DuckIcon, GiraffeIcon, DottedCloud } from "@/components/BrandIcons";
 
 export const Route = createFileRoute("/")({
   head: () => ({
