@@ -207,7 +207,15 @@ function ShopByConcern() {
 function Bestsellers() {
   const { add } = useCart();
   const { data: products = [] } = useProducts();
-  const featured = products.slice(0, 8);
+  const FEATURED_HANDLES = [
+    "lipstick-au-naturale-certified-100-natural-origin",
+    "ubtan-sunni-pindi-bath-powder-100-natural-origin-500g",
+    "virgin-coconut-oil-100-certified-natural-origin",
+    "handmade-baby-soap-for-babies-below-1-year-90-natural-origin",
+  ];
+  const featured = FEATURED_HANDLES
+    .map((h) => products.find((p) => p.slug === h))
+    .filter(Boolean) as typeof products;
   return (
     <section className="bg-background">
       <div className="container-x py-14 sm:py-20 lg:py-28">
