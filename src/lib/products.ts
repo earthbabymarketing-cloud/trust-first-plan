@@ -11,6 +11,7 @@ export type Product = {
   rating: number;
   reviews: number;
   image: string;
+  variantId: string;
   concern: "sensitive" | "everyday" | "traditional" | "massage" | "mom";
   naturalOrigin: number;
   size: string;
