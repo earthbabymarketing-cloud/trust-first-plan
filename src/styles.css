@@ -153,17 +153,17 @@
     transition: transform .35s cubic-bezier(.2,.7,.2,1), background .35s ease, box-shadow .35s ease;
     box-shadow: 0 1px 2px rgba(0,162,198,.18), 0 10px 24px -14px rgba(0,162,198,.45);
   }
-  .btn-primary:hover { background: var(--brand-sky-hover); transform: translateY(-1px); box-shadow: 0 2px 4px rgba(0,162,198,.20), 0 16px 32px -16px rgba(0,162,198,.55); }
+  .btn-primary:hover { background: var(--brand-sky-hover); transform: translateY(-1px); box-shadow: 0 2px 4px rgba(137,198,80,.22), 0 16px 32px -16px rgba(137,198,80,.50); }
 
   .btn-leaf {
     display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
-    background: #FFFFFF; color: var(--brand-ink);
+    background: var(--tint-leaf); color: var(--brand-ink);
     padding: .9rem 1.55rem; border-radius: 14px;
     font-family: var(--font-display); font-weight: 600; font-size: .92rem;
     border: 1px solid var(--brand-leaf);
     transition: all .35s ease;
   }
-  .btn-leaf:hover { background: color-mix(in oklab, var(--brand-leaf) 10%, white); transform: translateY(-1px); }
+  .btn-leaf:hover { background: var(--brand-leaf); color: #FFFFFF; transform: translateY(-1px); }
 
   .btn-ghost {
     display: inline-flex; align-items: center; gap: .4rem;
@@ -173,7 +173,7 @@
     border-bottom: 1px solid var(--brand-sky); padding-bottom: 3px;
     transition: color .25s ease, border-color .25s ease;
   }
-  .btn-ghost:hover { color: var(--brand-sky); }
+  .btn-ghost:hover { color: var(--brand-sky); border-color: var(--brand-leaf); }
 
   .btn-clay {
     display: inline-flex; align-items: center; justify-content: center;
@@ -182,7 +182,7 @@
     font-family: var(--font-display); font-weight: 600; font-size: .88rem;
     transition: all .3s ease;
   }
-  .btn-clay:hover { filter: brightness(.96); transform: translateY(-1px); }
+  .btn-clay:hover { background: var(--brand-sun); color: var(--brand-ink); transform: translateY(-1px); }
 
   /* ---------- Chips ---------- */
   .chip {
