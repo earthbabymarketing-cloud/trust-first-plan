@@ -47,31 +47,31 @@
 :root {
   --radius: 14px;
 
-  /* Earth Baby — light + bright brand palette */
+  /* Earth Baby — brand palette (from brand guide pg 18) */
   --brand-sky:     #00A2C6;
-  --brand-sky-hover: #89C650;
+  --brand-sky-hover: #007E9B;
   --brand-leaf:    #89C650;
   --brand-blossom: #F16786;
   --brand-sun:     #FFCC00;
   --brand-cream:   #FFFDF8;
   --brand-ink:     #1F2A33;
   --brand-ink-2:   #5A6A75;
-  --text-soft:     #3D4F5F;
+  --text-soft:     #3D4F5F;       /* slightly grey body text */
   --text-muted:    #6A7D89;
 
-  /* Light brand tints — used for most surfaces */
+  /* Secondary brand palette — used directly as section backgrounds */
   --tint-leaf:    #DBFFB9;
   --tint-sky:     #8BE7FA;
   --tint-blossom: #FFD9E1;
   --tint-mist:    #E2E9EB;
 
-  /* Section background washes — calm, playful, breathable */
-  --wash-mint:    #F3FDE8;
-  --wash-sky:     #E9FBFE;
-  --wash-blush:   #FFF0F3;
-  --wash-mist:    #F1F5F6;
+  /* Section washes — secondary palette used as branded surfaces */
+  --wash-mint:    #DBFFB9;
+  --wash-sky:     #C7F2FB;
+  --wash-blush:   #FFD9E1;
+  --wash-mist:    #E2E9EB;
 
-  --background: #F8FCFE;
+  --background: #FFFDF8;
   --foreground: var(--text-soft);
   --card: #FFFFFF;
   --card-foreground: var(--text-soft);
@@ -79,16 +79,16 @@
   --popover-foreground: var(--text-soft);
   --primary: var(--brand-sky);
   --primary-foreground: #FFFFFF;
-  --secondary: var(--wash-sky);
+  --secondary: var(--tint-sky);
   --secondary-foreground: var(--text-soft);
-  --muted: var(--wash-mist);
+  --muted: var(--tint-mist);
   --muted-foreground: var(--text-muted);
   --accent: var(--brand-blossom);
   --accent-foreground: #FFFFFF;
   --destructive: #E04A4A;
   --destructive-foreground: #FFFFFF;
-  --border: #DFEAED;
-  --input: #DFEAED;
+  --border: #D8E3E6;
+  --input: #D8E3E6;
   --ring: var(--brand-sky);
 
   /* Soft shadows with a hint of sky */
