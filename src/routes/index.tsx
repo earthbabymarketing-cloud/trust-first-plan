@@ -183,7 +183,7 @@ function ShopByConcern() {
             search={{ concern: c.id }}
             className="group flex flex-col items-center text-center"
           >
-            <div className="aspect-square w-full rounded-full overflow-hidden bg-[color:var(--secondary)] border border-border transition group-hover:shadow-[var(--shadow-lift)]">
+            <div className="aspect-square w-full rounded-full overflow-hidden bg-[color:var(--wash-mint)] border border-border transition group-hover:shadow-[var(--shadow-lift)]">
               <img
                 src={c.image}
                 alt={c.label}
