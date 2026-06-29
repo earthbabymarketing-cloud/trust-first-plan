@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import hero from "@/assets/hero-mother-baby.jpg";
 import flatlay from "@/assets/products-flatlay.jpg";
-import { products, concerns } from "@/lib/products";
+import { useProducts, concerns } from "@/lib/products";
 import { formatINR, useCart } from "@/lib/cart";
 
 export const Route = createFileRoute("/")({
@@ -206,6 +206,8 @@ function ShopByConcern() {
 /* ---------- Bestsellers ---------- */
 function Bestsellers() {
   const { add } = useCart();
+  const { data: products = [] } = useProducts();
+  const featured = products.slice(0, 8);
   return (
     <section className="bg-background">
       <div className="container-x py-14 sm:py-20 lg:py-28">
@@ -217,20 +219,20 @@ function Bestsellers() {
           <Link to="/shop" className="btn-ghost">Shop all →</Link>
         </div>
         <div className="mt-10 grid grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-7">
-          {products.map((p) => (
+          {featured.map((p) => (
             <article key={p.slug} className="group">
               <Link to="/products/$slug" params={{ slug: p.slug }} className="block aspect-[4/5] overflow-hidden rounded-2xl bg-[color:var(--muted)]">
                 <img src={p.image} alt={p.name} width={900} height={1100} loading="lazy" className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]" />
               </Link>
               <div className="mt-4 flex items-start justify-between gap-3">
-                <div>
+                <div className="min-w-0">
                   <div className="text-[11px] text-muted-foreground">★ {p.rating} ({p.reviews})</div>
-                  <Link to="/products/$slug" params={{ slug: p.slug }} className="font-display text-lg leading-tight mt-1 block">{p.name}</Link>
-                  <p className="text-[13px] text-muted-foreground">{p.tagline}</p>
+                  <Link to="/products/$slug" params={{ slug: p.slug }} className="font-display text-lg leading-tight mt-1 block truncate">{p.name}</Link>
+                  <p className="text-[13px] text-muted-foreground line-clamp-2">{p.tagline}</p>
                 </div>
-                <div className="font-display text-lg">{formatINR(p.price)}</div>
+                <div className="font-display text-lg shrink-0">{formatINR(p.price)}</div>
               </div>
-              <button onClick={() => add(p.slug)} className="mt-3 w-full rounded-full border border-border bg-background py-2.5 text-sm hover:bg-[color:var(--secondary)] transition">Add to cart</button>
+              <button onClick={() => add(p)} className="mt-3 w-full rounded-full border border-border bg-background py-2.5 text-sm hover:bg-[color:var(--secondary)] transition">Add to cart</button>
             </article>
           ))}
         </div>

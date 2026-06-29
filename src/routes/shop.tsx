@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { z } from "zod";
-import { products, concerns } from "@/lib/products";
+import { useProducts, concerns } from "@/lib/products";
 import { formatINR, useCart } from "@/lib/cart";
 
 const search = z.object({
@@ -20,6 +20,7 @@ export const Route = createFileRoute("/shop")({
 
 function Shop() {
   const { concern } = Route.useSearch();
+  const { data: products = [], isLoading } = useProducts();
   const filtered = concern ? products.filter((p) => p.concern === concern) : products;
   const { add } = useCart();
   return (
@@ -40,7 +41,7 @@ function Shop() {
         <div className="flex flex-wrap gap-2">
           <Link to="/shop" className={`chip ${!concern ? "bg-[color:var(--ink)] text-[color:var(--background)]" : ""}`}>All</Link>
           {concerns.map((c) => (
-            <Link key={c.id} to="/shop" search={{ concern: c.id }} className={`chip ${concern === c.id ? "bg-[color:var(--ink)] text-[color:var(--background)]" : ""}`}>
+            <Link key={c.id} to="/shop" search={{ concern: c.id as never }} className={`chip ${concern === c.id ? "bg-[color:var(--ink)] text-[color:var(--background)]" : ""}`}>
               {c.label}
             </Link>
           ))}
@@ -54,19 +55,22 @@ function Shop() {
               </Link>
               <div className="mt-4 flex items-start justify-between gap-3">
                 <div className="min-w-0">
-                  <div className="text-[11px] text-muted-foreground">★ {p.rating} ({p.reviews}) · {p.naturalOrigin}% natural origin</div>
+                  <div className="text-[11px] text-muted-foreground">★ {p.rating} ({p.reviews}){p.naturalOrigin ? ` · ${p.naturalOrigin}% natural origin` : ""}</div>
                   <Link to="/products/$slug" params={{ slug: p.slug }} className="font-display text-xl leading-tight mt-1 block truncate">{p.name}</Link>
-                  <p className="text-[13px] text-muted-foreground">{p.tagline}</p>
+                  <p className="text-[13px] text-muted-foreground line-clamp-2">{p.tagline}</p>
                 </div>
                 <div className="font-display text-lg shrink-0">{formatINR(p.price)}</div>
               </div>
-              <button onClick={() => add(p.slug)} className="mt-3 w-full rounded-full border border-border bg-background py-2.5 text-sm hover:bg-[color:var(--secondary)] transition">Add to cart</button>
+              <button onClick={() => add(p)} className="mt-3 w-full rounded-full border border-border bg-background py-2.5 text-sm hover:bg-[color:var(--secondary)] transition">Add to cart</button>
             </article>
           ))}
         </div>
 
-        {filtered.length === 0 && (
+        {!isLoading && filtered.length === 0 && (
           <p className="mt-12 text-center text-muted-foreground">No products in this concern yet. <Link to="/shop" className="underline">View all →</Link></p>
+        )}
+        {isLoading && (
+          <p className="mt-12 text-center text-muted-foreground">Loading products…</p>
         )}
       </section>
     </>
