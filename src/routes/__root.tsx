@@ -128,7 +128,11 @@ function Header() {
           <Link to="/about" className="hidden md:inline hover:text-[color:var(--brand-sky)]">About</Link>
           <Link to="/cart" className="relative inline-flex items-center gap-1.5" aria-label={`Cart (${count})`}>
             <span className="hidden sm:inline">Cart</span>
-            <span aria-hidden className="sm:hidden text-lg">🛒</span>
+            <svg aria-hidden viewBox="0 0 24 24" className="sm:hidden h-6 w-6" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M3 4h2l2.4 12.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L21 8H6" />
+              <circle cx="10" cy="20" r="1.4" />
+              <circle cx="17" cy="20" r="1.4" />
+            </svg>
             <span className="inline-flex h-5 min-w-5 sm:h-6 sm:min-w-6 items-center justify-center rounded-full bg-[color:var(--brand-sky)] px-1.5 text-[10px] sm:text-[11px] text-white">{count}</span>
           </Link>
         </div>
