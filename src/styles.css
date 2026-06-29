@@ -124,7 +124,7 @@
     font-weight: 600;
     letter-spacing: -0.02em;
     line-height: 1.1;
-    color: var(--brand-ink);
+    color: var(--foreground);
   }
   h1 { font-weight: 700; }
   .font-display { font-family: var(--font-display); font-weight: 600; letter-spacing: -0.015em; }
