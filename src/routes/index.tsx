@@ -41,22 +41,26 @@ function Home() {
 function Hero() {
   return (
     <section className="relative overflow-hidden bg-[color:var(--secondary)]">
-      <div className="container-x grid lg:grid-cols-[1.05fr_1fr] gap-10 lg:gap-16 py-12 lg:py-20 items-center">
+      {/* Soft brand-color decoration */}
+      <div aria-hidden className="pointer-events-none absolute -top-24 -right-20 h-72 w-72 rounded-full bg-[color:var(--tint-blossom)] opacity-60 blur-2xl" />
+      <div aria-hidden className="pointer-events-none absolute -bottom-24 -left-16 h-72 w-72 rounded-full bg-[color:var(--tint-leaf)] opacity-50 blur-2xl" />
+
+      <div className="relative container-x grid lg:grid-cols-[1.05fr_1fr] gap-10 lg:gap-16 py-10 sm:py-14 lg:py-20 items-center">
         <div className="order-2 lg:order-1">
           <span className="eyebrow">For sensitive baby & mom skin · Made in India</span>
-          <h1 className="mt-5 font-display text-[40px] leading-[1.05] sm:text-[56px] lg:text-[72px] tracking-[-0.015em]">
+          <h1 className="mt-4 sm:mt-5 font-display text-[34px] leading-[1.08] sm:text-[52px] lg:text-[72px] tracking-[-0.015em]">
             Calming care for <em className="not-italic text-[color:var(--sage-deep)]">sensitive skin.</em>
             <br />
             Complete <span className="italic text-[color:var(--clay)]">transparency</span> for parents.
           </h1>
-          <p className="mt-5 max-w-xl text-base sm:text-lg text-muted-foreground">
+          <p className="mt-4 sm:mt-5 max-w-xl text-[15px] sm:text-lg text-muted-foreground">
             Thoughtfully formulated for babies and moms with sensitive skin. Dermatologically tested. Certified natural origin. Every ingredient disclosed.
           </p>
-          <div className="mt-7 flex flex-wrap items-center gap-4">
-            <Link to="/shop" className="btn-primary">Shop bestsellers →</Link>
-            <Link to="/about" className="btn-ghost">Why parents trust Earthbaby</Link>
+          <div className="mt-6 sm:mt-7 flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-3 sm:gap-4">
+            <Link to="/shop" className="btn-primary w-full sm:w-auto justify-center">Shop bestsellers →</Link>
+            <Link to="/about" className="btn-ghost self-center sm:self-auto">Why parents trust Earthbaby</Link>
           </div>
-          <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-x-6 gap-y-3 text-[12px] text-muted-foreground">
+          <div className="mt-7 sm:mt-8 grid grid-cols-2 sm:grid-cols-4 gap-x-4 gap-y-2.5 text-[12px] text-muted-foreground">
             <Bullet>★★★★★ 10,000+ families</Bullet>
             <Bullet>Made Safe Certified</Bullet>
             <Bullet>Dermatologically Tested</Bullet>
@@ -64,7 +68,7 @@ function Hero() {
           </div>
         </div>
         <div className="order-1 lg:order-2 relative">
-          <div className="aspect-[4/5] w-full overflow-hidden rounded-[28px] bg-[color:var(--muted)]">
+          <div className="aspect-[4/5] w-full overflow-hidden rounded-[24px] sm:rounded-[28px] bg-[color:var(--muted)] shadow-[var(--shadow-soft)]">
             <img
               src={hero}
               alt="Indian mother holding her baby in soft natural light"
@@ -74,7 +78,7 @@ function Hero() {
               className="h-full w-full object-cover"
             />
           </div>
-          <div className="absolute -bottom-5 -left-3 sm:bottom-6 sm:left-6 card-soft px-4 py-3 max-w-[230px]">
+          <div className="absolute bottom-3 left-3 sm:bottom-6 sm:left-6 card-soft px-4 py-3 max-w-[210px] sm:max-w-[230px]">
             <div className="text-[11px] eyebrow">Natural origin</div>
             <div className="font-display text-2xl text-[color:var(--sage-deep)]">90–100%</div>
             <div className="text-[11px] text-muted-foreground">declared on every product</div>
@@ -86,7 +90,12 @@ function Hero() {
 }
 
 function Bullet({ children }: { children: React.ReactNode }) {
-  return <div className="flex items-center gap-2"><span className="h-1.5 w-1.5 rounded-full bg-[color:var(--sage-deep)]" />{children}</div>;
+  return (
+    <div className="flex items-start gap-2 min-w-0">
+      <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[color:var(--sage-deep)]" />
+      <span className="min-w-0">{children}</span>
+    </div>
+  );
 }
 
 /* ---------- Trust strip ---------- */
