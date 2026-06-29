@@ -41,8 +41,8 @@ function PDP() {
       </section>
 
       <section className="container-x py-8 lg:py-12 grid lg:grid-cols-[1.1fr_1fr] gap-10 lg:gap-16">
-        <div className="aspect-[4/5] overflow-hidden rounded-3xl bg-[color:var(--muted)]">
-          <img src={product.image} alt={product.name} width={900} height={1100} className="h-full w-full object-cover" />
+        <div className="aspect-[4/5] overflow-hidden rounded-3xl bg-white">
+          <img src={product.image} alt={product.name} width={900} height={1100} className="h-full w-full object-contain p-6" />
         </div>
 
         <div>
