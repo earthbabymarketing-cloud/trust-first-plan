@@ -137,26 +137,27 @@ function Empathy() {
 /* ---------- Why trust ---------- */
 function WhyTrust() {
   const points = [
-    { t: "Every ingredient disclosed", d: "Full ingredient list, in plain English, on every product page." },
-    { t: "Natural origin % transparency", d: "We declare the exact natural origin % — no rounding up." },
-    { t: "Dermatologically tested", d: "Patch-tested for sensitive baby and mom skin." },
-    { t: "No fear-based marketing", d: "We won't scare you into buying. Just facts." },
-    { t: "Sensitive skin first", d: "Formulated for the most reactive skin in the family." },
-    { t: "Honest claims", d: "No buzzwords. No half-truths. If we say it, we can prove it." },
+    { t: "Every ingredient disclosed", d: "Full ingredient list, in plain English, on every product page.", Icon: BunnyIcon },
+    { t: "Natural origin % transparency", d: "We declare the exact natural origin % — no rounding up.", Icon: GiraffeIcon },
+    { t: "Dermatologically tested", d: "Patch-tested for sensitive baby and mom skin.", Icon: ElephantIcon },
+    { t: "No fear-based marketing", d: "We won't scare you into buying. Just facts.", Icon: BirdIcon },
+    { t: "Sensitive skin first", d: "Formulated for the most reactive skin in the family.", Icon: DuckIcon },
+    { t: "Honest claims", d: "No buzzwords. No half-truths. If we say it, we can prove it.", Icon: BearIcon },
   ];
   return (
-    <section className="bg-[color:var(--secondary)]">
-      <div className="container-x py-14 sm:py-20 lg:py-28">
+    <section className="bg-[color:var(--wash-sky)] relative overflow-hidden">
+      <DottedCloud size={220} className="absolute -top-6 right-6 opacity-70" />
+      <div className="container-x py-14 sm:py-20 lg:py-28 relative">
         <div className="max-w-2xl">
           <span className="eyebrow">Our promise</span>
           <h2 className="mt-4 font-display text-3xl sm:text-5xl">We don't ask you to trust us blindly.</h2>
         </div>
         <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-border rounded-2xl overflow-hidden">
-          {points.map((p) => (
-            <div key={p.t} className="bg-[color:var(--secondary)] p-7">
-              <div className="h-7 w-7 rounded-full bg-[color:var(--sage-deep)] text-[color:var(--background)] grid place-items-center text-xs">✓</div>
-              <h3 className="mt-4 font-display text-xl">{p.t}</h3>
-              <p className="mt-2 text-sm text-muted-foreground">{p.d}</p>
+          {points.map(({ t, d, Icon }) => (
+            <div key={t} className="bg-white p-7">
+              <Icon size={56} />
+              <h3 className="mt-4 font-display text-xl">{t}</h3>
+              <p className="mt-2 text-sm text-muted-foreground">{d}</p>
             </div>
           ))}
         </div>
