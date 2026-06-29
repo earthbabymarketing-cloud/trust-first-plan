@@ -54,8 +54,10 @@
   --brand-blossom: #F16786;
   --brand-sun:     #FFCC00;
   --brand-cream:   #FFFDF8;
-  --brand-ink:     #3D4F5F;
-  --brand-ink-2:   #6A7D89;
+  --brand-ink:     #1F2A33;
+  --brand-ink-2:   #5A6A75;
+  --text-soft:     #3D4F5F;
+  --text-muted:    #6A7D89;
 
   /* Light brand tints — used for most surfaces */
   --tint-leaf:    #DBFFB9;
@@ -70,17 +72,17 @@
   --wash-mist:    #F1F5F6;
 
   --background: #F8FCFE;
-  --foreground: var(--brand-ink);
+  --foreground: var(--text-soft);
   --card: #FFFFFF;
-  --card-foreground: var(--brand-ink);
+  --card-foreground: var(--text-soft);
   --popover: #FFFFFF;
-  --popover-foreground: var(--brand-ink);
+  --popover-foreground: var(--text-soft);
   --primary: var(--brand-sky);
   --primary-foreground: #FFFFFF;
   --secondary: var(--wash-sky);
-  --secondary-foreground: var(--brand-ink);
+  --secondary-foreground: var(--text-soft);
   --muted: var(--wash-mist);
-  --muted-foreground: var(--brand-ink-2);
+  --muted-foreground: var(--text-muted);
   --accent: var(--brand-blossom);
   --accent-foreground: #FFFFFF;
   --destructive: #E04A4A;
