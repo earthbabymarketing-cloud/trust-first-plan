@@ -1,9 +1,10 @@
 import { Link } from "@tanstack/react-router";
-import { products } from "@/lib/products";
+import { useProducts } from "@/lib/products";
 import { formatINR, useCart } from "@/lib/cart";
 
 export function CartRecommendations() {
   const { items, add } = useCart();
+  const { data: products = [] } = useProducts();
   const inCart = new Set(items.map((i) => i.slug));
   const recs = products.filter((p) => !inCart.has(p.slug)).slice(0, 3);
   if (recs.length === 0) return null;
@@ -40,7 +41,7 @@ export function CartRecommendations() {
               <div className="text-[11px] sm:text-xs text-muted-foreground">{formatINR(p.price)}</div>
             </div>
             <button
-              onClick={() => add(p.slug, 1)}
+              onClick={() => add(p, 1)}
               className="mt-2 w-full rounded-full border border-[color:var(--brand-sky)] text-[color:var(--brand-sky)] hover:bg-[color:var(--brand-sky)] hover:text-white transition-colors text-[11px] sm:text-xs font-semibold py-1.5"
             >
               Add to cart
