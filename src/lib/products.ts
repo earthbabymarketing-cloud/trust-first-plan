@@ -131,18 +131,18 @@ export const products: Product[] = [
 
 export const productBySlug = (slug: string) => products.find((p) => p.slug === slug);
 
-import concernSensitive from "@/assets/concern-sensitive.jpg";
-import concernEveryday from "@/assets/concern-everyday.jpg";
-import concernTraditional from "@/assets/concern-traditional.jpg";
-import concernMassage from "@/assets/concern-massage.jpg";
-import concernMom from "@/assets/concern-mom.jpg";
-import concernDiaper from "@/assets/concern-diaper.jpg";
+import concernSensitive from "@/assets/concern-img2_2.png.asset.json";
+import concernEveryday from "@/assets/concern-img2_1.png.asset.json";
+import concernTraditional from "@/assets/concern-img1_2.png.asset.json";
+import concernDiaper from "@/assets/concern-img1_3.png.asset.json";
+import concernMassage from "@/assets/concern-img1_4.png.asset.json";
+import concernMom from "@/assets/concern-img2_4.png.asset.json";
 
 export const concerns = [
-  { id: "sensitive", label: "Dry & Sensitive Skin", image: concernSensitive },
-  { id: "everyday", label: "Gentle Everyday Cleansing", image: concernEveryday },
-  { id: "traditional", label: "Traditional Baby Bath", image: concernTraditional },
-  { id: "diaper", label: "Diaper Rash", image: concernDiaper },
-  { id: "massage", label: "Massage & Moisture", image: concernMassage },
-  { id: "mom", label: "New Mom Care", image: concernMom },
+  { id: "sensitive", label: "Dry & Sensitive Skin", image: concernSensitive.url },
+  { id: "everyday", label: "Gentle Everyday Cleansing", image: concernEveryday.url },
+  { id: "traditional", label: "Traditional Baby Bath", image: concernTraditional.url },
+  { id: "diaper", label: "Diaper Rash", image: concernDiaper.url },
+  { id: "massage", label: "Massage & Moisture", image: concernMassage.url },
+  { id: "mom", label: "New Mom Care", image: concernMom.url },
 ] as const;
