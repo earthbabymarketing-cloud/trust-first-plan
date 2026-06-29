@@ -280,7 +280,7 @@ function Bundles() {
 
 function BundleCard({ title, items, price, strike, badge, accent }: { title: string; items: string[]; price: number; strike: number; badge: string; accent?: boolean }) {
   return (
-    <div className={`card-soft p-7 lg:p-9 ${accent ? "bg-[color:var(--secondary)]" : ""}`}>
+    <div className={`card-soft p-7 lg:p-9 ${accent ? "bg-[color:var(--wash-blush)]" : ""}`}>
       <div className="flex items-start justify-between gap-4">
         <h3 className="font-display text-2xl sm:text-3xl">{title}</h3>
         <span className="chip bg-[color:var(--clay)] text-[color:var(--accent-foreground)]">{badge}</span>
