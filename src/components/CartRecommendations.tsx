@@ -25,7 +25,7 @@ export function CartRecommendations() {
             <Link
               to="/products/$slug"
               params={{ slug: p.slug }}
-              className="block aspect-square overflow-hidden rounded-2xl bg-[color:var(--tint-mist)]"
+              className="block aspect-square overflow-hidden rounded-2xl bg-white"
             >
               <img
                 src={p.image}
@@ -33,7 +33,7 @@ export function CartRecommendations() {
                 width={300}
                 height={300}
                 loading="lazy"
-                className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+                className="h-full w-full object-contain p-2 transition-transform duration-500 hover:scale-105"
               />
             </Link>
             <div className="mt-2 min-w-0">

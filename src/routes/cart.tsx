@@ -83,8 +83,8 @@ function Cart() {
           <ul className="mt-6 divide-y divide-border border-y border-border">
             {detailed.map(({ product, qty }) => (
               <li key={product.slug} className="py-5 grid grid-cols-[88px_minmax(0,1fr)_auto] gap-4 sm:gap-6 items-center">
-                <Link to="/products/$slug" params={{ slug: product.slug }} className="block h-22 w-22 overflow-hidden rounded-xl bg-[color:var(--muted)]">
-                  <img src={product.image} alt={product.name} width={200} height={200} className="h-full w-full object-cover" />
+                <Link to="/products/$slug" params={{ slug: product.slug }} className="block h-22 w-22 overflow-hidden rounded-xl bg-white">
+                  <img src={product.image} alt={product.name} width={200} height={200} className="h-full w-full object-contain p-1.5" />
                 </Link>
                 <div className="min-w-0">
                   <Link to="/products/$slug" params={{ slug: product.slug }} className="font-display text-lg sm:text-xl block truncate">{product.name}</Link>
