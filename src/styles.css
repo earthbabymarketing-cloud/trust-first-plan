@@ -47,48 +47,51 @@
 :root {
   --radius: 14px;
 
-  /* Earth Baby — original brand palette (restored) */
+  /* Earth Baby — light + bright brand palette */
   --brand-sky:     #00A2C6;
-  --brand-sky-hover: #0088A8;
+  --brand-sky-hover: #89C650;
   --brand-leaf:    #89C650;
   --brand-blossom: #F16786;
   --brand-sun:     #FFCC00;
   --brand-cream:   #FFFDF8;
   --brand-ink:     #1F2A33;
   --brand-ink-2:   #5A6A75;
+  --text-soft:     #3D4F5F;
+  --text-muted:    #6A7D89;
 
-  /* Secondary tints from brand book */
+  /* Light brand tints — used for most surfaces */
   --tint-leaf:    #DBFFB9;
   --tint-sky:     #8BE7FA;
   --tint-blossom: #FFD9E1;
   --tint-mist:    #E2E9EB;
 
-  /* Section background washes */
-  --wash-mint:    color-mix(in oklab, #DBFFB9 35%, white);
-  --wash-sky:     color-mix(in oklab, #8BE7FA 28%, white);
+  /* Section background washes — calm, playful, breathable */
+  --wash-mint:    #F3FDE8;
+  --wash-sky:     #E9FBFE;
+  --wash-blush:   #FFF0F3;
   --wash-mist:    #F1F5F6;
 
-  --background: var(--brand-cream);
-  --foreground: var(--brand-ink);
+  --background: #F8FCFE;
+  --foreground: var(--text-soft);
   --card: #FFFFFF;
-  --card-foreground: var(--brand-ink);
+  --card-foreground: var(--text-soft);
   --popover: #FFFFFF;
-  --popover-foreground: var(--brand-ink);
+  --popover-foreground: var(--text-soft);
   --primary: var(--brand-sky);
   --primary-foreground: #FFFFFF;
-  --secondary: var(--tint-sky);
-  --secondary-foreground: var(--brand-ink);
-  --muted: var(--tint-mist);
-  --muted-foreground: var(--brand-ink-2);
+  --secondary: var(--wash-sky);
+  --secondary-foreground: var(--text-soft);
+  --muted: var(--wash-mist);
+  --muted-foreground: var(--text-muted);
   --accent: var(--brand-blossom);
   --accent-foreground: #FFFFFF;
   --destructive: #E04A4A;
   --destructive-foreground: #FFFFFF;
-  --border: #E6ECEE;
-  --input: #E6ECEE;
+  --border: #DFEAED;
+  --input: #DFEAED;
   --ring: var(--brand-sky);
 
-  /* Sky-tinted soft shadows — preserved premium feel with brand hue */
+  /* Soft shadows with a hint of sky */
   --shadow-soft: 0 1px 2px rgba(0,162,198,.06), 0 8px 28px -16px rgba(0,162,198,.18);
   --shadow-lift: 0 2px 6px rgba(0,162,198,.08), 0 24px 48px -24px rgba(0,162,198,.28);
   --shadow-glass: 0 1px 0 rgba(255,255,255,.6) inset, 0 8px 32px -12px rgba(0,162,198,.18);
@@ -98,7 +101,7 @@
   --clay:      var(--brand-blossom);
   --sand:      var(--tint-mist);
   --sage:      var(--brand-leaf);
-  --sage-deep: #6BA13A;
+  --sage-deep: var(--brand-leaf);
 }
 
 @layer base {
@@ -123,7 +126,7 @@
     font-weight: 600;
     letter-spacing: -0.02em;
     line-height: 1.1;
-    color: var(--brand-ink);
+    color: var(--foreground);
   }
   h1 { font-weight: 700; }
   .font-display { font-family: var(--font-display); font-weight: 600; letter-spacing: -0.015em; }
@@ -152,17 +155,17 @@
     transition: transform .35s cubic-bezier(.2,.7,.2,1), background .35s ease, box-shadow .35s ease;
     box-shadow: 0 1px 2px rgba(0,162,198,.18), 0 10px 24px -14px rgba(0,162,198,.45);
   }
-  .btn-primary:hover { background: var(--brand-sky-hover); transform: translateY(-1px); box-shadow: 0 2px 4px rgba(0,162,198,.20), 0 16px 32px -16px rgba(0,162,198,.55); }
+  .btn-primary:hover { background: var(--brand-sky-hover); transform: translateY(-1px); box-shadow: 0 2px 4px rgba(137,198,80,.22), 0 16px 32px -16px rgba(137,198,80,.50); }
 
   .btn-leaf {
     display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
-    background: #FFFFFF; color: var(--brand-ink);
+    background: var(--tint-leaf); color: var(--brand-ink);
     padding: .9rem 1.55rem; border-radius: 14px;
     font-family: var(--font-display); font-weight: 600; font-size: .92rem;
     border: 1px solid var(--brand-leaf);
     transition: all .35s ease;
   }
-  .btn-leaf:hover { background: color-mix(in oklab, var(--brand-leaf) 10%, white); transform: translateY(-1px); }
+  .btn-leaf:hover { background: var(--brand-leaf); color: #FFFFFF; transform: translateY(-1px); }
 
   .btn-ghost {
     display: inline-flex; align-items: center; gap: .4rem;
@@ -172,7 +175,7 @@
     border-bottom: 1px solid var(--brand-sky); padding-bottom: 3px;
     transition: color .25s ease, border-color .25s ease;
   }
-  .btn-ghost:hover { color: var(--brand-sky); }
+  .btn-ghost:hover { color: var(--brand-sky); border-color: var(--brand-leaf); }
 
   .btn-clay {
     display: inline-flex; align-items: center; justify-content: center;
@@ -181,7 +184,7 @@
     font-family: var(--font-display); font-weight: 600; font-size: .88rem;
     transition: all .3s ease;
   }
-  .btn-clay:hover { filter: brightness(.96); transform: translateY(-1px); }
+  .btn-clay:hover { background: var(--brand-sun); color: var(--brand-ink); transform: translateY(-1px); }
 
   /* ---------- Chips ---------- */
   .chip {

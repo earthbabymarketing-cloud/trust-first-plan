@@ -183,7 +183,7 @@ function ShopByConcern() {
             search={{ concern: c.id }}
             className="group flex flex-col items-center text-center"
           >
-            <div className="aspect-square w-full rounded-full overflow-hidden bg-[color:var(--secondary)] border border-border transition group-hover:shadow-[var(--shadow-lift)]">
+            <div className="aspect-square w-full rounded-full overflow-hidden bg-[color:var(--wash-mint)] border border-border transition group-hover:shadow-[var(--shadow-lift)]">
               <img
                 src={c.image}
                 alt={c.label}
@@ -280,7 +280,7 @@ function Bundles() {
 
 function BundleCard({ title, items, price, strike, badge, accent }: { title: string; items: string[]; price: number; strike: number; badge: string; accent?: boolean }) {
   return (
-    <div className={`card-soft p-7 lg:p-9 ${accent ? "bg-[color:var(--secondary)]" : ""}`}>
+    <div className={`card-soft p-7 lg:p-9 ${accent ? "bg-[color:var(--wash-blush)]" : ""}`}>
       <div className="flex items-start justify-between gap-4">
         <h3 className="font-display text-2xl sm:text-3xl">{title}</h3>
         <span className="chip bg-[color:var(--clay)] text-[color:var(--accent-foreground)]">{badge}</span>
@@ -387,12 +387,12 @@ function Reviews() {
             <span className="eyebrow">Real mothers. Real stories.</span>
             <h2 className="mt-3 font-display text-3xl sm:text-5xl">From parents who switched.</h2>
           </div>
-          <div className="text-sm text-muted-foreground">★ 4.9 average · 950+ verified reviews</div>
+      <div className="text-sm text-muted-foreground">★ 4.9 average · 950+ verified reviews</div>
         </div>
         <div className="mt-10 grid md:grid-cols-3 gap-5">
           {list.map((r, i) => (
-            <figure key={i} className="card-soft p-6">
-              <div className="text-[color:var(--clay)] tracking-[0.2em]">★★★★★</div>
+            <figure key={i} className="card-soft p-6 bg-[color:var(--wash-blush)]">
+              <div className="text-[color:var(--brand-sun)] tracking-[0.2em]">★★★★★</div>
               <blockquote className="mt-4 font-display text-xl leading-snug">"{r.q}"</blockquote>
               <figcaption className="mt-5 text-sm text-muted-foreground">{r.a}</figcaption>
             </figure>
