@@ -311,7 +311,7 @@ function Difference() {
       <div className="container-x py-14 sm:py-20 lg:py-28">
         <div className="max-w-2xl">
           <span className="eyebrow text-white/60">The Earthbaby difference</span>
-          <h2 className="mt-3 font-display text-3xl sm:text-5xl">Honest care, without the marketing noise.</h2>
+          <h2 className="mt-3 font-display text-3xl sm:text-5xl text-[color:var(--background)]">Honest care, without the marketing noise.</h2>
         </div>
         <div className="mt-12 grid md:grid-cols-2 gap-px bg-white/10 rounded-2xl overflow-hidden">
           <div className="bg-[color:var(--ink)] p-7">
