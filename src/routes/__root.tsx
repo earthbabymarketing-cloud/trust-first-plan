@@ -84,7 +84,7 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function AnnouncementBar() {
   return (
-    <div className="bg-gradient-to-r from-[color:var(--brand-sky)] via-[color:var(--brand-leaf)] to-[color:var(--brand-sun)] text-[color:var(--brand-ink)] text-[11.5px] sm:text-[13px]">
+    <div className="bg-gradient-to-r from-[color:var(--brand-sky)] via-[color:var(--brand-leaf)] to-[color:var(--brand-sun)] text-white text-[11.5px] sm:text-[13px] drop-shadow-sm">
       <div className="container-x flex items-center justify-center gap-2 py-2 text-center">
         <span className="hidden sm:inline tracking-[0.18em]">★★★★★</span>
         <span className="opacity-95 font-medium">Trusted by 10,000+ families · Free shipping above ₹600 · Dermatologically tested</span>
