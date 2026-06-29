@@ -136,8 +136,8 @@ function PDP() {
         <div className="mt-8 grid grid-cols-2 lg:grid-cols-3 gap-5">
           {allProducts.filter((p) => p.slug !== product.slug).slice(0, 3).map((p) => (
             <Link key={p.slug} to="/products/$slug" params={{ slug: p.slug }} className="group">
-              <div className="aspect-[4/5] overflow-hidden rounded-2xl bg-[color:var(--muted)]">
-                <img src={p.image} alt={p.name} width={900} height={1100} loading="lazy" className="h-full w-full object-cover transition group-hover:scale-[1.03]" />
+              <div className="aspect-[4/5] overflow-hidden rounded-2xl bg-white">
+                <img src={p.image} alt={p.name} width={900} height={1100} loading="lazy" className="h-full w-full object-contain p-3 transition group-hover:scale-[1.03]" />
               </div>
               <div className="mt-4 flex items-center justify-between gap-3">
                 <span className="font-display text-lg truncate">{p.name}</span>
