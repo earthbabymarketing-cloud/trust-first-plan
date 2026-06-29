@@ -485,11 +485,18 @@ function FinalCTA() {
   return (
     <section className="bg-[color:var(--sage-deep)] text-[color:var(--background)]">
       <div className="container-x py-24 lg:py-32 text-center">
-        <span className="eyebrow text-white/60">For sensitive skin</span>
+        <div className="flex justify-center items-end gap-3 sm:gap-5 mb-6 opacity-95">
+          <BunnyIcon size={48} />
+          <DuckIcon size={56} />
+          <ElephantIcon size={64} />
+          <BearIcon size={56} />
+          <BirdIcon size={48} />
+        </div>
+        <span className="eyebrow text-white/70">For sensitive skin</span>
         <h2 className="mt-4 font-display text-4xl sm:text-6xl leading-[1.05] max-w-3xl mx-auto">
           Because parents deserve <em className="italic">confidence</em>, not confusion.
         </h2>
-        <p className="mt-5 text-white/75 max-w-xl mx-auto">Calming, radically transparent care for sensitive skin.</p>
+        <p className="mt-5 text-white/80 max-w-xl mx-auto">Calming, radically transparent care for sensitive skin.</p>
         <Link to="/shop" className="mt-8 inline-flex items-center justify-center gap-2 bg-[color:var(--background)] text-[color:var(--foreground)] px-7 py-4 rounded-full font-medium hover:bg-white transition">
           Shop bestsellers →
         </Link>
