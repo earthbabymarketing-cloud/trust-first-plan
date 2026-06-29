@@ -84,7 +84,8 @@ function Cart() {
           <span className="font-display text-xl">Total</span>
           <span className="font-display text-2xl">{formatINR(total)}</span>
         </div>
-        <button className="btn-primary mt-6 w-full">Secure checkout →</button>
+        <button onClick={checkout} disabled={checkingOut} className="btn-primary mt-6 w-full">{checkingOut ? "Opening checkout…" : "Secure checkout →"}</button>
+        {error && <p className="mt-2 text-[12px] text-red-600">{error}</p>}
         <ul className="mt-5 space-y-2 text-[12px] text-muted-foreground">
           <li>· 14-day easy returns</li>
           <li>· COD available across India</li>
