@@ -116,7 +116,7 @@ function TrustStrip() {
 /* ---------- Empathy ---------- */
 function Empathy() {
   return (
-    <section className="container-x py-20 lg:py-28">
+    <section className="container-x py-14 sm:py-20 lg:py-28">
       <div className="max-w-3xl">
         <span className="eyebrow">Why we exist</span>
         <h2 className="mt-4 font-display text-3xl sm:text-5xl leading-tight">
@@ -145,7 +145,7 @@ function WhyTrust() {
   ];
   return (
     <section className="bg-[color:var(--secondary)]">
-      <div className="container-x py-20 lg:py-28">
+      <div className="container-x py-14 sm:py-20 lg:py-28">
         <div className="max-w-2xl">
           <span className="eyebrow">Our promise</span>
           <h2 className="mt-4 font-display text-3xl sm:text-5xl">We don't ask you to trust us blindly.</h2>
@@ -167,7 +167,7 @@ function WhyTrust() {
 /* ---------- Shop by concern ---------- */
 function ShopByConcern() {
   return (
-    <section className="container-x py-20 lg:py-28">
+    <section className="container-x py-14 sm:py-20 lg:py-28">
       <div className="flex flex-wrap items-end justify-between gap-6">
         <div>
           <span className="eyebrow">Shop by concern</span>
@@ -209,7 +209,7 @@ function Bestsellers() {
   const { add } = useCart();
   return (
     <section className="bg-background">
-      <div className="container-x py-20 lg:py-28">
+      <div className="container-x py-14 sm:py-20 lg:py-28">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div>
             <span className="eyebrow">Bestsellers</span>
@@ -243,7 +243,7 @@ function Bestsellers() {
 /* ---------- Bundles ---------- */
 function Bundles() {
   return (
-    <section className="container-x py-20 lg:py-28">
+    <section className="container-x py-14 sm:py-20 lg:py-28">
       <div className="max-w-2xl">
         <span className="eyebrow">Routines</span>
         <h2 className="mt-3 font-display text-3xl sm:text-5xl">Start with a complete routine.</h2>
@@ -299,7 +299,7 @@ function Difference() {
   ];
   return (
     <section className="bg-[color:var(--ink)] text-[color:var(--background)]">
-      <div className="container-x py-20 lg:py-28">
+      <div className="container-x py-14 sm:py-20 lg:py-28">
         <div className="max-w-2xl">
           <span className="eyebrow text-white/60">The Earthbaby difference</span>
           <h2 className="mt-3 font-display text-3xl sm:text-5xl">Honest care, without the marketing noise.</h2>
@@ -333,7 +333,7 @@ function Ingredients() {
     ["Sodium Cocoyl Isethionate", "Mild cleanser with creamy feel", 86],
   ];
   return (
-    <section id="ingredients" className="container-x py-20 lg:py-28">
+    <section id="ingredients" className="container-x py-14 sm:py-20 lg:py-28">
       <div className="grid lg:grid-cols-[1fr_1.1fr] gap-10 lg:gap-16 items-center">
         <div className="aspect-square w-full overflow-hidden rounded-3xl bg-[color:var(--muted)]">
           <img src={flatlay} alt="Natural ingredients flatlay" width={1280} height={960} loading="lazy" className="h-full w-full object-cover" />
@@ -372,7 +372,7 @@ function Reviews() {
   ];
   return (
     <section id="reviews" className="bg-[color:var(--secondary)]">
-      <div className="container-x py-20 lg:py-28">
+      <div className="container-x py-14 sm:py-20 lg:py-28">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div>
             <span className="eyebrow">Real mothers. Real stories.</span>
@@ -397,7 +397,7 @@ function Reviews() {
 /* ---------- Founder ---------- */
 function FounderStory() {
   return (
-    <section className="container-x py-20 lg:py-28">
+    <section className="container-x py-14 sm:py-20 lg:py-28">
       <div className="max-w-3xl">
         <span className="eyebrow">Founder story</span>
         <h2 className="mt-3 font-display text-3xl sm:text-5xl">Why Earthbaby exists.</h2>
@@ -421,7 +421,7 @@ function LearnBlock() {
   ];
   return (
     <section className="bg-background">
-      <div className="container-x py-20 lg:py-28">
+      <div className="container-x py-14 sm:py-20 lg:py-28">
         <span className="eyebrow">Learn before you buy</span>
         <h2 className="mt-3 font-display text-3xl sm:text-5xl max-w-2xl">A small library for confident parents.</h2>
         <ul className="mt-10 grid sm:grid-cols-2 gap-px bg-border rounded-2xl overflow-hidden">
@@ -448,7 +448,7 @@ function HomeFAQ() {
     "Why buy from your website instead of Amazon?",
   ];
   return (
-    <section className="container-x py-20 lg:py-28">
+    <section className="container-x py-14 sm:py-20 lg:py-28">
       <div className="grid lg:grid-cols-[1fr_1.5fr] gap-10">
         <div>
           <span className="eyebrow">FAQs</span>
