@@ -7,7 +7,7 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
-import { useEffect, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
@@ -84,7 +84,7 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function AnnouncementBar() {
   return (
-    <div className="bg-[color:var(--brand-sky)] text-white text-[12px] sm:text-[13px]">
+    <div className="bg-[color:var(--brand-sky)] text-white text-[11.5px] sm:text-[13px]">
       <div className="container-x flex items-center justify-center gap-2 py-2 text-center">
         <span className="hidden sm:inline tracking-[0.18em]">★★★★★</span>
         <span className="opacity-95">Trusted by 10,000+ families · Free shipping above ₹600 · Dermatologically tested</span>
@@ -93,11 +93,28 @@ function AnnouncementBar() {
   );
 }
 
+const NAV_LINKS = [
+  { to: "/shop", label: "Shop", search: undefined as undefined | { concern: "sensitive" } },
+  { to: "/shop", label: "Concerns", search: { concern: "sensitive" as const } },
+  { to: "/about", label: "Ingredients", hash: "ingredients" },
+  { to: "/about", label: "Reviews", hash: "reviews" },
+  { to: "/about", label: "About" },
+] as const;
+
 function Header() {
   const { count } = useCart();
+  const [open, setOpen] = useState(false);
   return (
     <header className="sticky top-0 z-40 backdrop-blur bg-[color:var(--background)]/90 border-b border-border">
-      <div className="container-x grid grid-cols-[1fr_auto_1fr] items-center gap-4 py-3">
+      <div className="container-x grid grid-cols-[auto_1fr_auto] md:grid-cols-[1fr_auto_1fr] items-center gap-3 py-3">
+        {/* Left: hamburger on mobile, nav on desktop */}
+        <button
+          onClick={() => setOpen(true)}
+          aria-label="Open menu"
+          className="md:hidden inline-flex h-10 w-10 items-center justify-center rounded-full border border-border bg-background"
+        >
+          <span aria-hidden className="block h-[2px] w-4 bg-[color:var(--brand-ink)] relative before:content-[''] before:absolute before:-top-1.5 before:left-0 before:h-[2px] before:w-4 before:bg-[color:var(--brand-ink)] after:content-[''] after:absolute after:top-1.5 after:left-0 after:h-[2px] after:w-4 after:bg-[color:var(--brand-ink)]" />
+        </button>
         <nav className="hidden md:flex items-center gap-7 text-sm font-semibold text-foreground/80">
           <Link to="/shop" className="hover:text-[color:var(--brand-sky)]">Shop</Link>
           <Link to="/shop" search={{ concern: "sensitive" }} className="hover:text-[color:var(--brand-sky)]">Concerns</Link>
@@ -105,26 +122,55 @@ function Header() {
           <Link to="/about" hash="reviews" className="hover:text-[color:var(--brand-sky)]">Reviews</Link>
         </nav>
         <Link to="/" className="flex items-center justify-center" aria-label="Earthbaby home">
-          <img src={logoAsset.url} alt="Earthbaby — nature inside" className="h-12 md:h-14 w-auto" />
+          <img src={logoAsset.url} alt="Earthbaby — nature inside" className="h-11 sm:h-12 md:h-14 w-auto" />
         </Link>
-        <div className="flex items-center justify-end gap-5 text-sm font-semibold">
+        <div className="flex items-center justify-end gap-4 sm:gap-5 text-sm font-semibold">
           <Link to="/about" className="hidden md:inline hover:text-[color:var(--brand-sky)]">About</Link>
-          <Link to="/cart" className="relative inline-flex items-center gap-1.5">
-            <span>Cart</span>
-            <span className="inline-flex h-6 min-w-6 items-center justify-center rounded-full bg-[color:var(--brand-sky)] px-1.5 text-[11px] text-white">{count}</span>
+          <Link to="/cart" className="relative inline-flex items-center gap-1.5" aria-label={`Cart (${count})`}>
+            <span className="hidden sm:inline">Cart</span>
+            <span aria-hidden className="sm:hidden text-lg">🛒</span>
+            <span className="inline-flex h-5 min-w-5 sm:h-6 sm:min-w-6 items-center justify-center rounded-full bg-[color:var(--brand-sky)] px-1.5 text-[10px] sm:text-[11px] text-white">{count}</span>
           </Link>
         </div>
       </div>
-      {/* Mobile nav row */}
-      <div className="md:hidden border-t border-border">
-        <div className="container-x flex items-center justify-between gap-4 py-2 text-[13px] font-semibold overflow-x-auto">
-          <Link to="/shop">Shop</Link>
-          <Link to="/shop" search={{ concern: "sensitive" }}>Concerns</Link>
-          <Link to="/about" hash="ingredients">Ingredients</Link>
-          <Link to="/about" hash="reviews">Reviews</Link>
-          <Link to="/about">About</Link>
+
+      {/* Mobile slide-in menu */}
+      {open && (
+        <div className="md:hidden fixed inset-0 z-50">
+          <button onClick={() => setOpen(false)} aria-label="Close menu" className="absolute inset-0 bg-black/40" />
+          <div className="absolute left-0 top-0 bottom-0 w-[84%] max-w-[320px] bg-background shadow-2xl flex flex-col">
+            <div className="flex items-center justify-between p-4 border-b border-border">
+              <img src={logoAsset.url} alt="Earthbaby" className="h-10 w-auto" />
+              <button onClick={() => setOpen(false)} aria-label="Close" className="h-10 w-10 rounded-full border border-border grid place-items-center text-lg">✕</button>
+            </div>
+            <nav className="p-5 flex flex-col gap-1 text-base font-display">
+              {NAV_LINKS.map((l, i) => {
+                const props: Record<string, unknown> = { to: l.to };
+                if ("search" in l && l.search) props.search = l.search;
+                if ("hash" in l && l.hash) props.hash = l.hash;
+                return (
+                  <Link
+                    key={i}
+                    {...(props as { to: string })}
+                    onClick={() => setOpen(false)}
+                    className="py-3 px-3 rounded-xl hover:bg-[color:var(--tint-sky)]"
+                  >
+                    {l.label}
+                  </Link>
+                );
+              })}
+              <div className="hairline my-3" />
+              <Link to="/cart" onClick={() => setOpen(false)} className="py-3 px-3 rounded-xl hover:bg-[color:var(--tint-sky)] flex items-center justify-between">
+                <span>Cart</span>
+                <span className="inline-flex h-6 min-w-6 items-center justify-center rounded-full bg-[color:var(--brand-sky)] px-1.5 text-[11px] text-white">{count}</span>
+              </Link>
+              <Link to="/faq" onClick={() => setOpen(false)} className="py-3 px-3 rounded-xl hover:bg-[color:var(--tint-sky)]">FAQ</Link>
+              <Link to="/contact" onClick={() => setOpen(false)} className="py-3 px-3 rounded-xl hover:bg-[color:var(--tint-sky)]">Contact</Link>
+            </nav>
+            <div className="mt-auto p-5 text-xs text-muted-foreground">Pure. Safe. Honest.</div>
+          </div>
         </div>
-      </div>
+      )}
     </header>
   );
 }
