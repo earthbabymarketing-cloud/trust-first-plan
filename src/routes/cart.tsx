@@ -1,5 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useState } from "react";
 import { formatINR, useCart } from "@/lib/cart";
+import { createShopifyCheckout } from "@/lib/shopify";
 
 export const Route = createFileRoute("/cart")({
   head: () => ({ meta: [{ title: "Your cart — Earthbaby" }, { name: "robots", content: "noindex" }] }),
@@ -8,8 +10,25 @@ export const Route = createFileRoute("/cart")({
 
 function Cart() {
   const { detailed, subtotal, setQty, remove, count } = useCart();
+  const [checkingOut, setCheckingOut] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const shipping = subtotal >= 600 || subtotal === 0 ? 0 : 49;
   const total = subtotal + shipping;
+
+  const checkout = async () => {
+    setCheckingOut(true);
+    setError(null);
+    try {
+      const url = await createShopifyCheckout(
+        detailed.map((d) => ({ merchandiseId: d.product.variantId, quantity: d.qty })),
+      );
+      window.open(url, "_blank");
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Checkout failed");
+    } finally {
+      setCheckingOut(false);
+    }
+  };
 
   if (count === 0) {
     return (
