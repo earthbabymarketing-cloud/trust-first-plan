@@ -58,15 +58,16 @@
   --brand-ink-2:   #5F6B70;          /* secondary text */
 
   /* Soft, low-opacity section tints */
-  --tint-leaf:    color-mix(in oklab, #DBFFB9 100%, transparent);   /* full strength chip */
-  --tint-sky:     color-mix(in oklab, #8BE7FA 100%, transparent);
+  --tint-leaf:    #DBFFB9;
+  --tint-sky:     #8BE7FA;
   --tint-blossom: #FFD9E1;
   --tint-mist:    #E2E9EB;
 
-  /* Section background washes — very low opacity */
-  --wash-mint:    color-mix(in oklab, #DBFFB9 10%, white);
-  --wash-sky:     color-mix(in oklab, #8BE7FA 8%, white);
-  --wash-mist:    #F4F7F8;
+  /* Section background washes — soft sky-forward */
+  --wash-mint:    color-mix(in oklab, #DBFFB9 14%, white);
+  --wash-sky:     color-mix(in oklab, #8BE7FA 22%, white);
+  --wash-sky-deep: color-mix(in oklab, #00A2C6 10%, white);
+  --wash-mist:    #EEF4F6;
 
   --background: var(--brand-cream);
   --foreground: var(--brand-ink);
