@@ -387,12 +387,12 @@ function Reviews() {
             <span className="eyebrow">Real mothers. Real stories.</span>
             <h2 className="mt-3 font-display text-3xl sm:text-5xl">From parents who switched.</h2>
           </div>
-          <div className="text-sm text-muted-foreground">★ 4.9 average · 950+ verified reviews</div>
+      <div className="text-sm text-muted-foreground">★ 4.9 average · 950+ verified reviews</div>
         </div>
         <div className="mt-10 grid md:grid-cols-3 gap-5">
           {list.map((r, i) => (
-            <figure key={i} className="card-soft p-6">
-              <div className="text-[color:var(--clay)] tracking-[0.2em]">★★★★★</div>
+            <figure key={i} className="card-soft p-6 bg-[color:var(--wash-blush)]">
+              <div className="text-[color:var(--brand-sun)] tracking-[0.2em]">★★★★★</div>
               <blockquote className="mt-4 font-display text-xl leading-snug">"{r.q}"</blockquote>
               <figcaption className="mt-5 text-sm text-muted-foreground">{r.a}</figcaption>
             </figure>
