@@ -35,7 +35,7 @@ function About() {
       <section className="bg-[color:var(--secondary)]">
         <div className="container-x py-20 lg:py-28 grid lg:grid-cols-3 gap-10">
           {[
-            ["01", "Transparency", "Every ingredient. Every percentage. Every batch."],
+            ["01", "Transparency", 'Every ingredient. Percentage Natural Origin. No "shampoo base" or "cream base".'],
             ["02", "Restraint", "If an ingredient doesn't serve the formula, it's out."],
             ["03", "Respect", "We won't market with fear. We won't shout. We'll show."],
           ].map(([n, t, d]) => (
