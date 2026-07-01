@@ -24,7 +24,7 @@ function About() {
             Built for parents who ask <em className="italic text-[color:var(--clay)]">what's inside</em> — and deserve an answer.
           </h1>
           <p className="mt-6 text-lg text-muted-foreground max-w-xl">
-            I've lived with eczema for years. I know how painful sensitive skin can be. When our child was born, Divya and I asked ourselves one simple question: Can we truly trust what's sold as baby skincare? That question became Earthbaby.
+            I've lived with eczema for years. I know how painful sensitive skin can be. Then one day, Divya bought what seemed like a natural sunscreen for our daughter. One look at the ingredients changed everything. We questioned what parents were really being sold. That question became Earthbaby.
           </p>
         </div>
         <div className="aspect-[4/5] overflow-hidden rounded-3xl bg-[color:var(--muted)]">
