@@ -120,7 +120,7 @@ function TrustStrip() {
               src={src}
               alt={alt}
               title={alt}
-              className="h-8 sm:h-10 w-auto max-w-[160px] object-contain opacity-70 hover:opacity-100 transition"
+              className="h-10 sm:h-12 w-auto max-w-[220px] object-contain opacity-80 hover:opacity-100 transition"
               loading="lazy"
             />
           ))}
