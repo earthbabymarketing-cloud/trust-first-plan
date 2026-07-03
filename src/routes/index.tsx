@@ -1,6 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import hero from "@/assets/hero-mother-baby.jpg";
 import flatlay from "@/assets/products-flatlay.jpg";
+import economicTimesLogo from "@/assets/logo-economic-times.png.asset.json";
+import betterIndiaLogo from "@/assets/logo-better-india.png.asset.json";
+import startupIndiaLogo from "@/assets/logo-startup-india.png.asset.json";
 import { useProducts, concerns } from "@/lib/products";
 import { formatINR, useCart } from "@/lib/cart";
 import { BunnyIcon, ElephantIcon, BirdIcon, BearIcon, DuckIcon, DottedCloud, ListSearchIcon, LeafPercentIcon, TestTubeCheckIcon, ShieldHeartIcon, HandLeafIcon, BadgeCheckIcon } from "@/components/BrandIcons";
