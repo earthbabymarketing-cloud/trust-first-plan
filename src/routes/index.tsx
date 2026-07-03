@@ -3,7 +3,7 @@ import hero from "@/assets/hero-mother-baby.jpg";
 import flatlay from "@/assets/products-flatlay.jpg";
 import { useProducts, concerns } from "@/lib/products";
 import { formatINR, useCart } from "@/lib/cart";
-import { BunnyIcon, ElephantIcon, BirdIcon, BearIcon, DuckIcon, GiraffeIcon, DottedCloud } from "@/components/BrandIcons";
+import { BunnyIcon, ElephantIcon, BirdIcon, BearIcon, DuckIcon, DottedCloud, ListSearchIcon, LeafPercentIcon, TestTubeCheckIcon, ShieldHeartIcon, HandLeafIcon, BadgeCheckIcon } from "@/components/BrandIcons";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -137,12 +137,12 @@ function Empathy() {
 /* ---------- Why trust ---------- */
 function WhyTrust() {
   const points = [
-    { t: "Every ingredient disclosed", d: "Full ingredient list, in plain English, on every product page.", Icon: BunnyIcon },
-    { t: "Natural origin % transparency", d: "We declare the exact natural origin % — no rounding up.", Icon: GiraffeIcon },
-    { t: "Dermatologically tested", d: "Patch-tested for sensitive baby and mom skin.", Icon: ElephantIcon },
-    { t: "No fear-based marketing", d: "We won't scare you into buying. Just facts.", Icon: BirdIcon },
-    { t: "Sensitive skin first", d: "Formulated for the most reactive skin in the family.", Icon: DuckIcon },
-    { t: "Honest claims", d: "No buzzwords. No half-truths. If we say it, we can prove it.", Icon: BearIcon },
+    { t: "Every ingredient disclosed", d: "Full ingredient list, in plain English, on every product page.", Icon: ListSearchIcon },
+    { t: "Natural origin % transparency", d: "We declare the exact natural origin % — no rounding up.", Icon: LeafPercentIcon },
+    { t: "Dermatologically tested", d: "Patch-tested for sensitive baby and mom skin.", Icon: TestTubeCheckIcon },
+    { t: "No fear-based marketing", d: "We won't scare you into buying. Just facts.", Icon: ShieldHeartIcon },
+    { t: "Sensitive skin first", d: "Formulated for the most reactive skin in the family.", Icon: HandLeafIcon },
+    { t: "Honest claims", d: "No buzzwords. No half-truths. If we say it, we can prove it.", Icon: BadgeCheckIcon },
   ];
   return (
     <section className="bg-[color:var(--wash-sky)] relative overflow-hidden">
