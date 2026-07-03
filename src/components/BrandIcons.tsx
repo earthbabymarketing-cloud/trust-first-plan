@@ -1,8 +1,8 @@
 /**
- * Brand iconography — geometric, rounded, flat-color baby animals.
- * Inspired by the Earthbaby brand guide pg. 24 (illustration style & iconography).
- * Each icon is a self-contained SVG; pass `size` to scale. Colors lock to the
- * brand palette so they always feel on-brand.
+ * Brand iconography — geometric, rounded, flat-color icons.
+ * Includes playful baby animals (brand guide pg. 24) plus clear semantic trust icons
+ * for product claims. Each icon is a self-contained SVG; pass `size` to scale.
+ * Colors lock to the brand palette so they always feel on-brand.
  */
 import type { SVGProps } from "react";
 
@@ -16,11 +16,13 @@ const BLOSSOM = "#F16786";
 const BLOSSOM_LIGHT = "#FFD9E1";
 const SUN = "#FFCC00";
 const INK = "#1F2A33";
+const CREAM = "#FFFDF8";
 
 function base(p: IconProps) {
   const { size = 72, ...rest } = p;
   return { width: size, height: size, viewBox: "0 0 100 100", xmlns: "http://www.w3.org/2000/svg", ...rest };
 }
+
 
 export function BunnyIcon(p: IconProps) {
   return (
