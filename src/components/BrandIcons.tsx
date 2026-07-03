@@ -122,7 +122,95 @@ export function GiraffeIcon(p: IconProps) {
   );
 }
 
+/** Semantic trust icons — clear, readable meaning for product claims. */
+
+export function ListSearchIcon(p: IconProps) {
+  return (
+    <svg {...base(p)} aria-hidden>
+      {/* clipboard */}
+      <rect x="18" y="16" width="64" height="70" rx="12" fill={CREAM} stroke={SKY} strokeWidth="3" />
+      <rect x="38" y="8" width="24" height="14" rx="6" fill={SKY} />
+      {/* lines */}
+      <rect x="28" y="34" width="44" height="4" rx="2" fill={SKY_LIGHT} />
+      <rect x="28" y="46" width="34" height="4" rx="2" fill={SKY_LIGHT} />
+      <rect x="28" y="58" width="40" height="4" rx="2" fill={SKY_LIGHT} />
+      {/* magnifying glass */}
+      <circle cx="68" cy="70" r="11" fill={SKY} />
+      <circle cx="68" cy="70" r="5" fill={CREAM} />
+      <rect x="75" y="77" width="9" height="4" rx="2" fill={SKY} transform="rotate(45 75 77)" />
+    </svg>
+  );
+}
+
+export function LeafPercentIcon(p: IconProps) {
+  return (
+    <svg {...base(p)} aria-hidden>
+      <circle cx="50" cy="50" r="40" fill={LEAF_LIGHT} />
+      {/* leaf */}
+      <path d="M50 24 q20 18 20 36 q0 14 -20 16 q-20 -2 -20 -16 q0 -18 20 -36 z" fill={LEAF} />
+      <path d="M50 32 q0 30 0 44" stroke={LEAF_LIGHT} strokeWidth="4" strokeLinecap="round" />
+      {/* percent symbol */}
+      <circle cx="38" cy="40" r="4" fill={CREAM} />
+      <circle cx="62" cy="60" r="4" fill={CREAM} />
+      <path d="M62 36 l-24 28" stroke={CREAM} strokeWidth="4" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+export function TestTubeCheckIcon(p: IconProps) {
+  return (
+    <svg {...base(p)} aria-hidden>
+      <circle cx="50" cy="50" r="40" fill={BLOSSOM_LIGHT} />
+      {/* test tube */}
+      <rect x="40" y="18" width="20" height="56" rx="9" fill={BLOSSOM} />
+      <rect x="36" y="16" width="28" height="10" rx="4" fill={BLOSSOM} />
+      {/* liquid */}
+      <path d="M44 62 h12 v8 a6 6 0 0 1 -12 0 z" fill={BLOSSOM_LIGHT} />
+      {/* check */}
+      <path d="M32 54 l8 8 l18 -18" fill="none" stroke={CREAM} strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+export function ShieldHeartIcon(p: IconProps) {
+  return (
+    <svg {...base(p)} aria-hidden>
+      <circle cx="50" cy="50" r="40" fill={SKY_LIGHT} />
+      {/* shield */}
+      <path d="M50 18 l24 10 v20 q0 18 -24 28 q-24 -10 -24 -28 v-20 z" fill={SKY} />
+      {/* heart */}
+      <path d="M50 62 q-14 -10 -14 -20 a7 7 0 0 1 14 -4 a7 7 0 0 1 14 4 q0 10 -14 20 z" fill={CREAM} />
+    </svg>
+  );
+}
+
+export function HandLeafIcon(p: IconProps) {
+  return (
+    <svg {...base(p)} aria-hidden>
+      <circle cx="50" cy="50" r="40" fill={SUN} opacity="0.25" />
+      {/* hand */}
+      <path d="M34 72 q-8 -8 -8 -18 v-12 q0 -6 6 -6 q6 0 6 6 v6 h6 v-16 q0 -6 6 -6 q6 0 6 6 v16 h6 v-10 q0 -6 6 -6 q6 0 6 6 v10 q0 14 -12 22 z" fill={SUN} />
+      {/* leaf */}
+      <path d="M60 26 q14 12 14 26 q0 10 -14 12 q-14 -2 -14 -12 q0 -14 14 -26 z" fill={LEAF} />
+      <path d="M60 32 q0 18 0 32" stroke={LEAF_LIGHT} strokeWidth="3" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+export function BadgeCheckIcon(p: IconProps) {
+  return (
+    <svg {...base(p)} aria-hidden>
+      <circle cx="50" cy="50" r="40" fill={BLOSSOM_LIGHT} />
+      {/* badge star */}
+      <path d="M50 18 l6 14 h14 l-11 9 l4 14 l-13 -8 l-13 8 l4 -14 l-11 -9 h14 z" fill={BLOSSOM} />
+      {/* check */}
+      <path d="M42 52 l6 6 l14 -14" fill="none" stroke={CREAM} strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
 /** Soft dotted cloud — from the brand guide's secondary visual language */
+
 export function DottedCloud(p: IconProps) {
   const { size = 120, ...rest } = p;
   return (
