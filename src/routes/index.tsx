@@ -1,6 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import hero from "@/assets/hero-mother-baby.jpg";
 import flatlay from "@/assets/products-flatlay.jpg";
+import economicTimesLogo from "@/assets/logo-economic-times.png.asset.json";
+import betterIndiaLogo from "@/assets/logo-better-india.png.asset.json";
+import startupIndiaLogo from "@/assets/logo-startup-india.png.asset.json";
 import { useProducts, concerns } from "@/lib/products";
 import { formatINR, useCart } from "@/lib/cart";
 import { BunnyIcon, ElephantIcon, BirdIcon, BearIcon, DuckIcon, DottedCloud, ListSearchIcon, LeafPercentIcon, TestTubeCheckIcon, ShieldHeartIcon, HandLeafIcon, BadgeCheckIcon } from "@/components/BrandIcons";
@@ -101,13 +104,26 @@ function Bullet({ children }: { children: React.ReactNode }) {
 
 /* ---------- Trust strip ---------- */
 function TrustStrip() {
-  const logos = ["Economic Times", "The Better India", "Startup India Seed Fund"];
+  const logos = [
+    { src: economicTimesLogo.url, alt: "The Economic Times" },
+    { src: betterIndiaLogo.url, alt: "The Better India" },
+    { src: startupIndiaLogo.url, alt: "Startup India Seed Fund" },
+  ];
   return (
     <section className="border-y border-border bg-background">
       <div className="container-x py-6 flex flex-wrap items-center justify-between gap-6">
         <span className="eyebrow">As featured in</span>
-        <div className="flex flex-wrap items-center gap-x-8 gap-y-3 text-foreground/55">
-          {logos.map((l) => <span key={l} className="font-display text-lg sm:text-xl tracking-tight">{l}</span>)}
+        <div className="flex flex-wrap items-center gap-x-8 gap-y-3">
+          {logos.map(({ src, alt }) => (
+            <img
+              key={alt}
+              src={src}
+              alt={alt}
+              title={alt}
+              className="h-10 sm:h-12 w-auto max-w-[220px] object-contain opacity-80 hover:opacity-100 transition"
+              loading="lazy"
+            />
+          ))}
         </div>
       </div>
     </section>
