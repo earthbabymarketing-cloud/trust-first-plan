@@ -156,7 +156,7 @@ function PDP() {
           <div className="mt-5 grid grid-cols-3 gap-2 text-center text-[12px]">
             <RiskItem icon="🚚" title="Ships in 24 hrs" sub="Pan-India" />
             <RiskItem icon="↩️" title="10-day returns" sub="No questions" />
-            <RiskItem icon="💳" title="COD available" sub="Prepaid = free ship" />
+            <RiskItem icon="💳" title="₹25 off prepaid" sub="Auto-applied" />
           </div>
 
           {/* Product promise */}
