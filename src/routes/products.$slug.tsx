@@ -268,8 +268,9 @@ function PDP() {
             <AccordionTrigger className="text-lg font-display">Returns & warranty</AccordionTrigger>
             <AccordionContent>
               <p className="text-sm text-foreground/80">
-                Not happy? Return in 10 days, no questions asked. If the product feels wrong for your
-                baby's skin — even after use — write to hello@earthbaby.in and we'll refund it.
+                We're happy to take it back <strong>even after use</strong> — as long as it's within
+                10 days of you receiving the product. If it didn't work for your baby's skin, write
+                to hello@earthbaby.in and we'll refund it in full. No forms. No questions.
               </p>
             </AccordionContent>
           </AccordionItem>
