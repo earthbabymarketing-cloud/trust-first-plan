@@ -156,7 +156,7 @@ function PDP() {
           <div className="mt-5 grid grid-cols-3 gap-2 text-center text-[12px]">
             <RiskItem icon="🚚" title="Ships in 24 hrs" sub="Pan-India" />
             <RiskItem icon="↩️" title="10-day returns" sub="No questions" />
-            <RiskItem icon="💳" title="COD available" sub="Prepaid = free ship" />
+            <RiskItem icon="💳" title="₹25 off prepaid" sub="Auto-applied" />
           </div>
 
           {/* Product promise */}
@@ -168,12 +168,33 @@ function PDP() {
             </p>
           </div>
 
-          {/* Description — kept from current site */}
-          <div className="mt-8">
+          {/* Description — Q&A style */}
+          <div className="mt-8 space-y-5">
             <div className="eyebrow">About this product</div>
-            <p className="mt-3 text-foreground/85 whitespace-pre-line leading-relaxed">
-              {product.description}
-            </p>
+            <div>
+              <div className="font-display text-base">What is {product.name}?</div>
+              <p className="mt-1 text-sm text-foreground/80 leading-relaxed">
+                {product.tagline}. {product.description?.split(/\n|\./).filter(Boolean)[0]?.trim()}.
+              </p>
+            </div>
+            <div>
+              <div className="font-display text-base">Who is it for?</div>
+              <p className="mt-1 text-sm text-foreground/80 leading-relaxed">
+                Made for babies with sensitive skin — safe from day one. Equally loved by moms and
+                grown-ups who prefer clean, plant-first formulas.
+              </p>
+            </div>
+            <div>
+              <div className="font-display text-base">What makes it different?</div>
+              <p className="mt-1 text-sm text-foreground/80 leading-relaxed">
+                {product.hero.length
+                  ? product.hero.join(" · ") + ". "
+                  : ""}
+                {product.naturalOrigin ? `${product.naturalOrigin}% natural origin per ISO 16128. ` : ""}
+                Free from sulphates, parabens, silicones and synthetic fragrance. Dermatologically
+                tested, pH-balanced to 5.5.
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -247,8 +268,9 @@ function PDP() {
             <AccordionTrigger className="text-lg font-display">Returns & warranty</AccordionTrigger>
             <AccordionContent>
               <p className="text-sm text-foreground/80">
-                Not happy? Return in 10 days, no questions asked. If the product feels wrong for your
-                baby's skin — even after use — write to hello@earthbaby.in and we'll refund it.
+                We're happy to take it back <strong>even after use</strong> — as long as it's within
+                10 days of you receiving the product. If it didn't work for your baby's skin, write
+                to hello@earthbaby.in and we'll refund it in full. No forms. No questions.
               </p>
             </AccordionContent>
           </AccordionItem>
@@ -293,15 +315,6 @@ function PDP() {
         </div>
       </section>
 
-      {/* Company objection busters (from template) */}
-      <section className="container-x pb-14">
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <USP title="Made in India" body="Small-batch, cGMP-certified. Formulated in Earthbaby's own lab." />
-          <USP title="Dermatologically tested" body="Every SKU clinically evaluated for baby-safe use." />
-          <USP title="Delivery you can trust" body="Ships in 24 hrs. Free above ₹600. COD across India." />
-          <USP title="10-day easy returns" body="Skin didn't love it? We refund. No forms, no fuss." />
-        </div>
-      </section>
 
       {/* Pairs well with */}
       <section className="container-x pb-20">
