@@ -78,7 +78,7 @@ function PDP() {
       {/* Hero: gallery + buy box */}
       <section className="container-x py-6 lg:py-10 grid lg:grid-cols-[1.1fr_1fr] gap-8 lg:gap-14">
         {/* Gallery */}
-        <div className="grid grid-cols-[72px_1fr] gap-4">
+        <div className="grid sm:grid-cols-[72px_1fr] gap-4">
           <div className="hidden sm:flex flex-col gap-3">
             {gallery.slice(0, 5).map((src, i) => (
               <button
