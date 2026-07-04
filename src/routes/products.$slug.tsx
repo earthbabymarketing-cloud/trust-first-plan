@@ -315,15 +315,6 @@ function PDP() {
         </div>
       </section>
 
-      {/* Company objection busters (from template) */}
-      <section className="container-x pb-14">
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <USP title="Made in India" body="Small-batch, cGMP-certified. Formulated in Earthbaby's own lab." />
-          <USP title="Dermatologically tested" body="Every SKU clinically evaluated for baby-safe use." />
-          <USP title="Delivery you can trust" body="Ships in 24 hrs. Free above ₹600. COD across India." />
-          <USP title="10-day easy returns" body="Skin didn't love it? We refund. No forms, no fuss." />
-        </div>
-      </section>
 
       {/* Pairs well with */}
       <section className="container-x pb-20">
