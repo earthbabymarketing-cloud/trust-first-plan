@@ -308,6 +308,38 @@ function PDP() {
         </div>
       </section>
 
+      {/* Reviews — real reviews only, empty state until wired to a review source */}
+      <section className="container-x py-14">
+        <div className="flex items-end justify-between gap-4 flex-wrap">
+          <div>
+            <div className="eyebrow">Reviews</div>
+            <h2 className="mt-2 font-display text-3xl sm:text-4xl">What parents are saying</h2>
+          </div>
+          <div className="flex items-center gap-2 text-sm text-muted-foreground">
+            <Stars value={0} />
+            <span>No reviews yet</span>
+          </div>
+        </div>
+
+        <div className="mt-8 card-soft p-8 sm:p-12 text-center">
+          <div className="mx-auto h-12 w-12 rounded-full bg-[color:var(--tint-sky)] grid place-items-center text-xl">
+            ✎
+          </div>
+          <h3 className="mt-4 font-display text-xl">No reviews yet</h3>
+          <p className="mt-2 text-sm text-muted-foreground max-w-md mx-auto">
+            Be the first to share your experience with {product.name}. Your honest review helps other parents choose with confidence.
+          </p>
+          <a
+            href="mailto:hello@earthbaby.in?subject=Product review"
+            className="btn-secondary mt-6 inline-flex"
+          >
+            Write a review
+          </a>
+        </div>
+      </section>
+
+
+
 
       {/* Pairs well with */}
       <section className="container-x pb-20">
