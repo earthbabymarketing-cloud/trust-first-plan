@@ -11,6 +11,7 @@ export type Product = {
   rating: number;
   reviews: number;
   image: string;
+  images: string[];
   variantId: string;
   concern?: "sensitive" | "everyday" | "traditional" | "massage" | "mom";
   naturalOrigin?: number;
@@ -141,6 +142,8 @@ async function fetchProducts(): Promise<Product[]> {
       const variant = n.variants?.edges?.[0]?.node;
       if (!variant) return null;
       const image = n.featuredImage?.url ?? n.images?.edges?.[0]?.node?.url ?? "";
+      const gallery: string[] = (n.images?.edges ?? []).map((g: any) => g.node.url).filter(Boolean);
+      const images = Array.from(new Set([image, ...gallery].filter(Boolean)));
       const enr = ENRICHMENT[n.handle] ?? {};
       const name = enr.size ? n.title.split(",")[0].trim() : cleanTitle(n.title);
       const p: Product = {
@@ -151,6 +154,7 @@ async function fetchProducts(): Promise<Product[]> {
         rating: enr.rating ?? 4.8,
         reviews: enr.reviews ?? 0,
         image,
+        images,
         variantId: variant.id,
         concern: enr.concern ?? inferConcern(n.title),
         naturalOrigin: enr.naturalOrigin ?? inferNaturalOrigin(n.title),
