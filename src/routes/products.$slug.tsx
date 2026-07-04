@@ -168,12 +168,33 @@ function PDP() {
             </p>
           </div>
 
-          {/* Description — kept from current site */}
-          <div className="mt-8">
+          {/* Description — Q&A style */}
+          <div className="mt-8 space-y-5">
             <div className="eyebrow">About this product</div>
-            <p className="mt-3 text-foreground/85 whitespace-pre-line leading-relaxed">
-              {product.description}
-            </p>
+            <div>
+              <div className="font-display text-base">What is {product.name}?</div>
+              <p className="mt-1 text-sm text-foreground/80 leading-relaxed">
+                {product.tagline}. {product.description?.split(/\n|\./).filter(Boolean)[0]?.trim()}.
+              </p>
+            </div>
+            <div>
+              <div className="font-display text-base">Who is it for?</div>
+              <p className="mt-1 text-sm text-foreground/80 leading-relaxed">
+                Made for babies with sensitive skin — safe from day one. Equally loved by moms and
+                grown-ups who prefer clean, plant-first formulas.
+              </p>
+            </div>
+            <div>
+              <div className="font-display text-base">What makes it different?</div>
+              <p className="mt-1 text-sm text-foreground/80 leading-relaxed">
+                {product.hero.length
+                  ? product.hero.join(" · ") + ". "
+                  : ""}
+                {product.naturalOrigin ? `${product.naturalOrigin}% natural origin per ISO 16128. ` : ""}
+                Free from sulphates, parabens, silicones and synthetic fragrance. Dermatologically
+                tested, pH-balanced to 5.5.
+              </p>
+            </div>
           </div>
         </div>
       </section>
