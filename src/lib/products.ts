@@ -85,6 +85,23 @@ const ENRICHMENT: Record<string, Enrichment> = {
       "Reapply on dry patches as needed.",
     ],
   },
+  "handmade-baby-soap-for-babies-below-1-year-90-natural-origin": {
+    tagline: "Cold-pressed edible oils, made for babies below 1",
+    rating: 4.7, reviews: 21, concern: "sensitive", naturalOrigin: 90, size: "100 g",
+    hero: ["90% natural origin", "No essential oils", "Ayurvedic recipe"],
+    ingredients: [
+      { name: "Saponified Coconut Oil", purpose: "Gentle cleanse + lather", percent: "40%" },
+      { name: "Saponified Sesame Oil", purpose: "Nourishes & softens", percent: "35%" },
+      { name: "Saponified Castor Oil", purpose: "Moisture lock", percent: "15%" },
+      { name: "Rain-water", purpose: "Pure solvent base", percent: "10%" },
+    ],
+    howToUse: [
+      "Wet baby's body and face with lukewarm water.",
+      "Work the soap into a soft lather between your palms and gently massage over the skin, avoiding the eyes.",
+      "Rinse thoroughly and pat dry.",
+      "Store the soap away from moisture after bathing to keep it firm and lasting longer.",
+    ],
+  },
 };
 
 /* ---------- heuristics for products with no enrichment ---------- */
