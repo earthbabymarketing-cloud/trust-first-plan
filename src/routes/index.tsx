@@ -133,109 +133,17 @@ function TrustStrip() {
 /* ---------- Empathy ---------- */
 function Empathy() {
   return (
-    <section className="relative overflow-hidden bg-[color:var(--wash-sky)]">
-      {/* Organic background shapes */}
-      <div aria-hidden className="pointer-events-none absolute inset-0">
-        <div className="absolute -top-24 -left-24 h-[420px] w-[420px] rounded-full bg-[color:var(--tint-leaf)] opacity-60 blur-3xl" />
-        <div className="absolute top-1/3 -right-32 h-[380px] w-[380px] rounded-full bg-[color:var(--tint-blossom)] opacity-50 blur-3xl" />
-        <div className="absolute bottom-0 left-1/3 h-[260px] w-[260px] rounded-full bg-white/50 blur-2xl" />
-      </div>
-      <DottedCloud size={180} className="absolute top-10 right-8 opacity-60 hidden md:block" />
-
-      <div className="relative container-x py-16 sm:py-24 lg:py-32">
-        <div className="grid lg:grid-cols-[1.05fr_1fr] gap-12 lg:gap-20 items-center">
-          {/* LEFT — storytelling */}
-          <div className="relative">
-            <span className="eyebrow">Why we exist</span>
-            <h2 className="mt-5 font-display text-[34px] sm:text-5xl lg:text-[64px] leading-[1.05] tracking-[-0.015em]">
-              Choosing baby care <span className="italic text-[color:var(--sage-deep)]">shouldn't</span> feel overwhelming.
-            </h2>
-
-            <ol className="mt-10 relative border-l-2 border-dashed border-[color:var(--sage-deep)]/25 pl-6 sm:pl-8 space-y-6">
-              {[
-                "Every brand claims to be natural.",
-                "Understanding ingredients isn't easy.",
-                "And when it comes to your baby, guessing doesn't feel right.",
-              ].map((line, i) => (
-                <li key={i} className="relative">
-                  <span
-                    aria-hidden
-                    className="absolute -left-[34px] sm:-left-[42px] top-1.5 h-4 w-4 rounded-full bg-white ring-4 ring-[color:var(--wash-sky)] border border-[color:var(--sage-deep)]/40"
-                  />
-                  <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed">{line}</p>
-                </li>
-              ))}
-            </ol>
-
-            <div className="mt-10 relative">
-              <div className="card-soft bg-white/80 backdrop-blur-sm p-6 sm:p-8 border border-[color:var(--sage-deep)]/10">
-                <p className="font-display text-2xl sm:text-3xl leading-snug text-foreground">
-                  That's why we created Earthbaby.
-                </p>
-                <p className="mt-3 font-display text-xl sm:text-2xl leading-snug text-muted-foreground">
-                  Because parents deserve{" "}
-                  <em className="not-italic relative inline-block font-display text-[color:var(--clay)]">
-                    confidence
-                    <span aria-hidden className="absolute left-0 right-0 -bottom-1 h-[6px] rounded-full bg-[color:var(--tint-blossom)] opacity-70" />
-                  </em>
-                  , not confusion.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* RIGHT — visual storytelling stack */}
-          <div className="relative h-[440px] sm:h-[520px] lg:h-[560px]">
-            {/* soft organic base */}
-            <div aria-hidden className="absolute inset-6 rounded-[42%_58%_46%_54%/54%_46%_58%_42%] bg-white/70 backdrop-blur-sm shadow-[var(--shadow-soft)]" />
-
-            {/* floating animal icons */}
-            <div className="absolute top-6 left-8 sm:left-12 rotate-[-6deg]">
-              <div className="rounded-full bg-white shadow-[var(--shadow-lift)] p-3">
-                <BunnyIcon size={64} />
-              </div>
-            </div>
-
-            <div className="absolute top-14 right-6 sm:right-10 rotate-[8deg]">
-              <div className="rounded-full bg-white shadow-[var(--shadow-lift)] p-3">
-                <DuckIcon size={56} />
-              </div>
-            </div>
-
-            {/* center trust card */}
-            <div className="absolute left-1/2 top-[42%] -translate-x-1/2 -translate-y-1/2 w-[78%] max-w-[320px]">
-              <div className="rounded-3xl bg-white p-6 shadow-[var(--shadow-lift)] border border-border">
-                <div className="eyebrow text-[color:var(--sage-deep)]">Natural origin</div>
-                <div className="mt-2 font-display text-5xl text-[color:var(--sage-deep)] leading-none">90–100%</div>
-                <div className="mt-2 text-[13px] text-muted-foreground">Declared, ingredient by ingredient. No rounding, no hiding.</div>
-                <div className="mt-4 flex items-center gap-2 text-[12px] text-muted-foreground">
-                  <span className="h-2 w-2 rounded-full bg-[color:var(--sage-deep)]" />
-                  Dermatologically tested
-                </div>
-                <div className="mt-1.5 flex items-center gap-2 text-[12px] text-muted-foreground">
-                  <span className="h-2 w-2 rounded-full bg-[color:var(--clay)]" />
-                  Made Safe Certified
-                </div>
-              </div>
-            </div>
-
-            {/* bottom animals */}
-            <div className="absolute bottom-8 left-10 rotate-[-10deg]">
-              <div className="rounded-full bg-white shadow-[var(--shadow-lift)] p-3">
-                <BearIcon size={60} />
-              </div>
-            </div>
-            <div className="absolute bottom-4 right-8 rotate-[6deg]">
-              <div className="rounded-full bg-white shadow-[var(--shadow-lift)] p-3">
-                <ElephantIcon size={68} />
-              </div>
-            </div>
-
-            {/* tiny accent dots */}
-            <span aria-hidden className="absolute top-2 right-1/3 h-3 w-3 rounded-full bg-[color:var(--tint-blossom)]" />
-            <span aria-hidden className="absolute bottom-1/3 left-2 h-2.5 w-2.5 rounded-full bg-[color:var(--sage-deep)]/60" />
-            <span aria-hidden className="absolute top-1/2 right-3 h-2 w-2 rounded-full bg-[color:var(--brand-sun)]" />
-          </div>
+    <section className="container-x py-14 sm:py-20 lg:py-28">
+      <div className="max-w-3xl">
+        <span className="eyebrow">Why we exist</span>
+        <h2 className="mt-4 font-display text-3xl sm:text-5xl leading-tight">
+          Choosing baby care shouldn't feel overwhelming.
+        </h2>
+        <div className="mt-8 space-y-4 text-lg text-muted-foreground">
+          <p>Every brand claims to be natural.</p>
+          <p>Understanding ingredients isn't easy.</p>
+          <p>And when it comes to your baby, guessing doesn't feel right.</p>
+          <p className="text-foreground">That's why we created Earthbaby.<br />Because parents deserve <em className="italic text-[color:var(--clay)]">confidence</em>, not confusion.</p>
         </div>
       </div>
     </section>
