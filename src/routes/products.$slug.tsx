@@ -237,16 +237,9 @@ function PDP() {
             <AccordionTrigger className="text-lg font-display">How to use</AccordionTrigger>
             <AccordionContent>
               {product.howToUse.length > 0 ? (
-                <ol className="space-y-3 text-foreground/85">
-                  {product.howToUse.map((s, i) => (
-                    <li key={i} className="flex gap-3">
-                      <span className="h-6 w-6 rounded-full bg-[color:var(--secondary)] text-xs grid place-items-center shrink-0">
-                        {i + 1}
-                      </span>
-                      {s}
-                    </li>
-                  ))}
-                </ol>
+                <p className="text-sm text-foreground/80 leading-relaxed">
+                  {product.howToUse.join(" ")}
+                </p>
               ) : (
                 <p className="text-sm text-muted-foreground">Refer to the pack for full usage directions.</p>
               )}
