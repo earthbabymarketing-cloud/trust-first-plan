@@ -6,6 +6,8 @@ export function IngredientComposition({ slug, productName }: { slug: string; pro
 
   const naturalRows = data.rows.filter((r) => r.natural);
   const nonNaturalRows = data.rows.filter((r) => !r.natural);
+  const naturalSum = naturalRows.reduce((s, r) => s + r.composition, 0);
+  const nonNaturalSum = nonNaturalRows.reduce((s, r) => s + r.composition, 0);
 
   return (
     <div className="mt-5 rounded-2xl border border-border bg-[color:var(--wash-sky)] overflow-hidden">
@@ -38,8 +40,11 @@ export function IngredientComposition({ slug, productName }: { slug: string; pro
                 key={r.ingredient}
                 className="py-2 sm:grid sm:grid-cols-[minmax(0,1fr)_auto] sm:gap-3 sm:items-start"
               >
-                <div className="font-display text-sm leading-snug">{r.ingredient}</div>
-                <div className="text-right font-display text-sm text-foreground/80 mt-1 sm:mt-0">
+                <div className="flex items-start gap-2">
+                  <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-[color:var(--brand-leaf)]" aria-hidden="true" />
+                  <div className="font-display text-sm leading-snug">{r.ingredient}</div>
+                </div>
+                <div className="text-right font-display text-sm text-foreground/80 mt-1 sm:mt-0 pl-4 sm:pl-0">
                   {r.composition}%
                 </div>
               </li>
@@ -67,15 +72,18 @@ export function IngredientComposition({ slug, productName }: { slug: string; pro
                   className="py-2 sm:grid sm:grid-cols-[minmax(0,1fr)_auto] sm:gap-3 sm:items-start"
                 >
                   <div>
-                    <div className="font-display text-sm leading-snug">{r.ingredient}</div>
-                    <div className="mt-1 text-sm text-muted-foreground">
+                    <div className="flex items-start gap-2">
+                      <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-amber-400" aria-hidden="true" />
+                      <div className="font-display text-sm leading-snug">{r.ingredient}</div>
+                    </div>
+                    <div className="mt-1 ml-4 text-sm text-muted-foreground">
                       <span className="font-medium text-foreground/80">Function:</span> {r.function}
                     </div>
                     {r.note && (
-                      <div className="mt-1 text-xs text-muted-foreground italic">Why added: {r.note}</div>
+                      <div className="mt-1 ml-4 text-xs text-muted-foreground italic">Why added: {r.note}</div>
                     )}
                   </div>
-                  <div className="text-right font-display text-sm text-foreground/80 mt-1 sm:mt-0">
+                  <div className="text-right font-display text-sm text-foreground/80 mt-1 sm:mt-0 pl-4 sm:pl-0">
                     {r.composition}%
                   </div>
                 </li>
@@ -83,6 +91,18 @@ export function IngredientComposition({ slug, productName }: { slug: string; pro
             </ul>
           </div>
         )}
+
+        {/* Totals */}
+        <div className="rounded-xl bg-white border border-border p-4 grid grid-cols-2 gap-3 text-center">
+          <div>
+            <div className="font-display text-xl text-[color:var(--brand-leaf)]">{naturalSum.toFixed(2)}%</div>
+            <div className="text-[11px] uppercase tracking-wider text-muted-foreground mt-1">Natural</div>
+          </div>
+          <div>
+            <div className="font-display text-xl text-foreground/70">{nonNaturalSum.toFixed(2)}%</div>
+            <div className="text-[11px] uppercase tracking-wider text-muted-foreground mt-1">Nature-identical</div>
+          </div>
+        </div>
 
         <p className="text-xs text-muted-foreground">
           Rated per ISO 16128 by ingredient weight. Non-natural ingredients are used at the lowest effective dose only when a plant-based alternative cannot match safety or performance.
