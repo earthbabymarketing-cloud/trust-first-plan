@@ -8,6 +8,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { IngredientComposition } from "@/components/IngredientComposition";
 
 export const Route = createFileRoute("/products/$slug")({
   head: () => ({
