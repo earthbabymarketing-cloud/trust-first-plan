@@ -99,7 +99,7 @@ export function IngredientComposition({ slug, productName }: { slug: string; pro
             <div className="text-[11px] uppercase tracking-wider text-muted-foreground mt-1">Natural</div>
           </div>
           <div>
-            <div className="font-display text-xl text-foreground/70">{nonNaturalSum.toFixed(2)}%</div>
+            <div className="font-display text-xl text-amber-500">{nonNaturalSum.toFixed(2)}%</div>
             <div className="text-[11px] uppercase tracking-wider text-muted-foreground mt-1">Nature-identical</div>
           </div>
         </div>
