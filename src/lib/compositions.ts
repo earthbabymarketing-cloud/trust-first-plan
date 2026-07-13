@@ -1,5 +1,6 @@
 export type CompositionRow = {
   ingredient: string;
+  commonName?: string;       // friendly name (e.g. "Shea butter" for Butyrospermum Parkii)
   composition: number;       // % w/w in the formula
   naturalOriginPct: number;  // % of THIS ingredient that is natural per ISO 16128
   function: string;
