@@ -150,13 +150,13 @@ function PDP() {
             </div>
             <button
               onClick={() => {
-                const variant = product.variants.find((v) => v.title === selectedVariant) ?? product.variants[0];
+                const variant = product.variants[0];
                 if (!variant) return;
                 add({ ...product, variantId: variant.id, price: variant.price || product.price }, qty);
               }}
               className="btn-primary w-full"
             >
-              Add to cart · {formatINR((product.variants.find((v) => v.title === selectedVariant)?.price ?? product.price) * qty)}
+              Add to cart · {formatINR((product.variants[0]?.price ?? product.price) * qty)}
             </button>
           </div>
 
