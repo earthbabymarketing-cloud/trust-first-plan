@@ -37,7 +37,7 @@ export function IngredientComposition({ slug, productName }: { slug: string; pro
             {total}%
           </div>
           <div className="text-sm text-muted-foreground">
-            natural origin per ISO 16128 (not the same as 100% natural — it's the plant-derived share of the formula, weighted by weight).
+            Certified natural origin per ISO 16128 — weighted by how much of each ingredient is in the formula.
           </div>
         </div>
 
