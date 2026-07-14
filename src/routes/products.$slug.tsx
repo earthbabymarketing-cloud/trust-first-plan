@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useProductBySlug, useProducts, type Product } from "@/lib/products";
 import { formatINR, useCart } from "@/lib/cart";
 import {
@@ -48,13 +48,6 @@ function PDP() {
   const { add } = useCart();
   const [qty, setQty] = useState(1);
   const [activeImg, setActiveImg] = useState(0);
-  const [selectedVariant, setSelectedVariant] = useState("");
-
-  useEffect(() => {
-    if (product && !selectedVariant) {
-      setSelectedVariant(product.variants[0]?.title ?? "");
-    }
-  }, [product, selectedVariant]);
 
   if (isLoading) {
     return <div className="container-x py-32 text-center text-muted-foreground">Loading product…</div>;
@@ -148,28 +141,6 @@ function PDP() {
             </ul>
           )}
 
-          {/* Variant selector */}
-          {product.variants.length > 1 && (
-            <div className="mt-5">
-              <div className="text-[12px] text-muted-foreground mb-2">Shade</div>
-              <div className="flex flex-wrap gap-2">
-                {product.variants.map((v) => (
-                  <button
-                    key={v.id}
-                    onClick={() => setSelectedVariant(v.title)}
-                    className={`px-4 py-2 rounded-full border text-sm transition ${
-                      selectedVariant === v.title
-                        ? "border-[color:var(--ink)] bg-[color:var(--ink)] text-[color:var(--brand-cream)]"
-                        : "border-border hover:border-foreground/40"
-                    }`}
-                  >
-                    {toTitleCase(v.title)}
-                  </button>
-                ))}
-              </div>
-            </div>
-          )}
-
           {/* Qty + CTA */}
           <div className="mt-7 grid grid-cols-[auto_1fr] gap-3">
             <div className="inline-flex items-center rounded-full border border-border overflow-hidden">
@@ -179,13 +150,13 @@ function PDP() {
             </div>
             <button
               onClick={() => {
-                const variant = product.variants.find((v) => v.title === selectedVariant) ?? product.variants[0];
+                const variant = product.variants[0];
                 if (!variant) return;
                 add({ ...product, variantId: variant.id, price: variant.price || product.price }, qty);
               }}
               className="btn-primary w-full"
             >
-              Add to cart · {formatINR((product.variants.find((v) => v.title === selectedVariant)?.price ?? product.price) * qty)}
+              Add to cart · {formatINR((product.variants[0]?.price ?? product.price) * qty)}
             </button>
           </div>
 
@@ -264,7 +235,7 @@ function PDP() {
                 </ul>
               ) : null}
 
-              <IngredientComposition slug={product.slug} productName={product.name} selectedVariant={selectedVariant} />
+              <IngredientComposition slug={product.slug} productName={product.name} />
             </AccordionContent>
           </AccordionItem>
 
@@ -412,12 +383,12 @@ function PDP() {
         <div className="flex-1">
           <div className="text-[11px] text-muted-foreground truncate">{product.name}</div>
           <div className="font-display text-lg leading-tight">
-            {formatINR((product.variants.find((v) => v.title === selectedVariant)?.price ?? product.price) * qty)}
+            {formatINR((product.variants[0]?.price ?? product.price) * qty)}
           </div>
         </div>
         <button
           onClick={() => {
-            const variant = product.variants.find((v) => v.title === selectedVariant) ?? product.variants[0];
+            const variant = product.variants[0];
             if (!variant) return;
             add({ ...product, variantId: variant.id, price: variant.price || product.price }, qty);
           }}
@@ -461,10 +432,3 @@ function Stars({ value }: { value: number }) {
   );
 }
 
-function toTitleCase(s: string) {
-  return s
-    .toLowerCase()
-    .split(" ")
-    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
-    .join(" ");
-}
