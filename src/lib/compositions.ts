@@ -109,28 +109,28 @@ export const compositions: Record<string, Composition> = {
     colorIngredients: {
       "copper red": {
         ingredient: "Mica and Iron Oxides CI 77491",
-        commonName: "Natural mineral colour (Copper Red)",
+        commonName: "Copper Red",
         composition: 8,
         naturalOriginPct: 100,
         function: "Natural mineral pigment that gives this shade its warm copper-red tone",
       },
       "wood brown": {
         ingredient: "Iron Oxides CI 77491/92/99",
-        commonName: "Natural mineral colour (Wood Brown)",
+        commonName: "Wood Brown",
         composition: 8,
         naturalOriginPct: 100,
         function: "Natural mineral pigment that gives this shade its earthy wood-brown tone",
       },
       "sunset orange": {
         ingredient: "CI 77491/92/99 Iron Oxides",
-        commonName: "Natural mineral colour (Sunset Orange)",
+        commonName: "Sunset Orange",
         composition: 8,
         naturalOriginPct: 100,
         function: "Natural mineral pigment that gives this shade its vibrant sunset-orange tone",
       },
       "chocolate brown": {
         ingredient: "CI 77491/92/99 Iron Oxides",
-        commonName: "Natural mineral colour (Dark Chocolate)",
+        commonName: "Dark Chocolate",
         composition: 8,
         naturalOriginPct: 100,
         function: "Natural mineral pigment that gives this shade its rich dark chocolate tone",
