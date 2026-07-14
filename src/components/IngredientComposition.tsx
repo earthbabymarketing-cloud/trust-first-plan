@@ -3,11 +3,9 @@ import { getComposition } from "@/lib/compositions";
 export function IngredientComposition({
   slug,
   productName,
-  selectedVariant,
 }: {
   slug: string;
   productName: string;
-  selectedVariant?: string;
 }) {
   const data = getComposition(slug);
   if (!data) return null;
