@@ -31,9 +31,11 @@ export function IngredientComposition({ slug, productName }: { slug: string; pro
           <div className="font-display text-4xl sm:text-5xl leading-none text-[color:var(--brand-leaf)]">
             {total}%
           </div>
-          <div className="text-sm text-muted-foreground">
-            Certified natural origin per ISO 16128 — weighted by how much of each ingredient is in the formula.
-          </div>
+          {total !== 100 && (
+            <div className="text-sm text-muted-foreground">
+              Certified natural origin per ISO 16128 — weighted by how much of each ingredient is in the formula.
+            </div>
+          )}
         </div>
 
         {/* Split bar */}
