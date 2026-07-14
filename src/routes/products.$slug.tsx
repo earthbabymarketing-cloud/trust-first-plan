@@ -411,9 +411,18 @@ function PDP() {
       <div className="lg:hidden fixed bottom-0 inset-x-0 z-40 border-t border-border bg-background/95 backdrop-blur px-4 py-3 flex items-center gap-3">
         <div className="flex-1">
           <div className="text-[11px] text-muted-foreground truncate">{product.name}</div>
-          <div className="font-display text-lg leading-tight">{formatINR(product.price * qty)}</div>
+          <div className="font-display text-lg leading-tight">
+            {formatINR((product.variants.find((v) => v.title === selectedVariant)?.price ?? product.price) * qty)}
+          </div>
         </div>
-        <button onClick={() => add(product, qty)} className="btn-primary shrink-0 px-6">
+        <button
+          onClick={() => {
+            const variant = product.variants.find((v) => v.title === selectedVariant) ?? product.variants[0];
+            if (!variant) return;
+            add({ ...product, variantId: variant.id, price: variant.price || product.price }, qty);
+          }}
+          className="btn-primary shrink-0 px-6"
+        >
           Add to cart
         </button>
       </div>
