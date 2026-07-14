@@ -1,8 +1,6 @@
-import { useState } from "react";
 import { getComposition } from "@/lib/compositions";
 
 export function IngredientComposition({ slug, productName }: { slug: string; productName: string }) {
-  const [expanded, setExpanded] = useState(false);
   const data = getComposition(slug);
   if (!data) return null;
 
@@ -23,9 +21,6 @@ export function IngredientComposition({ slug, productName }: { slug: string; pro
 
   const fmt = (n: number) => (n >= 10 ? n.toFixed(1) : n.toFixed(2)).replace(/\.?0+$/, "");
   const nameOf = (r: (typeof rows)[number]) => r.commonName ?? r.ingredient;
-
-  const preview = naturals.slice(0, 3);
-  const rest = naturals.slice(3);
 
   return (
     <div className="mt-5 rounded-2xl border border-border bg-[color:var(--wash-sky)] overflow-hidden">
