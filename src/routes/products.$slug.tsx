@@ -148,6 +148,28 @@ function PDP() {
             </ul>
           )}
 
+          {/* Variant selector */}
+          {product.variants.length > 1 && (
+            <div className="mt-5">
+              <div className="text-[12px] text-muted-foreground mb-2">Shade</div>
+              <div className="flex flex-wrap gap-2">
+                {product.variants.map((v) => (
+                  <button
+                    key={v.id}
+                    onClick={() => setSelectedVariant(v.title)}
+                    className={`px-4 py-2 rounded-full border text-sm transition ${
+                      selectedVariant === v.title
+                        ? "border-[color:var(--ink)] bg-[color:var(--ink)] text-[color:var(--brand-cream)]"
+                        : "border-border hover:border-foreground/40"
+                    }`}
+                  >
+                    {toTitleCase(v.title)}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
           {/* Qty + CTA */}
           <div className="mt-7 grid grid-cols-[auto_1fr] gap-3">
             <div className="inline-flex items-center rounded-full border border-border overflow-hidden">
@@ -155,8 +177,15 @@ function PDP() {
               <span className="px-3 min-w-8 text-center">{qty}</span>
               <button onClick={() => setQty(qty + 1)} className="px-4 py-3 text-lg">+</button>
             </div>
-            <button onClick={() => add(product, qty)} className="btn-primary w-full">
-              Add to cart · {formatINR(product.price * qty)}
+            <button
+              onClick={() => {
+                const variant = product.variants.find((v) => v.title === selectedVariant) ?? product.variants[0];
+                if (!variant) return;
+                add({ ...product, variantId: variant.id, price: variant.price || product.price }, qty);
+              }}
+              className="btn-primary w-full"
+            >
+              Add to cart · {formatINR((product.variants.find((v) => v.title === selectedVariant)?.price ?? product.price) * qty)}
             </button>
           </div>
 
