@@ -383,12 +383,12 @@ function PDP() {
         <div className="flex-1">
           <div className="text-[11px] text-muted-foreground truncate">{product.name}</div>
           <div className="font-display text-lg leading-tight">
-            {formatINR((product.variants.find((v) => v.title === selectedVariant)?.price ?? product.price) * qty)}
+            {formatINR((product.variants[0]?.price ?? product.price) * qty)}
           </div>
         </div>
         <button
           onClick={() => {
-            const variant = product.variants.find((v) => v.title === selectedVariant) ?? product.variants[0];
+            const variant = product.variants[0];
             if (!variant) return;
             add({ ...product, variantId: variant.id, price: variant.price || product.price }, qty);
           }}
