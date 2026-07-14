@@ -264,7 +264,7 @@ function PDP() {
                 </ul>
               ) : null}
 
-              <IngredientComposition slug={product.slug} productName={product.name} />
+              <IngredientComposition slug={product.slug} productName={product.name} selectedVariant={selectedVariant} />
             </AccordionContent>
           </AccordionItem>
 
