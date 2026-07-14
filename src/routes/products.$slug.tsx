@@ -226,11 +226,8 @@ function PDP() {
                     </li>
                   )}
                 </ul>
-              ) : (
-                <p className="text-sm text-muted-foreground">
-                  Full ingredient list on the pack. Every Earthbaby formula is dermatologically tested.
-                </p>
-              )}
+              ) : null}
+
               <IngredientComposition slug={product.slug} productName={product.name} />
             </AccordionContent>
           </AccordionItem>
