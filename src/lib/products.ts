@@ -3,6 +3,12 @@ import { SHOPIFY_DOMAIN, SHOPIFY_API_VERSION, SHOPIFY_STOREFRONT_TOKEN } from ".
 
 export type ProductIngredient = { name: string; purpose: string; percent?: string };
 
+export type ProductVariant = {
+  id: string;
+  title: string;
+  price: number;
+};
+
 export type Product = {
   slug: string;            // shopify handle
   name: string;
@@ -13,6 +19,7 @@ export type Product = {
   image: string;
   images: string[];
   variantId: string;
+  variants: ProductVariant[];
   concern?: "sensitive" | "everyday" | "traditional" | "massage" | "mom";
   naturalOrigin?: number;
   size?: string;
