@@ -53,7 +53,7 @@ export function IngredientComposition({ slug, productName }: { slug: string; pro
         <div>
           <div className="flex items-center gap-2 text-[11px] uppercase tracking-wider text-muted-foreground">
             <span className="h-2 w-2 rounded-full bg-[color:var(--brand-leaf)]" />
-            {naturals.length} plant-derived ingredients · {fmt(total)}%
+            {naturals.length} plant-derived ingredients · {fmt(naturalsFormulaShare)}%
           </div>
           <p className="mt-2 text-sm text-foreground/85 leading-relaxed">
             {preview.map(nameOf).join(", ")}
