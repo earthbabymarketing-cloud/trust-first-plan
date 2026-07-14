@@ -76,7 +76,7 @@ export function IngredientComposition({ slug, productName }: { slug: string; pro
           <div>
             <div className="flex items-center gap-2 text-[11px] uppercase tracking-wider text-muted-foreground">
               <span className="h-2 w-2 rounded-full bg-amber-400" />
-              ESSENTIALS · {essentialsNaturalContribution.toFixed(2)}%
+              ESSENTIALS ·&nbsp;
             </div>
             <ul className="mt-3 space-y-3">
               {essentials.map((r) => (
