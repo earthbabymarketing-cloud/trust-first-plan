@@ -49,7 +49,7 @@ export function IngredientComposition({ slug, productName }: { slug: string; pro
           <div className="flex flex-col gap-1 text-[11px] uppercase tracking-wider text-muted-foreground">
             <div className="flex items-center gap-2">
               <span className="h-2 w-2 rounded-full bg-[color:var(--brand-leaf)]" />
-              {naturals.length} PLANT BASED INGREDIENTS · {naturalsFormulaShare.toFixed(2)}% IN FORMULA ·
+              BASE INGREDIENTS · {naturalsFormulaShare.toFixed(2)}% IN FORMULA·
             </div>
             <span className="pl-4 text-amber-600 font-medium">100% NATURAL ORIGIN</span>
           </div>
