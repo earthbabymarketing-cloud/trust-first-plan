@@ -46,12 +46,10 @@ export function IngredientComposition({ slug, productName }: { slug: string; pro
       <div className="px-4 py-5 sm:px-6 space-y-6">
         {/* Naturals */}
         <div>
-          <div className="flex flex-col gap-1 text-[11px] uppercase tracking-wider text-muted-foreground">
-            <div className="flex items-center gap-2">
-              <span className="h-2 w-2 rounded-full bg-[color:var(--brand-leaf)]" />
-              BASE INGREDIENTS · {naturalsFormulaShare.toFixed(2)}% IN FORMULA·
-            </div>
-            <span className="pl-4 text-amber-600 font-medium">100% NATURAL ORIGIN</span>
+          <div className="flex items-center gap-2 text-[11px] uppercase tracking-wider text-muted-foreground">
+            <span className="h-2 w-2 rounded-full bg-[color:var(--brand-leaf)]" />
+            BASE INGREDIENTS · {naturalsFormulaShare.toFixed(2)}% IN FORMULA·{" "}
+            <span className="text-amber-600 font-medium">100% NATURAL ORIGIN</span>
           </div>
           <div className="mt-3 text-sm text-foreground/90 leading-relaxed">
             {naturals.map(nameOf).join(", ")}
