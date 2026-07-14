@@ -163,8 +163,14 @@ async function fetchProducts(): Promise<Product[]> {
   return edges
     .map((e: any) => {
       const n = e.node;
-      const variant = n.variants?.edges?.[0]?.node;
-      if (!variant) return null;
+      const variantEdges = n.variants?.edges ?? [];
+      const firstVariant = variantEdges[0]?.node;
+      if (!firstVariant) return null;
+      const variants: ProductVariant[] = variantEdges.map((v: any) => ({
+        id: v.node.id,
+        title: v.node.title,
+        price: Math.round(parseFloat(v.node.price?.amount ?? "0")),
+      }));
       const image = n.featuredImage?.url ?? n.images?.edges?.[0]?.node?.url ?? "";
       const gallery: string[] = (n.images?.edges ?? []).map((g: any) => g.node.url).filter(Boolean);
       const images = Array.from(new Set([image, ...gallery].filter(Boolean)));
@@ -179,7 +185,8 @@ async function fetchProducts(): Promise<Product[]> {
         reviews: enr.reviews ?? 0,
         image,
         images,
-        variantId: variant.id,
+        variantId: firstVariant.id,
+        variants,
         concern: enr.concern ?? inferConcern(n.title),
         naturalOrigin: enr.naturalOrigin ?? inferNaturalOrigin(n.title),
         size: enr.size ?? inferSize(n.title),
