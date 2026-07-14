@@ -8,11 +8,20 @@ export type CompositionRow = {
   note?: string;             // shown when non-natural: why it's in the formula
 };
 
+export type ColorIngredient = {
+  ingredient: string;
+  commonName?: string;
+  composition: number;
+  naturalOriginPct: number;
+  function: string;
+};
+
 export type Composition = {
   productName: string;
   totalNaturalOrigin: number; // %
   rows: CompositionRow[];
   whyItsGood: string[];
+  colorIngredients?: Record<string, ColorIngredient>; // keyed by normalized variant title
 };
 
 /* Keyed by shopify handle. Add more products over time. */
@@ -96,8 +105,37 @@ export const compositions: Record<string, Composition> = {
       { ingredient: "Garcinia Indica (Kokum) Seed Butter", commonName: "Kokum butter", composition: 5, naturalOriginPct: 100, function: "Emollient butter that prevents drying and cracking", natural: true },
       { ingredient: "Copernicia Cerifera (Carnauba) Wax", commonName: "Carnauba wax", composition: 5, naturalOriginPct: 100, function: "Natural hard wax for lasting wear and subtle shine", natural: true },
       { ingredient: "Tocopherol (Vitamin E from Sunflower)", commonName: "Vitamin E from sunflower", composition: 1, naturalOriginPct: 100, function: "Natural antioxidant to protect the formula and lips", natural: true },
-      { ingredient: "Mica and Iron Oxide CI 77491", commonName: "Natural mineral colour", composition: 8, naturalOriginPct: 100, function: "Natural mineral pigments that give the lipstick its shade", natural: true },
     ],
+    colorIngredients: {
+      "copper red": {
+        ingredient: "Mica and Iron Oxides CI 77491",
+        commonName: "Natural mineral colour (Copper Red)",
+        composition: 8,
+        naturalOriginPct: 100,
+        function: "Natural mineral pigment that gives this shade its warm copper-red tone",
+      },
+      "wood brown": {
+        ingredient: "Iron Oxides CI 77491/92/99",
+        commonName: "Natural mineral colour (Wood Brown)",
+        composition: 8,
+        naturalOriginPct: 100,
+        function: "Natural mineral pigment that gives this shade its earthy wood-brown tone",
+      },
+      "sunset orange": {
+        ingredient: "CI 77491/92/99 Iron Oxides",
+        commonName: "Natural mineral colour (Sunset Orange)",
+        composition: 8,
+        naturalOriginPct: 100,
+        function: "Natural mineral pigment that gives this shade its vibrant sunset-orange tone",
+      },
+      "chocolate brown": {
+        ingredient: "CI 77491/92/99 Iron Oxides",
+        commonName: "Natural mineral colour (Dark Chocolate)",
+        composition: 8,
+        naturalOriginPct: 100,
+        function: "Natural mineral pigment that gives this shade its rich dark chocolate tone",
+      },
+    },
     whyItsGood: [
       "100% natural origin per ISO 16128 — every ingredient is plant or mineral derived.",
       "Free from synthetic dyes, petroleum, parabens and silicones.",

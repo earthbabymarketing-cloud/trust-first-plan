@@ -3,6 +3,12 @@ import { SHOPIFY_DOMAIN, SHOPIFY_API_VERSION, SHOPIFY_STOREFRONT_TOKEN } from ".
 
 export type ProductIngredient = { name: string; purpose: string; percent?: string };
 
+export type ProductVariant = {
+  id: string;
+  title: string;
+  price: number;
+};
+
 export type Product = {
   slug: string;            // shopify handle
   name: string;
@@ -13,6 +19,7 @@ export type Product = {
   image: string;
   images: string[];
   variantId: string;
+  variants: ProductVariant[];
   concern?: "sensitive" | "everyday" | "traditional" | "massage" | "mom";
   naturalOrigin?: number;
   size?: string;
@@ -136,7 +143,7 @@ const QUERY = `query AllProducts($first: Int!) {
       featuredImage { url }
       images(first: 4) { edges { node { url } } }
       priceRange { minVariantPrice { amount currencyCode } }
-      variants(first: 1) { edges { node { id } } }
+      variants(first: 10) { edges { node { id title price { amount } } } }
     } }
   }
 }`;
@@ -156,8 +163,14 @@ async function fetchProducts(): Promise<Product[]> {
   return edges
     .map((e: any) => {
       const n = e.node;
-      const variant = n.variants?.edges?.[0]?.node;
-      if (!variant) return null;
+      const variantEdges = n.variants?.edges ?? [];
+      const firstVariant = variantEdges[0]?.node;
+      if (!firstVariant) return null;
+      const variants: ProductVariant[] = variantEdges.map((v: any) => ({
+        id: v.node.id,
+        title: v.node.title,
+        price: Math.round(parseFloat(v.node.price?.amount ?? "0")),
+      }));
       const image = n.featuredImage?.url ?? n.images?.edges?.[0]?.node?.url ?? "";
       const gallery: string[] = (n.images?.edges ?? []).map((g: any) => g.node.url).filter(Boolean);
       const images = Array.from(new Set([image, ...gallery].filter(Boolean)));
@@ -172,7 +185,8 @@ async function fetchProducts(): Promise<Product[]> {
         reviews: enr.reviews ?? 0,
         image,
         images,
-        variantId: variant.id,
+        variantId: firstVariant.id,
+        variants,
         concern: enr.concern ?? inferConcern(n.title),
         naturalOrigin: enr.naturalOrigin ?? inferNaturalOrigin(n.title),
         size: enr.size ?? inferSize(n.title),
