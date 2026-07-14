@@ -48,7 +48,7 @@ export function IngredientComposition({ slug, productName }: { slug: string; pro
         <div>
           <div className="flex items-center gap-2 text-[11px] uppercase tracking-wider text-muted-foreground">
             <span className="h-2 w-2 rounded-full bg-[color:var(--brand-leaf)]" />
-            {naturals.length} plant based ingredients · {naturalsFormulaShare.toFixed(2)}% in formula · 100% natural origin
+            {naturals.length} PLANT BASED INGREDIENTS · {naturalsFormulaShare.toFixed(2)}% IN FORMULA · 100% NATURAL ORIGIN
           </div>
           <div className="mt-3 text-sm text-foreground/90 leading-relaxed">
             {naturals.map(nameOf).join(", ")}
