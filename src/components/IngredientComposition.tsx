@@ -15,7 +15,11 @@ export function IngredientComposition({ slug, productName }: { slug: string; pro
     0,
   );
   const total = data.totalNaturalOrigin ?? naturalContribution;
-  const essentialShare = Math.max(0, 100 - total);
+  const naturalsFormulaShare = naturals.reduce((s, r) => s + r.composition, 0);
+  const essentialsNaturalContribution = essentials.reduce(
+    (s, r) => s + (r.composition * r.naturalOriginPct) / 100,
+    0,
+  );
 
   const fmt = (n: number) => (n >= 10 ? n.toFixed(1) : n.toFixed(2)).replace(/\.?0+$/, "");
   const nameOf = (r: (typeof rows)[number]) => r.commonName ?? r.ingredient;
@@ -33,7 +37,7 @@ export function IngredientComposition({ slug, productName }: { slug: string; pro
             {total}%
           </div>
           <div className="text-sm text-muted-foreground">
-            natural origin per ISO 16128 (not the same as 100% natural — it's the plant-derived share of the formula, weighted by weight).
+            Certified natural origin per ISO 16128 — weighted by how much of each ingredient is in the formula.
           </div>
         </div>
 
@@ -49,7 +53,7 @@ export function IngredientComposition({ slug, productName }: { slug: string; pro
         <div>
           <div className="flex items-center gap-2 text-[11px] uppercase tracking-wider text-muted-foreground">
             <span className="h-2 w-2 rounded-full bg-[color:var(--brand-leaf)]" />
-            {naturals.length} plant-derived ingredients · {fmt(total)}%
+            {naturals.length} plant-derived ingredients · {fmt(naturalsFormulaShare)}%
           </div>
           <p className="mt-2 text-sm text-foreground/85 leading-relaxed">
             {preview.map(nameOf).join(", ")}
@@ -83,7 +87,7 @@ export function IngredientComposition({ slug, productName }: { slug: string; pro
           <div>
             <div className="flex items-center gap-2 text-[11px] uppercase tracking-wider text-muted-foreground">
               <span className="h-2 w-2 rounded-full bg-amber-400" />
-              Essentials · {fmt(essentialShare)}% of the formula
+              Essentials · {fmt(essentialsNaturalContribution)}%
             </div>
             <ul className="mt-3 space-y-3">
               {essentials.map((r) => (
