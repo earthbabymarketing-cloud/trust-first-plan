@@ -143,7 +143,7 @@ const QUERY = `query AllProducts($first: Int!) {
       featuredImage { url }
       images(first: 4) { edges { node { url } } }
       priceRange { minVariantPrice { amount currencyCode } }
-      variants(first: 1) { edges { node { id } } }
+      variants(first: 10) { edges { node { id title price { amount } } } }
     } }
   }
 }`;
