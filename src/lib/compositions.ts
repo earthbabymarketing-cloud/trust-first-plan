@@ -8,11 +8,20 @@ export type CompositionRow = {
   note?: string;             // shown when non-natural: why it's in the formula
 };
 
+export type ColorIngredient = {
+  ingredient: string;
+  commonName?: string;
+  composition: number;
+  naturalOriginPct: number;
+  function: string;
+};
+
 export type Composition = {
   productName: string;
   totalNaturalOrigin: number; // %
   rows: CompositionRow[];
   whyItsGood: string[];
+  colorIngredients?: Record<string, ColorIngredient>; // keyed by normalized variant title
 };
 
 /* Keyed by shopify handle. Add more products over time. */
