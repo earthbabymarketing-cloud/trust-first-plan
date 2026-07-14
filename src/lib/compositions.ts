@@ -83,6 +83,28 @@ export const compositions: Record<string, Composition> = {
       "Every essential is used at the lowest effective dose, only where a plant alternative can't do the job safely.",
     ],
   },
+
+  "lipstick-au-naturale-certified-100-natural-origin": {
+    productName: "Earthbaby Au Naturale Lipstick",
+    totalNaturalOrigin: 100,
+    rows: [
+      { ingredient: "Castor Oil", commonName: "Castor oil", composition: 35, naturalOriginPct: 100, function: "Base oil; disperses pigments and gives a smooth, glossy finish", natural: true },
+      { ingredient: "Cocos Nucifera (Coconut) Oil", commonName: "Coconut oil", composition: 12, naturalOriginPct: 100, function: "Moisturising oil for a soft, glide-on feel", natural: true },
+      { ingredient: "Cera Alba", commonName: "Bees wax", composition: 18, naturalOriginPct: 100, function: "Natural structuring agent that gives the lipstick its shape", natural: true },
+      { ingredient: "Prunus Amygdalus Dulcis (Sweet Almond) Oil", commonName: "Almond oil", composition: 8, naturalOriginPct: 100, function: "Nourishing and conditioning for delicate lips", natural: true },
+      { ingredient: "Butyrospermum Parkii (Shea) Butter", commonName: "Shea butter", composition: 8, naturalOriginPct: 100, function: "Deeply moisturises and soothes dry lips", natural: true },
+      { ingredient: "Garcinia Indica (Kokum) Seed Butter", commonName: "Kokum butter", composition: 5, naturalOriginPct: 100, function: "Emollient butter that prevents drying and cracking", natural: true },
+      { ingredient: "Copernicia Cerifera (Carnauba) Wax", commonName: "Carnauba wax", composition: 5, naturalOriginPct: 100, function: "Natural hard wax for lasting wear and subtle shine", natural: true },
+      { ingredient: "Tocopherol (Vitamin E from Sunflower)", commonName: "Vitamin E from sunflower", composition: 1, naturalOriginPct: 100, function: "Natural antioxidant to protect the formula and lips", natural: true },
+      { ingredient: "Mica and Iron Oxide CI 77491", commonName: "Natural mineral colour", composition: 8, naturalOriginPct: 100, function: "Natural mineral pigments that give the lipstick its shade", natural: true },
+    ],
+    whyItsGood: [
+      "100% natural origin per ISO 16128 — every ingredient is plant or mineral derived.",
+      "Free from synthetic dyes, petroleum, parabens and silicones.",
+      "Nourishing oils and butters keep lips soft and hydrated with colour.",
+      "Coloured only with natural mica and iron oxides — no artificial lakes or FD&C dyes.",
+    ],
+  },
 };
 
 /* Loose matcher: exact slug first, then substring fallback (e.g. any lotion handle). */
