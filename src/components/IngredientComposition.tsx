@@ -1,10 +1,33 @@
 import { getComposition } from "@/lib/compositions";
 
-export function IngredientComposition({ slug, productName }: { slug: string; productName: string }) {
+export function IngredientComposition({
+  slug,
+  productName,
+  selectedVariant,
+}: {
+  slug: string;
+  productName: string;
+  selectedVariant?: string;
+}) {
   const data = getComposition(slug);
   if (!data) return null;
 
-  const rows = [...data.rows].sort((a, b) => b.composition - a.composition);
+  const colorKey = selectedVariant?.toLowerCase().trim();
+  const colorIngredient = colorKey ? data.colorIngredients?.[colorKey] : undefined;
+
+  const baseRows = [...data.rows];
+  if (colorIngredient) {
+    baseRows.push({
+      ingredient: colorIngredient.ingredient,
+      commonName: colorIngredient.commonName,
+      composition: colorIngredient.composition,
+      naturalOriginPct: colorIngredient.naturalOriginPct,
+      function: colorIngredient.function,
+      natural: colorIngredient.naturalOriginPct === 100,
+    });
+  }
+
+  const rows = baseRows.sort((a, b) => b.composition - a.composition);
   const naturals = rows.filter((r) => r.natural);
   const essentials = rows.filter((r) => !r.natural);
 
