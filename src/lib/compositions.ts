@@ -53,7 +53,7 @@ export const compositions: Record<string, Composition> = {
     totalNaturalOrigin: 96.12,
     rows: [
       // Plant-derived 100% natural origin ingredients (72.30% of formula)
-      { ingredient: "Aqua", commonName: "Water", composition: 55.6, naturalOriginPct: 100, function: "Solvent base", natural: true },
+      { ingredient: "Aqua", commonName: "Water", composition: 56.1, naturalOriginPct: 100, function: "Solvent base", natural: true },
       { ingredient: "Glycerin", composition: 5, naturalOriginPct: 100, function: "Hydrating and moisture-retaining agent", natural: true },
       { ingredient: "Coco Glucoside", composition: 5, naturalOriginPct: 100, function: "Ultra-mild plant-derived cleanser", natural: true },
       { ingredient: "Aloe Barbadensis Leaf Juice", commonName: "Aloe vera juice", composition: 2, naturalOriginPct: 100, function: "Soothes and hydrates delicate skin", natural: true },
