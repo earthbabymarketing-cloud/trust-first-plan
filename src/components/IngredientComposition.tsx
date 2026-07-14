@@ -50,25 +50,9 @@ export function IngredientComposition({ slug, productName }: { slug: string; pro
             <span className="h-2 w-2 rounded-full bg-[color:var(--brand-leaf)]" />
             {naturals.length} plant based ingredients · {naturalsFormulaShare.toFixed(2)}% in formula · 100% natural origin
           </div>
-          <ul className="mt-3 space-y-3">
-            {naturals.map((r) => (
-              <li
-                key={r.ingredient}
-                className="rounded-xl bg-white border border-border p-4"
-              >
-                <div className="flex items-baseline justify-between gap-3 flex-wrap">
-                  <div className="font-display text-base">{nameOf(r)}</div>
-                  <div className="text-xs text-muted-foreground tabular-nums">
-                    {fmt(r.composition)}% in formula ·{" "}
-                    <span className="text-[color:var(--brand-leaf)] font-medium">
-                      {fmt(r.naturalOriginPct)}% natural origin
-                    </span>
-                  </div>
-                </div>
-                <div className="mt-1 text-sm text-foreground/80">{r.function}</div>
-              </li>
-            ))}
-          </ul>
+          <div className="mt-3 text-sm text-foreground/90 leading-relaxed">
+            {naturals.map(nameOf).join(", ")}
+          </div>
         </div>
 
         {/* Essentials */}
