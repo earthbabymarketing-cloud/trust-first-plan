@@ -79,7 +79,7 @@ export function IngredientComposition({
                   className="rounded-xl bg-white border border-border p-4"
                 >
                   <div className="flex items-baseline justify-between gap-3 flex-wrap">
-                    <div className="font-display text-base">{c.commonName ?? c.ingredient}</div>
+                    <div className="font-display text-base">{c.ingredient}</div>
                     <div className="text-xs text-muted-foreground tabular-nums">
                       {fmt(c.composition)}% in formula ·{" "}
                       <span className="text-[color:var(--brand-leaf)] font-medium">
@@ -87,7 +87,9 @@ export function IngredientComposition({
                       </span>
                     </div>
                   </div>
-                  <div className="mt-1 text-sm text-foreground/80">{c.function}</div>
+                  <div className="mt-1 text-sm text-foreground/80">
+                    {c.function} — shade: {c.commonName}
+                  </div>
                 </li>
               ))}
             </ul>
