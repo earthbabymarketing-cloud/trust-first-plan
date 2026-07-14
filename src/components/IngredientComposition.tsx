@@ -60,41 +60,16 @@ export function IngredientComposition({
             <span className="text-amber-600 font-medium">100% NATURAL ORIGIN</span>
           </div>
           <div className="mt-3 text-sm text-foreground/90 leading-relaxed">
-            {naturals.map(nameOf).join(", ")}
+            {[
+              ...naturals.map(nameOf),
+              ...(data.colorIngredients
+                ? Object.values(data.colorIngredients).map(
+                    (c) => `${c.ingredient} (${c.commonName})`,
+                  )
+                : []),
+            ].join(", ")}
           </div>
         </div>
-
-        {/* Shade-specific natural colour pigments */}
-        {data.colorIngredients && Object.values(data.colorIngredients).length > 0 && (
-          <div>
-            <div className="flex items-center gap-2 text-[11px] uppercase tracking-wider text-muted-foreground">
-              <span className="h-2 w-2 rounded-full bg-[color:var(--brand-leaf)]" />
-              SHADE-SPECIFIC NATURAL COLOUR · 8% PER SHADE ·{" "}
-              <span className="text-amber-600 font-medium">100% NATURAL ORIGIN</span>
-            </div>
-            <ul className="mt-3 space-y-3">
-              {Object.values(data.colorIngredients).map((c) => (
-                <li
-                  key={c.ingredient}
-                  className="rounded-xl bg-white border border-border p-4"
-                >
-                  <div className="flex items-baseline justify-between gap-3 flex-wrap">
-                    <div className="font-display text-base">{c.ingredient}</div>
-                    <div className="text-xs text-muted-foreground tabular-nums">
-                      {fmt(c.composition)}% in formula ·{" "}
-                      <span className="text-[color:var(--brand-leaf)] font-medium">
-                        {fmt(c.naturalOriginPct)}% natural origin
-                      </span>
-                    </div>
-                  </div>
-                  <div className="mt-1 text-sm text-foreground/80">
-                    {c.function} — shade: {c.commonName}
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
 
         {/* Essentials */}
         {essentials.length > 0 && (
