@@ -15,7 +15,11 @@ export function IngredientComposition({ slug, productName }: { slug: string; pro
     0,
   );
   const total = data.totalNaturalOrigin ?? naturalContribution;
-  const essentialShare = Math.max(0, 100 - total);
+  const naturalsFormulaShare = naturals.reduce((s, r) => s + r.composition, 0);
+  const essentialsNaturalContribution = essentials.reduce(
+    (s, r) => s + (r.composition * r.naturalOriginPct) / 100,
+    0,
+  );
 
   const fmt = (n: number) => (n >= 10 ? n.toFixed(1) : n.toFixed(2)).replace(/\.?0+$/, "");
   const nameOf = (r: (typeof rows)[number]) => r.commonName ?? r.ingredient;
