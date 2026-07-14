@@ -47,6 +47,42 @@ export const compositions: Record<string, Composition> = {
       "Every non-natural ingredient is used at the lowest effective dose, only where a plant alternative can't do the job safely.",
     ],
   },
+
+  "baby-wash": {
+    productName: "Earthbaby Top-to-Toe Body Wash",
+    totalNaturalOrigin: 96.12,
+    rows: [
+      // Plant-derived 100% natural origin ingredients (72.30% of formula)
+      { ingredient: "Aqua", commonName: "Water", composition: 56.1, naturalOriginPct: 100, function: "Solvent base", natural: true },
+      { ingredient: "Glycerin", composition: 5, naturalOriginPct: 100, function: "Hydrating and moisture-retaining agent", natural: true },
+      { ingredient: "Coco Glucoside", composition: 5, naturalOriginPct: 100, function: "Ultra-mild plant-derived cleanser", natural: true },
+      { ingredient: "Aloe Barbadensis Leaf Juice", commonName: "Aloe vera juice", composition: 2, naturalOriginPct: 100, function: "Soothes and hydrates delicate skin", natural: true },
+      { ingredient: "Glyceryl Oleate", composition: 1, naturalOriginPct: 100, function: "Skin-conditioning co-emulsifier", natural: true },
+      { ingredient: "Acacia Senegal Gum & Xanthan Gum", commonName: "Natural gum blend", composition: 1, naturalOriginPct: 100, function: "Thickener and stabiliser", natural: true },
+      { ingredient: "Propylene Glycol Caprylate", composition: 1, naturalOriginPct: 100, function: "Preservative booster", natural: true },
+      { ingredient: "Calendula Officinalis Flower Extract", commonName: "Calendula extract", composition: 0.5, naturalOriginPct: 100, function: "Soothes sensitive skin", natural: true },
+      { ingredient: "Xanthan Gum", composition: 0.5, naturalOriginPct: 100, function: "Thickening agent", natural: true },
+      { ingredient: "Glycyrrhiza Glabra Root Extract", commonName: "Licorice root extract", composition: 0.5, naturalOriginPct: 100, function: "Brightens and calms skin", natural: true },
+      { ingredient: "Sodium Gluconate", composition: 0.1, naturalOriginPct: 100, function: "Chelating agent", natural: true },
+      { ingredient: "Citric Acid", composition: 0.1, naturalOriginPct: 100, function: "pH adjuster (keeps formula at skin-matched 5.5)", natural: true },
+
+      // Essentials
+      { ingredient: "Disodium Cocoyl Glutamate", composition: 8, naturalOriginPct: 98, function: "Ultra-mild amino-acid cleanser", natural: false, note: "Derived from coconut and fermented sugar — the gentlest cleanser in the formula." },
+      { ingredient: "Cocamidopropyl Betaine", composition: 8, naturalOriginPct: 86, function: "Mild secondary cleanser and foam booster", natural: false, note: "Coconut-derived; used to keep foam gentle and tear-free." },
+      { ingredient: "Disodium Cocoamphoacetate", composition: 6, naturalOriginPct: 81, function: "Amphoteric cleanser; balances mildness", natural: false, note: "Coconut-derived; helps the wash rinse clean without stripping." },
+      { ingredient: "Sodium Cocoyl Isethionate", composition: 3, naturalOriginPct: 86, function: "Creamy lather from coconut fatty acids", natural: false, note: "Solid, coconut-derived surfactant used at low levels for a soft creamy foam." },
+      { ingredient: "Gluconolactone (and) Sodium Benzoate", composition: 1.8, naturalOriginPct: 74.5, function: "Edible-grade, broad-spectrum preservative", natural: false, note: "Food-grade preservative system — safest available for daily baby use." },
+      { ingredient: "Panthenyl Hydroxypropyl Steardimonium Chloride", commonName: "Provitamin B5 conditioner", composition: 0.5, naturalOriginPct: 63, function: "Conditions skin and softens", natural: false, note: "Provitamin B5 derivative that leaves skin soft after rinse." },
+      { ingredient: "Polyquaternium-10", composition: 0.2, naturalOriginPct: 0, function: "Conditioning agent; reduces static and dryness", natural: false, note: "Used at 0.2% because no plant-derived alternative gives the same after-feel." },
+      { ingredient: "D-Panthenol", composition: 0.2, naturalOriginPct: 0, function: "Combats inflammation and redness; soothes skin", natural: false, note: "Nature-identical Provitamin B5 — the only form stable in a water-based wash." },
+    ],
+    whyItsGood: [
+      "96.12% natural origin per ISO 16128 — declared ingredient-by-ingredient, not estimated.",
+      "Tear-free, pH-balanced to 5.5 — safe from head to toe, from day one.",
+      "Free from sulphates, parabens, silicones and synthetic fragrance.",
+      "Every essential is used at the lowest effective dose, only where a plant alternative can't do the job safely.",
+    ],
+  },
 };
 
 /* Loose matcher: exact slug first, then substring fallback (e.g. any lotion handle). */
