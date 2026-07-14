@@ -451,3 +451,11 @@ function Stars({ value }: { value: number }) {
     </span>
   );
 }
+
+function toTitleCase(s: string) {
+  return s
+    .toLowerCase()
+    .split(" ")
+    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+    .join(" ");
+}
