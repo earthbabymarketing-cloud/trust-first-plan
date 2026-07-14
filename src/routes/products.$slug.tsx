@@ -48,13 +48,6 @@ function PDP() {
   const { add } = useCart();
   const [qty, setQty] = useState(1);
   const [activeImg, setActiveImg] = useState(0);
-  const [selectedVariant, setSelectedVariant] = useState("");
-
-  useEffect(() => {
-    if (product && !selectedVariant) {
-      setSelectedVariant(product.variants[0]?.title ?? "");
-    }
-  }, [product, selectedVariant]);
 
   if (isLoading) {
     return <div className="container-x py-32 text-center text-muted-foreground">Loading product…</div>;
