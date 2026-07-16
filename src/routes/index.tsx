@@ -1,4 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useState, useEffect, useRef } from "react";
+import { getComposition } from "@/lib/compositions";
 import hero from "@/assets/hero-mother-baby.jpg";
 import flatlay from "@/assets/products-flatlay.jpg";
 import economicTimesLogo from "@/assets/logo-economic-times.png.asset.json";
