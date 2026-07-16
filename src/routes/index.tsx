@@ -27,7 +27,7 @@ function Home() {
       <TrustStrip />
       <OurPromise />
       <Empathy />
-      <WhyTrust />
+      
       <ShopByConcern />
       <Bestsellers />
       <Bundles />
