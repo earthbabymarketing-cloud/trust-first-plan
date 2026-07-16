@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import hero from "@/assets/hero-mother-baby.jpg";
 import flatlay from "@/assets/products-flatlay.jpg";
@@ -26,8 +25,8 @@ function Home() {
     <>
       <Hero />
       <TrustStrip />
-      <OurPromise />
       <Empathy />
+      <WhyTrust />
       
       <ShopByConcern />
       <Bestsellers />
@@ -152,126 +151,38 @@ function Empathy() {
   );
 }
 
-/* ---------- Our Promise (transparency receipt) ---------- */
-function OurPromise() {
-  const { data: products = [] } = useProducts();
-  const product = products.find((p) => p.slug === "top-to-toe-baby-wash-96-31-natural-origin-275ml")
-    ?? products.find((p) => p.slug.startsWith("top-to-toe-baby-wash"));
-
-  const ings: Array<[string, string]> = [
-    ["Aqua", "solvent base"],
-    ["Glycerin", "hydration"],
-    ["Coco Glucoside", "mild cleanser"],
-    ["Xanthan Gum", "natural thickener"],
-    ["Glyceryl Oleate", "skin-conditioning"],
-    ["Acacia Senegal Gum", "natural thickener"],
-    ["Aloe Barbadensis Leaf Juice", "soothes & hydrates"],
-    ["Sodium Gluconate", "chelating agent"],
-    ["Citric Acid", "pH balancer (5.5)"],
-    ["Licorice Root Extract", "brightens & calms"],
-    ["Propylene Glycol Caprylate", "preservative booster"],
+/* ---------- Why trust ---------- */
+function WhyTrust() {
+  const points = [
+    { t: "Every ingredient disclosed", d: "Full ingredient list, in plain English, on every product page.", Icon: ListSearchIcon },
+    { t: "Natural origin % transparency", d: "We declare the exact natural origin % — no rounding up.", Icon: LeafPercentIcon },
+    { t: "Dermatologically tested", d: "Patch-tested for sensitive baby and mom skin.", Icon: TestTubeCheckIcon },
+    { t: "No fear-based marketing", d: "We won't scare you into buying. Just facts.", Icon: ShieldHeartIcon },
+    { t: "Sensitive skin first", d: "Formulated for the most reactive skin in the family.", Icon: HandLeafIcon },
+    { t: "Honest claims", d: "No buzzwords. No half-truths. If we say it, we can prove it.", Icon: BadgeCheckIcon },
   ];
-  const PREVIEW = 4;
-  const [open, setOpen] = useState(false);
-  const visible = open ? ings : ings.slice(0, PREVIEW);
-  const hidden = ings.length - PREVIEW;
-
   return (
-    <section className="bg-[color:var(--brand-cream)]">
-      <div className="container-x py-14 sm:py-20 lg:py-28">
-        <div className="grid lg:grid-cols-[1fr_1.1fr] gap-10 lg:gap-16 items-center">
-          {/* Left — copy */}
-          <div>
-            <span className="eyebrow">Our promise</span>
-            <h2 className="mt-4 font-display text-4xl sm:text-5xl lg:text-6xl leading-[1.05] tracking-[-0.01em]">
-              So we show{" "}
-              <span className="relative inline-block">
-                <span
-                  aria-hidden
-                  className="absolute inset-x-0 bottom-1 h-[42%] bg-[color:var(--tint-leaf)] -z-0 rounded-sm"
-                />
-                <span className="relative">our work.</span>
-              </span>
-            </h2>
-            <p className="mt-6 text-lg text-muted-foreground max-w-lg">
-              On every product, we print the exact natural-origin percentage — and
-              explain every ingredient in plain English. It's not a marketing claim.
-              It's a receipt.
-            </p>
-            <p className="mt-4 font-display italic text-[color:var(--brand-blossom)] text-xl sm:text-2xl">
-              the long names? mostly coconut.
-            </p>
-          </div>
-
-          {/* Right — product image floating over ingredient card */}
-          <div className="relative">
-            {/* Product image — outside/overlapping the card */}
-            {product?.image && (
-              <div className="absolute -top-6 sm:-top-10 -left-2 sm:left-6 z-10 h-32 w-32 sm:h-44 sm:w-44 rounded-3xl bg-white shadow-[var(--shadow-lift)] p-3 rotate-[-4deg] border border-border">
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className="h-full w-full object-contain"
-                  loading="lazy"
-                />
-              </div>
-            )}
-
-            {/* Ingredient card */}
-            <div className="rounded-3xl border border-border bg-white shadow-[var(--shadow-soft)] overflow-hidden pt-24 sm:pt-14">
-              <div className="px-6 sm:px-8 pb-5 sm:pb-6 sm:pl-56">
-                <div className="font-display text-2xl sm:text-3xl text-[color:var(--brand-ink)] leading-tight">
-                  Top to Toe Baby Wash
-                </div>
-                <span className="mt-2 inline-flex chip chip-leaf text-[color:var(--brand-ink)]">
-                  A real Earthbaby label
-                </span>
-              </div>
-
-              <div className="divide-y divide-border border-t border-border">
-                {visible.map(([n, d]) => (
-                  <div
-                    key={n}
-                    className="px-6 sm:px-8 py-3.5 flex items-baseline justify-between gap-4"
-                  >
-                    <div className="min-w-0 text-[15px] sm:text-base text-[color:var(--brand-ink)]">
-                      <span className="font-medium">{n}</span>
-                      <span className="text-muted-foreground"> — {d}</span>
-                    </div>
-                    <div className="shrink-0 font-display text-[color:var(--brand-leaf)] tabular-nums">
-                      100%
-                    </div>
-                  </div>
-                ))}
-
-                {hidden > 0 && (
-                  <div className="px-6 sm:px-8 py-3">
-                    <button
-                      type="button"
-                      onClick={() => setOpen((v) => !v)}
-                      className="text-sm font-medium text-[color:var(--brand-sky)] hover:text-[color:var(--brand-sky-hover)] underline underline-offset-4"
-                    >
-                      {open ? "Show less" : `Read more (${hidden})`}
-                    </button>
-                  </div>
-                )}
-              </div>
-
-              <div className="px-6 sm:px-8 py-5 bg-[color:var(--brand-cream)] border-t border-border flex items-center justify-between">
-                <div className="font-display text-lg text-[color:var(--brand-ink)]">
-                  Total natural origin
-                </div>
-                <div className="font-display text-2xl text-[color:var(--brand-leaf)] tabular-nums">
-                  96.31%
-                </div>
-              </div>
+    <section className="bg-[color:var(--wash-sky)] relative overflow-hidden">
+      <DottedCloud size={220} className="absolute -top-6 right-6 opacity-70" />
+      <div className="container-x py-14 sm:py-20 lg:py-28 relative">
+        <div className="max-w-2xl">
+          <span className="eyebrow">Our promise</span>
+          <h2 className="mt-4 font-display text-3xl sm:text-5xl">We don't ask you to trust us blindly.</h2>
+        </div>
+        <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-border rounded-2xl overflow-hidden">
+          {points.map(({ t, d, Icon }) => (
+            <div key={t} className="bg-white p-7">
+              <Icon size={56} />
+              <h3 className="mt-4 font-display text-xl">{t}</h3>
+              <p className="mt-2 text-sm text-muted-foreground">{d}</p>
             </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>
   );
 }
+
 
 /* ---------- Shop by concern ---------- */
 function ShopByConcern() {
