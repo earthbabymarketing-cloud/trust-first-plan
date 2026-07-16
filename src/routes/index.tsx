@@ -1,4 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useState, useEffect, useRef } from "react";
+import { getComposition } from "@/lib/compositions";
 import hero from "@/assets/hero-mother-baby.jpg";
 import flatlay from "@/assets/products-flatlay.jpg";
 import economicTimesLogo from "@/assets/logo-economic-times.png.asset.json";
@@ -151,32 +153,166 @@ function Empathy() {
   );
 }
 
-/* ---------- Why trust ---------- */
+/* ---------- Our Promise — ingredient transparency showcase ---------- */
 function WhyTrust() {
-  const points = [
-    { t: "Every ingredient disclosed", d: "Full ingredient list, in plain English, on every product page.", Icon: ListSearchIcon },
-    { t: "Natural origin % transparency", d: "We declare the exact natural origin % — no rounding up.", Icon: LeafPercentIcon },
-    { t: "Dermatologically tested", d: "Patch-tested for sensitive baby and mom skin.", Icon: TestTubeCheckIcon },
-    { t: "No fear-based marketing", d: "We won't scare you into buying. Just facts.", Icon: ShieldHeartIcon },
-    { t: "Sensitive skin first", d: "Formulated for the most reactive skin in the family.", Icon: HandLeafIcon },
-    { t: "Honest claims", d: "No buzzwords. No half-truths. If we say it, we can prove it.", Icon: BadgeCheckIcon },
-  ];
+  const { data: products = [] } = useProducts();
+  const composition = getComposition("baby-wash")!;
+
+  // Find the matching product for image + real name
+  const product = products.find(
+    (p) => p.slug.includes("top-to-toe") || p.slug.includes("baby-wash"),
+  );
+  const productImage = product?.image;
+  const productName = composition.productName.replace(/^Earthbaby\s+/i, "");
+
+  const rows = [...composition.rows].sort((a, b) => b.composition - a.composition);
+  const PREVIEW = 4;
+  const [expanded, setExpanded] = useState(false);
+  const visibleRows = expanded ? rows : rows.slice(0, PREVIEW);
+  const hiddenCount = rows.length - PREVIEW;
+
+  // Progress-bar reveal on scroll
+  const sectionRef = useRef<HTMLDivElement | null>(null);
+  const [inView, setInView] = useState(false);
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => e.isIntersecting && setInView(true));
+      },
+      { threshold: 0.25 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  const total = composition.totalNaturalOrigin;
+
   return (
-    <section className="bg-[color:var(--wash-sky)] relative overflow-hidden">
-      <DottedCloud size={220} className="absolute -top-6 right-6 opacity-70" />
+    <section ref={sectionRef} className="bg-[color:var(--brand-cream)] relative overflow-hidden">
+      <div aria-hidden className="pointer-events-none absolute -top-24 -left-24 h-80 w-80 rounded-full bg-[color:var(--tint-sky)] opacity-40 blur-3xl" />
+      <div aria-hidden className="pointer-events-none absolute -bottom-32 right-0 h-96 w-96 rounded-full bg-[color:var(--tint-leaf)] opacity-40 blur-3xl" />
+
       <div className="container-x py-14 sm:py-20 lg:py-28 relative">
-        <div className="max-w-2xl">
-          <span className="eyebrow">Our promise</span>
-          <h2 className="mt-4 font-display text-3xl sm:text-5xl">We don't ask you to trust us blindly.</h2>
-        </div>
-        <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-border rounded-2xl overflow-hidden">
-          {points.map(({ t, d, Icon }) => (
-            <div key={t} className="bg-white p-7">
-              <Icon size={56} />
-              <h3 className="mt-4 font-display text-xl">{t}</h3>
-              <p className="mt-2 text-sm text-muted-foreground">{d}</p>
+        <div className="grid lg:grid-cols-[45fr_55fr] gap-12 lg:gap-16 items-center">
+          {/* LEFT — copy */}
+          <div className="reveal">
+            <span className="eyebrow">Our promise</span>
+            <h2 className="mt-4 font-display text-4xl sm:text-5xl lg:text-6xl leading-[1.05]">
+              So we show{" "}
+              <span className="relative inline-block">
+                <span className="absolute inset-x-0 bottom-1 h-3 sm:h-4 bg-[color:var(--tint-leaf)] -z-0 rounded-sm" aria-hidden />
+                <span className="relative z-10">our work.</span>
+              </span>
+            </h2>
+            <p className="mt-6 text-base sm:text-lg text-[color:var(--text-soft)] leading-relaxed max-w-lg">
+              On every product, we print the exact natural-origin percentage and explain every ingredient in plain English. No confusing chemistry. No marketing tricks. Just complete transparency for parents.
+            </p>
+            <p
+              className="mt-5 text-2xl sm:text-3xl text-[color:var(--brand-blossom)] leading-snug"
+              style={{ fontFamily: "'Caveat', cursive" }}
+            >
+              The long names? Mostly plants.
+            </p>
+          </div>
+
+          {/* RIGHT — floating bottle + transparency card */}
+          <div className="relative">
+            {/* Floating product image, overlapping upper-left of card */}
+            {productImage && (
+              <img
+                src={productImage}
+                alt={productName}
+                className="absolute -top-10 -left-6 sm:-top-16 sm:-left-10 w-40 sm:w-56 lg:w-64 h-auto z-20 pointer-events-none select-none transition-transform duration-500 ease-out hover:-translate-y-2"
+                style={{
+                  filter: "drop-shadow(0 24px 32px rgba(0,162,198,.22)) drop-shadow(0 8px 12px rgba(31,42,51,.12))",
+                }}
+              />
+            )}
+
+            {/* Transparency card */}
+            <div className="relative bg-white rounded-[28px] border border-border shadow-[var(--shadow-soft)] hover:shadow-[var(--shadow-lift)] transition-shadow duration-500 overflow-hidden">
+              {/* Top — % natural origin */}
+              <div className="px-6 sm:px-8 pt-8 sm:pt-10 pb-6 pl-36 sm:pl-52 lg:pl-60">
+                <div className="eyebrow text-[color:var(--brand-sky)]">Natural origin</div>
+                <div className="mt-1 font-display font-bold text-5xl sm:text-6xl leading-none text-[color:var(--brand-leaf)]">
+                  {total}%
+                </div>
+                <p className="mt-3 text-xs sm:text-sm text-[color:var(--text-muted)] leading-relaxed max-w-md">
+                  Calculated according to ISO 16128 using the weighted contribution of every ingredient in {productName}.
+                </p>
+                <div className="mt-4 h-2 w-full rounded-full bg-[color:var(--tint-mist)] overflow-hidden">
+                  <div
+                    className="h-full rounded-full bg-gradient-to-r from-[color:var(--brand-leaf)] to-[color:var(--brand-sky)] transition-[width] duration-[1400ms] ease-out"
+                    style={{ width: inView ? `${total}%` : "0%" }}
+                    aria-hidden
+                  />
+                </div>
+              </div>
+
+              {/* Ingredient rows */}
+              <div className="px-6 sm:px-8 divide-y divide-border">
+                {visibleRows.map((r) => {
+                  const name = r.commonName ?? r.ingredient;
+                  const pct = r.naturalOriginPct;
+                  return (
+                    <div key={r.ingredient} className="py-3.5 flex items-start justify-between gap-4">
+                      <div className="min-w-0 flex-1">
+                        <div className="text-sm sm:text-[15px] font-semibold text-[color:var(--brand-ink)] leading-snug">
+                          {name}
+                        </div>
+                        <div className="text-xs sm:text-[13px] text-[color:var(--text-muted)] mt-0.5 leading-snug">
+                          {r.function}
+                        </div>
+                      </div>
+                      <div
+                        className={`shrink-0 text-sm sm:text-base font-semibold tabular-nums ${
+                          pct >= 100
+                            ? "text-[color:var(--brand-leaf)]"
+                            : pct >= 75
+                              ? "text-amber-600"
+                              : "text-[color:var(--brand-blossom)]"
+                        }`}
+                      >
+                        {pct}%
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* Read more toggle */}
+              {hiddenCount > 0 && (
+                <div className="px-6 sm:px-8 pt-2 pb-4">
+                  <button
+                    type="button"
+                    onClick={() => setExpanded((v) => !v)}
+                    className="inline-flex items-center gap-1.5 text-sm font-semibold text-[color:var(--brand-sky)] hover:text-[color:var(--brand-sky-hover)] transition-colors"
+                    aria-expanded={expanded}
+                  >
+                    {expanded ? "Show less" : `Read all ingredients (${rows.length})`}
+                    <span
+                      aria-hidden
+                      className={`inline-block transition-transform duration-300 ${expanded ? "rotate-180" : ""}`}
+                    >
+                      ↓
+                    </span>
+                  </button>
+                </div>
+              )}
+
+              {/* Footer — total */}
+              <div className="mt-2 px-6 sm:px-8 py-5 bg-[color:var(--brand-cream)] border-t border-border flex items-center justify-between">
+                <div className="font-display text-base sm:text-lg text-[color:var(--brand-ink)] font-semibold">
+                  Total natural origin
+                </div>
+                <div className="font-display text-2xl sm:text-3xl font-bold text-[color:var(--brand-leaf)] tabular-nums">
+                  {total}%
+                </div>
+              </div>
             </div>
-          ))}
+          </div>
         </div>
       </div>
     </section>
