@@ -25,8 +25,8 @@ function Home() {
     <>
       <Hero />
       <TrustStrip />
-      <OurPromise />
       <Empathy />
+      <WhyTrust />
       
       <ShopByConcern />
       <Bestsellers />
