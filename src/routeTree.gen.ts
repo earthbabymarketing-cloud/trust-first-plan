@@ -17,6 +17,7 @@ import { Route as CartRouteImport } from './routes/cart'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProductsSlugRouteImport } from './routes/products.$slug'
+import { Route as BlogEczemaRouteImport } from './routes/blog.eczema'
 
 const ShopRoute = ShopRouteImport.update({
   id: '/shop',
@@ -58,6 +59,11 @@ const ProductsSlugRoute = ProductsSlugRouteImport.update({
   path: '/products/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogEczemaRoute = BlogEczemaRouteImport.update({
+  id: '/blog/eczema',
+  path: '/blog/eczema',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -67,6 +73,7 @@ export interface FileRoutesByFullPath {
   '/faq': typeof FaqRoute
   '/ingredients': typeof IngredientsRoute
   '/shop': typeof ShopRoute
+  '/blog/eczema': typeof BlogEczemaRoute
   '/products/$slug': typeof ProductsSlugRoute
 }
 export interface FileRoutesByTo {
@@ -77,6 +84,7 @@ export interface FileRoutesByTo {
   '/faq': typeof FaqRoute
   '/ingredients': typeof IngredientsRoute
   '/shop': typeof ShopRoute
+  '/blog/eczema': typeof BlogEczemaRoute
   '/products/$slug': typeof ProductsSlugRoute
 }
 export interface FileRoutesById {
@@ -88,6 +96,7 @@ export interface FileRoutesById {
   '/faq': typeof FaqRoute
   '/ingredients': typeof IngredientsRoute
   '/shop': typeof ShopRoute
+  '/blog/eczema': typeof BlogEczemaRoute
   '/products/$slug': typeof ProductsSlugRoute
 }
 export interface FileRouteTypes {
@@ -100,6 +109,7 @@ export interface FileRouteTypes {
     | '/faq'
     | '/ingredients'
     | '/shop'
+    | '/blog/eczema'
     | '/products/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -110,6 +120,7 @@ export interface FileRouteTypes {
     | '/faq'
     | '/ingredients'
     | '/shop'
+    | '/blog/eczema'
     | '/products/$slug'
   id:
     | '__root__'
@@ -120,6 +131,7 @@ export interface FileRouteTypes {
     | '/faq'
     | '/ingredients'
     | '/shop'
+    | '/blog/eczema'
     | '/products/$slug'
   fileRoutesById: FileRoutesById
 }
@@ -131,6 +143,7 @@ export interface RootRouteChildren {
   FaqRoute: typeof FaqRoute
   IngredientsRoute: typeof IngredientsRoute
   ShopRoute: typeof ShopRoute
+  BlogEczemaRoute: typeof BlogEczemaRoute
   ProductsSlugRoute: typeof ProductsSlugRoute
 }
 
@@ -192,6 +205,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProductsSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog/eczema': {
+      id: '/blog/eczema'
+      path: '/blog/eczema'
+      fullPath: '/blog/eczema'
+      preLoaderRoute: typeof BlogEczemaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -203,18 +223,9 @@ const rootRouteChildren: RootRouteChildren = {
   FaqRoute: FaqRoute,
   IngredientsRoute: IngredientsRoute,
   ShopRoute: ShopRoute,
+  BlogEczemaRoute: BlogEczemaRoute,
   ProductsSlugRoute: ProductsSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
